@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+         #
+#    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 17:05:36 by lcouto            #+#    #+#              #
-#    Updated: 2021/06/27 19:15:36 by lcouto           ###   ########.fr        #
+#    Updated: 2021/06/27 19:49:09 by phemsi-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 		@mkdir -p objects/builtins
 		@mkdir -p objects/exec
 		@mkdir -p objects/system
-		@$(CC) $(CFLAGS) $(FLAGS) $(HEADER) $< -o $@
+		@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
 
 all: $(NAME)

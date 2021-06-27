@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/06/27 18:01:35 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/06/27 19:49:57 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(void)
 	while(true)
 	{
 		ft_printf("Digite algo: ");
-		get_next_line(0, input);
+		get_next_line(0, &input);
 		if (ft_strncmp("exit", input, 5) == 0)
 			exit(0);
 		ft_printf("Você digitou: %s\n", input);
