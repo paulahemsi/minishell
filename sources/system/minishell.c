@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/27 18:21:50 by lcouto           ###   ########.fr       */
+/*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
+/*   Updated: 2021/06/27 18:01:35 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include "libft.h"
-# include "tokenizer.h"
-# include "parser.h"
-# include <stdbool.h>
-# include <stdlib.h>
+int	main(void)
+{
+	char *input;
 
-# endif
+	while(true)
+	{
+		ft_printf("Digite algo: ");
+		get_next_line(0, input);
+		if (ft_strncmp("exit", input, 5) == 0)
+			exit(0);
+		ft_printf("Você digitou: %s\n", input);
+		free(input);
+	}
+	return (0);
+}
