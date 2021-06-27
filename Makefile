@@ -6,13 +6,13 @@
 #    By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 17:05:36 by lcouto            #+#    #+#              #
-#    Updated: 2021/06/27 18:20:08 by lcouto           ###   ########.fr        #
+#    Updated: 2021/06/27 19:15:36 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-HEADERS = includes libraries/libft
+HEADERS = -I includes -I libraries/libft
 
 DIR_SRCS = sources
 
@@ -32,7 +32,7 @@ CC	= clang
 
 RM	= rm -rf
 
-CFLAGS	= -Wall -Wextra -Werror -g -I $(HEADERS)
+CFLAGS	= -Wall -Wextra -Werror -g $(HEADERS)
 
 TCAPS = -ltermcap
 
@@ -62,7 +62,7 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 		@mkdir -p objects/builtins
 		@mkdir -p objects/exec
 		@mkdir -p objects/system
-		@$(CC) $(CFLAGS) $(FLAGS) $(HEADER) -c $< -o $@
+		@$(CC) $(CFLAGS) $(FLAGS) $(HEADER) $< -o $@
 		@echo "Compiled "$<" successfully!"
 
 all: $(NAME)
