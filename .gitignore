@@ -54,3 +54,9 @@ dkms.conf
 # VSCode files
 .vscode
 .json
+
+# vim temporary files
+*.swp
+
+# Executables
+minishell
