@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/06/27 19:49:57 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/06/28 17:20:21 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+static void temporary_loop(void)
 {
 	char *input;
 
@@ -25,5 +25,24 @@ int	main(void)
 		ft_printf("Você digitou: %s\n", input);
 		free(input);
 	}
+}
+
+int	main(void)
+{
+	//pegar variáveis de ambiente
+	//inicializar structs
+	//inicializar ambiente
+	//termcaps
+	temporary_loop();
+	//while (true)
+	//{
+    //	printar o prompt
+    //	lidar com signals
+    //	ler o que pessoa escreveu
+    //	tokenizar
+	//	parser
+    //	executar
+    //	free nas coisa tudo
+	//	}
 	return (0);
 }
