@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 19:56:24 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/27 15:02:17 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/06/29 10:17:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,22 @@ void	tkn_add_back(t_token **lst, t_token *new_token)
 	}
 	aux = tkn_last(*lst);
 	aux->next = new_token;
+}
+
+void	tkn_lstclear(t_token **lst)
+{
+	t_token	*aux;
+	t_token	*temp;
+
+	aux = *lst;
+	if (aux == NULL)
+		return ;
+	while (aux != NULL)
+	{
+		temp = aux->next;
+		free(aux->value);
+		free(aux);
+		aux = temp;
+	}
+	*lst = NULL;
 }
