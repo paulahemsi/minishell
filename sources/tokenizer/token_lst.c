@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 19:56:24 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/29 10:17:18 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/06/29 10:40:37 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ static t_token	*tkn_last(t_token *lst)
 		return (lst);
 	aux = lst;
 	while (aux->next != NULL)
-	{
 		aux = aux->next;
-	}
 	return (aux);
 }
 

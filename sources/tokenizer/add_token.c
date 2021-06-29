@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_token.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/27 19:19:52 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/06/29 18:36:26 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,14 @@ static int	is_operator(char *value)
 	return (0);
 }
 
-static void	remove_quotes(char **value)
+static void	define_type(char *value, int *type)
 {
-	char	*temp;
-
-	temp = ft_strtrim(*value, "'");
-	free(*value);
-	*value = temp;
-}
-static void	expand_variable(char **value)
-{
-	char	*temp;
-
-	temp = ft_strdup("variavel");//TODO buscar variável na hash table
-	free(*value);
-	*value = temp;
+	if (is_builtin(value))
+		*type = T_BUILTIN;
+	else if (is_operator(value))
+		*type = T_OPERATOR;
+	else
+		*type = T_LITERAL;
 }
 
 void	add_token(char *line, int start, int end, t_token **token_lst)
@@ -61,13 +54,10 @@ void	add_token(char *line, int start, int end, t_token **token_lst)
 	value = ft_substr(line, start, (end - start));
 	if (value[0] == '$')
 		expand_variable(&value);
-	else if (value[0] == '\'')
-		remove_quotes(&value);
-	if (is_builtin(value))
-		type = T_BUILTIN;
-	else if (is_operator(value))
-		type = T_OPERATOR;
-	else
-		type = T_LITERAL;
+	else if (value[0] == SINGLE_QUOTE)
+		remove_quotes(&value, SINGLE_QUOTE);
+	//else
+	//	check_variables_inside_string(&value);
+	define_type(value, &type);
 	tkn_add_back(token_lst, tkn_new(value, type));
 }
