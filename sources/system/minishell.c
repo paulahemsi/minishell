@@ -6,23 +6,38 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/06/28 17:20:21 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/06/28 21:07:07 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void temporary_loop(void)
+static void	read_input(char **input)
 {
-	char *input;
+	get_next_line(0, input);
+}
 
-	while(true)
+static void	execute(char *input)
+{
+	if (ft_strncmp("exit", input, 5) == 0)
+		exit(0);
+	ft_printf("%s\n", input);
+}
+
+static void	repl(void)
+{
+	char	*input;
+
+	while (true)
 	{
-		ft_printf("Digite algo: ");
-		get_next_line(0, &input);
-		if (ft_strncmp("exit", input, 5) == 0)
-			exit(0);
-		ft_printf("Você digitou: %s\n", input);
+		display_prompt();
+		//lidar com signals
+		read_input(&input);
+		//tokenizar
+		//parser
+		//executar
+		execute(input);
+		//free nas coisa tudo
 		free(input);
 	}
 }
@@ -33,16 +48,6 @@ int	main(void)
 	//inicializar structs
 	//inicializar ambiente
 	//termcaps
-	temporary_loop();
-	//while (true)
-	//{
-    //	printar o prompt
-    //	lidar com signals
-    //	ler o que pessoa escreveu
-    //	tokenizar
-	//	parser
-    //	executar
-    //	free nas coisa tudo
-	//	}
+	repl();
 	return (0);
 }
