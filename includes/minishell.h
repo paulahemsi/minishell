@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/27 18:49:37 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/06/28 20:50:20 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define MINISHELL_H
 
 # include "libft.h"
+# include "prompt.h"
 # include "tokenizer.h"
 # include "parser.h"
 # include <stdbool.h>
 # include <stdlib.h>
 
-# endif
+#endif
