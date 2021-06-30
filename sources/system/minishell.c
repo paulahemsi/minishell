@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/06/29 21:37:51 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/06/30 20:16:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	execute(char *input)
 		error_message(input, NOT_FOUND);
 		return ;
 	}
-	ft_printf("%s\n", input);
 }
 
 static void	repl(void)
@@ -38,7 +37,7 @@ static void	repl(void)
 		display_prompt();
 		//lidar com signals
 		read_input(&input);
-		//tokenizar
+		tokenizer(input);
 		//parser
 		//executar
 		execute(input);
