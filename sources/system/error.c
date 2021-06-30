@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/30 19:32:45 by lcouto           ###   ########.fr       */
+/*   Created: 2021/06/29 21:22:12 by lcouto            #+#    #+#             */
+/*   Updated: 2021/06/30 19:31:45 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include "libft.h"
-# include "input.h"
-# include "tokenizer.h"
-# include "parser.h"
-# include "error.h"
-# include <stdbool.h>
-# include <stdlib.h>
-# include <errno.h>
-
-#endif
+void	error_message(char *input, char *error_message)
+{
+	ft_putstr_fd(BOLD_YELLOW, 1);
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(YELLOW, 1);
+	ft_putstr_fd(input, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(error_message, 2);
+	ft_putstr_fd(RESET_COLOR, 1);
+}
