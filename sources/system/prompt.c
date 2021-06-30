@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrasson <lfrasson@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:40:47 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/06/28 21:16:12 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/06/30 19:35:43 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "minishell.h"
 
 static char	*get_pwd(void)
 {
