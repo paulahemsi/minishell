@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/29 18:28:34 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/06/29 23:46:22 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
+typedef struct s_var
+{
+	char	*before;
+	char	*after;
+	char	*value;
+	char	*pointer;
+	char	*temp;
+}	t_var;
+
 void	tokenizer(char *line);
 t_token	*split_tokens(char *line);
 void	add_token(char *line, int start, int end, t_token **token_lst);
@@ -43,7 +52,7 @@ void	tkn_lstclear(t_token **lst);
 /*
 ** variables_expansion.c
 */
-void	expand_variable(char **value);
-void	check_variables_inside_string(char **value);
+void	expand(char **value);
+void	expand_variables(char **value);
 
 # endif

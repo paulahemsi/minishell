@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/29 18:36:26 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/06/29 23:45:46 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,10 @@ void	add_token(char *line, int start, int end, t_token **token_lst)
 	int		type;
 
 	value = ft_substr(line, start, (end - start));
-	if (value[0] == '$')
-		expand_variable(&value);
-	else if (value[0] == SINGLE_QUOTE)
+	if (value[0] == SINGLE_QUOTE)
 		remove_quotes(&value, SINGLE_QUOTE);
-	//else
-	//	check_variables_inside_string(&value);
+	else
+		expand_variables(&value);
 	define_type(value, &type);
 	tkn_add_back(token_lst, tkn_new(value, type));
 }
