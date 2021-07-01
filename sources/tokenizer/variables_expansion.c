@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/29 23:45:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/06/30 19:24:33 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,16 @@ void	expand_variables(char **value)
 	int		i = 0;
 
 	var.pointer = search_var(*value, &i);
-	if (var.pointer)
-	{
-		var.before = ft_substr(*value, 0, i);
-		var.value = ft_substr(*value, i, get_size(var.pointer, &i));
-		expand(&var.value);
-		var.after = ft_substr(*value, i, (ft_strlen(*value) - i));
-		var.temp = ft_strjoin(var.before, var.value);
-		new_str = ft_strjoin(var.temp, var.after);
-		free(*value);
-		*value = new_str;
-		free_var_struct(&var);
-		expand_variables(value);
-	}
-	else
+	if (!(var.pointer))
 		return ;
+	var.before = ft_substr(*value, 0, i);
+	var.value = ft_substr(*value, i, get_size(var.pointer, &i));
+	expand(&var.value);
+	var.after = ft_substr(*value, i, (ft_strlen(*value) - i));
+	var.temp = ft_strjoin(var.before, var.value);
+	new_str = ft_strjoin(var.temp, var.after);
+	free(*value);
+	*value = new_str;
+	free_var_struct(&var);
+	expand_variables(value);
 }
