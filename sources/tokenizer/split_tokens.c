@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 18:34:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/01 18:17:02 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/01 19:13:56 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ t_token	*split_tokens(char *line)
 			add_token(line, i, token_end, &token_lst);
 		else
 			add_token(line, i, find_end(line, i, &token_end), &token_lst);
-		i = token_end + 1;
+		i = token_end;
+		if (line[i])
+			i++;
 	}
 	return (token_lst);
 }

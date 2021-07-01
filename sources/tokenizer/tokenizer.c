@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/01 18:56:51 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/01 19:17:32 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	tokenizer(char *line, t_token **token)
 	token_lst = *token;
 	token_lst = split_tokens(line);
 	print_token_lst(token_lst);//*DEBUGGING LINE
-	token_list_clear(&token_lst);
+	token_list_clear(&token_lst);//!MISTERY
 	// return token_lst;
 	//parser(token_lst);
 }
