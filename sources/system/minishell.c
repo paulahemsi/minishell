@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/01 19:17:24 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:50:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void	repl(void)
 		//lidar com signals
 		read_input(&input);
 		tokenizer(input, &token_lst);
-		token_list_clear(&token_lst);//!MISTERY
 		//parser
 		//executar
+		token_list_clear(&token_lst);
 		execute(input);
 		//free nas coisa tudo
 		free(input);

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/01 18:23:05 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/02 19:02:04 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ void	add_token(char *line, int start, int end, t_token **token_lst)
 	int		type;
 
 	value = ft_substr(line, start, (end - start));
-	if (value[0] == SINGLE_QUOTE)
+	if (!value)
+		return ;
+	if (is_single_quote(value[0]))
 		remove_quotes(&value, SINGLE_QUOTE);
 	else
 		expand_variables(&value);

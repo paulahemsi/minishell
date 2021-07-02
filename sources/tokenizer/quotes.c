@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 23:11:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/01 18:17:02 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/02 19:10:57 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,16 @@ static int	has_a_match(char *line, int i, int *match_index, char c)
 	return (0);
 }
 
-static int is_quote(char c)
+static int	is_quote(char c)
 {
 	if (c == SINGLE_QUOTE|| c == DOUBLE_QUOTE)
+		return (1);
+	return (0);
+}
+
+int	is_single_quote(char c)
+{
+	if (c == SINGLE_QUOTE)
 		return (1);
 	return (0);
 }

@@ -6,17 +6,18 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 18:34:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/01 19:13:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/02 19:18:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	needs_expansion(char quote)
+static int	needs_expansion(char *line, int i, int *token_end, char quote)
 {
-	if (quote == SINGLE_QUOTE)
-		return (0);
-	return (1);
+	if ((is_between_quotes(line, i, token_end, quote)))
+		if (!(is_single_quote(quote)))
+			return (1);
+	return (0);
 }
 
 static int	find_end(char *line, int i, int *end)
@@ -39,10 +40,11 @@ t_token	*split_tokens(char *line)
 	{
 		while (line[i] == ' ')
 			i++;
-		if (is_between_quotes(line, i, &token_end, line[i])
-			 && needs_expansion(line[i]))
+		if (!line[i])
+			break ;
+		if (needs_expansion(line, i, &token_end, line[i]))
 			add_token(line, i + 1, token_end, &token_lst);
-		else if (line[i] == SINGLE_QUOTE)
+		else if (is_single_quote(line[i]))
 			add_token(line, i, token_end, &token_lst);
 		else
 			add_token(line, i, find_end(line, i, &token_end), &token_lst);

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/01 18:50:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/02 18:41:54 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,21 @@ typedef struct s_var
 	char	*temp;
 }	t_var;
 
-void	tokenizer(char *line, t_token **token_lst);
 t_token	*split_tokens(char *line);
+void	tokenizer(char *line, t_token **token_lst);
 void	add_token(char *line, int start, int end, t_token **token_lst);
-int		is_between_quotes(char *line, int i, int *match_index, char c);
+/*
+** quotes.c
+*/
+int		is_single_quote(char c);
 void	remove_quotes(char **value, char quote);
+int		is_between_quotes(char *line, int i, int *match_index, char c);
 /*
 ** token linked list (token_lst.c)
 */
+void	token_list_clear(t_token **lst);
 t_token	*token_new(char *value, int type);
 void	token_add_back(t_token **lst, t_token *new_token);
-void	token_list_clear(t_token **lst);
 /*
 ** variables_expansion.c
 */
