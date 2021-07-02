@@ -40,6 +40,7 @@ static void	repl(void)
 		//lidar com signals
 		read_input(&input);
 		tokenizer(input, &token_lst);
+		token_list_clear(&token_lst);//!MISTERY
 		//parser
 		//executar
 		execute(input);

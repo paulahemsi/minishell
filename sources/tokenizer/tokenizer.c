@@ -38,15 +38,11 @@ static void	print_token_lst(t_token *token_lst)
 	}
 }
 
-void	tokenizer(char *line, t_token **token)
+void	tokenizer(char *line, t_token **token_lst)
 {
-	//t_token	*token_lst;
-	t_token	*token_lst;
 
-	token_lst = *token;
-	token_lst = split_tokens(line);
-	print_token_lst(token_lst);//*DEBUGGING LINE
-	token_list_clear(&token_lst);//!MISTERY
+	*token_lst = split_tokens(line);
+	print_token_lst(*token_lst);//*DEBUGGING LINE
 	// return token_lst;
 	//parser(token_lst);
 }
