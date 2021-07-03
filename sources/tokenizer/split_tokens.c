@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 18:34:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/02 19:18:55 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/03 12:35:39 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	needs_expansion(char *line, int i, int *token_end, char quote)
 
 static int	find_end(char *line, int i, int *end)
 {
-	while ((line[i] != ' ') && (line[i]))
+	while (!(ft_isblank(line[i])) && (line[i]))
 		i++;
 	*end = i;
 	return (i);
@@ -38,7 +38,7 @@ t_token	*split_tokens(char *line)
 	token_lst = NULL;
 	while (line[i])
 	{
-		while (line[i] == ' ')
+		while (ft_isblank(line[i]))
 			i++;
 		if (!line[i])
 			break ;
