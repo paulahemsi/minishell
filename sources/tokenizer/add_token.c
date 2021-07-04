@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/04 13:07:55 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/04 15:44:26 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,48 @@ static void	define_type(char *value, int *type)
 		*type = T_LITERAL;
 }
 
+static void	check_quotes(char **value)
+{
+	int		i;
+	int		close_quote;
+	char	*phrase;
+	t_var	aux;
+
+	i = 0;
+	phrase = *value;
+	while (phrase[i])
+	{
+		if (is_between_quotes(phrase, i, &close_quote, phrase[i]))
+		{
+			aux.before = ft_substr(phrase, 0, i);
+			aux.value = ft_substr(phrase, i, (close_quote + 1 - i));
+			aux.after = ft_substr(phrase, (close_quote + 1), ft_strlen(&phrase[close_quote]));
+			if (phrase[close_quote] == DOUBLE_QUOTE)
+				expand_variables(&aux.value);
+			remove_quotes(&aux.value, phrase[close_quote]);
+			aux.temp = ft_strjoin(aux.before, aux.value);
+			phrase = ft_strjoin(aux.temp, aux.after);
+			free_var_struct(&aux);
+			i = close_quote;
+		}
+		i++;
+	}
+	*value = phrase;
+}
+
 void	add_token(char *line, int start, int end, t_token **token_lst)
 {
 	char	*value;
 	int		type;
-	int		no_expansion_needed;
 
-	no_expansion_needed = 0;
 	value = ft_substr(line, start, (end - start));
 	if (!value)
 		return ;
 	if (is_single_quote(value[0]))
 		remove_quotes(&value, SINGLE_QUOTE);
-	else
+	else if (ft_strchr(value, SINGLE_QUOTE) || ft_strchr(value, DOUBLE_QUOTE))
+		check_quotes(&value);
+	else if (ft_strchr(value, '$'))
 		expand_variables(&value);
 	define_type(value, &type);
 	token_add_back(token_lst, token_new(value, type));

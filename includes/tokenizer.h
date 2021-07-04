@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/02 18:41:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/04 15:19:36 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void	token_add_back(t_token **lst, t_token *new_token);
 */
 void	expand(char **value);
 void	expand_variables(char **value);
+void	free_var_struct(t_var *var);
 
 # endif
