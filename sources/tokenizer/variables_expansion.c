@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/30 19:24:33 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/04 13:41:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	get_size(char *var, int *index)
 	int i;
 
 	i = 0;
-	while ((var[i + 1] != ' ') && (var[i + 1] != '\0'))
+	while ((var[i + 1] != ' ') && (var[i + 1] != '\0') && (var[i + 1] != '$'))
 		i++;
 	i++;
 	*index += i;
@@ -47,7 +47,7 @@ void	expand(char **value)
 {
 	char	*temp;
 
-	temp = ft_strdup("variable_value");//TODO buscar variável na hash table
+	temp = ft_strdup("Variable_value");//TODO buscar variável na hash table
 	free(*value);
 	*value = temp;
 }

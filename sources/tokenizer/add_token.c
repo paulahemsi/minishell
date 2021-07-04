@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/02 19:02:04 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/04 13:07:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	add_token(char *line, int start, int end, t_token **token_lst)
 {
 	char	*value;
 	int		type;
+	int		no_expansion_needed;
 
+	no_expansion_needed = 0;
 	value = ft_substr(line, start, (end - start));
 	if (!value)
 		return ;
