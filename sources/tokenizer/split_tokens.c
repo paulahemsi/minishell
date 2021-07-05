@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 18:34:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/04 15:54:08 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/05 08:29:20 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_token	*split_tokens(char *line)
 	t_token	*token_lst;
 
 	i = 0;
+	token_end = i;
 	token_lst = NULL;
 	while (line[i])
 	{

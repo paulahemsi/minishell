@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/04 15:44:26 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/05 08:54:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,31 @@ static void	define_type(char *value, int *type)
 static void	check_quotes(char **value)
 {
 	int		i;
-	int		close_quote;
-	char	*phrase;
+	int		end_quote;
+	char	*token;
 	t_var	aux;
 
 	i = 0;
-	phrase = *value;
-	while (phrase[i])
+	token = *value;
+	while (token[i])
 	{
-		if (is_between_quotes(phrase, i, &close_quote, phrase[i]))
+		if (is_between_quotes(token, i, &end_quote, token[i]))
 		{
-			aux.before = ft_substr(phrase, 0, i);
-			aux.value = ft_substr(phrase, i, (close_quote + 1 - i));
-			aux.after = ft_substr(phrase, (close_quote + 1), ft_strlen(&phrase[close_quote]));
-			if (phrase[close_quote] == DOUBLE_QUOTE)
+			aux.before = ft_substr(token, 0, i);
+			aux.value = ft_substr(token, i, (end_quote + 1 - i));
+			aux.after = ft_substr(token, (end_quote + 1), ft_strlen(&token[end_quote]));
+			if (token[end_quote] == DOUBLE_QUOTE)
 				expand_variables(&aux.value);
-			remove_quotes(&aux.value, phrase[close_quote]);
+			remove_quotes(&aux.value, token[end_quote]);
 			aux.temp = ft_strjoin(aux.before, aux.value);
-			phrase = ft_strjoin(aux.temp, aux.after);
+			token = ft_strjoin(aux.temp, aux.after);
 			free_var_struct(&aux);
-			i = close_quote;
+			i = end_quote;
 		}
 		i++;
 	}
-	*value = phrase;
+	free(*value);
+	*value = token;
 }
 
 void	add_token(char *line, int start, int end, t_token **token_lst)
