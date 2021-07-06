@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 19:56:24 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/29 10:40:37 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/01 18:23:41 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token	*tkn_new(char *value, int type)
+t_token	*token_new(char *value, int type)
 {
 	t_token	*new_token;
 
@@ -25,7 +25,7 @@ t_token	*tkn_new(char *value, int type)
 	return (new_token);
 }
 
-static t_token	*tkn_last(t_token *lst)
+static t_token	*token_last(t_token *lst)
 {
 	t_token	*aux;
 
@@ -37,7 +37,7 @@ static t_token	*tkn_last(t_token *lst)
 	return (aux);
 }
 
-void	tkn_add_back(t_token **lst, t_token *new_token)
+void	token_add_back(t_token **lst, t_token *new_token)
 {
 	t_token	*aux;
 
@@ -48,11 +48,11 @@ void	tkn_add_back(t_token **lst, t_token *new_token)
 		*lst = new_token;
 		return ;
 	}
-	aux = tkn_last(*lst);
+	aux = token_last(*lst);
 	aux->next = new_token;
 }
 
-void	tkn_lstclear(t_token **lst)
+void	token_list_clear(t_token **lst)
 {
 	t_token	*aux;
 	t_token	*temp;

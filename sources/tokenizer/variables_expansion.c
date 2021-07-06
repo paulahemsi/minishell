@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/06/29 23:45:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/06 19:54:22 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ static int	get_size(char *var, int *index)
 	int i;
 
 	i = 0;
-	while ((var[i + 1] != ' ') && (var[i + 1] != '\0'))
+	while ((var[i + 1] != ' ') && (var[i + 1] != '\0') && (var[i + 1] != '$'))
 		i++;
 	i++;
 	*index += i;
 	return (i);
 }
 
-static void	free_var_struct(t_var *var)
+void	free_var_struct(t_var *var)
 {
 	ft_free_and_null((void **)&var->before);
 	ft_free_and_null((void **)&var->value);
@@ -47,7 +47,7 @@ void	expand(char **value)
 {
 	char	*temp;
 
-	temp = ft_strdup("variable_value");//TODO buscar variável na hash table
+	temp = ft_strdup("Variable_value");//TODO buscar variável na hash table
 	free(*value);
 	*value = temp;
 }
@@ -59,19 +59,23 @@ void	expand_variables(char **value)
 	int		i = 0;
 
 	var.pointer = search_var(*value, &i);
-	if (var.pointer)
+	if (!(var.pointer))
+		return ;
+	var.before = ft_substr(*value, 0, i);
+	var.value = ft_substr(*value, i, get_size(var.pointer, &i));
+	if (var.value[ft_strlen(var.value) - 1] == SINGLE_QUOTE)
 	{
-		var.before = ft_substr(*value, 0, i);
-		var.value = ft_substr(*value, i, get_size(var.pointer, &i));
-		expand(&var.value);
-		var.after = ft_substr(*value, i, (ft_strlen(*value) - i));
-		var.temp = ft_strjoin(var.before, var.value);
-		new_str = ft_strjoin(var.temp, var.after);
-		free(*value);
-		*value = new_str;
-		free_var_struct(&var);
-		expand_variables(value);
+		var.temp = ft_substr(*value, i, (ft_strlen(*value) - i));
+		var.after = ft_strjoin("\'", var.temp);
+		free(var.temp);
 	}
 	else
-		return ;
+		var.after = ft_substr(*value, i, (ft_strlen(*value) - i));
+	expand(&var.value);
+	var.temp = ft_strjoin(var.before, var.value);
+	new_str = ft_strjoin(var.temp, var.after);
+	free(*value);
+	*value = new_str;
+	free_var_struct(&var);
+	expand_variables(value);
 }

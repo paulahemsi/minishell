@@ -54,6 +54,7 @@ dkms.conf
 # VSCode files
 .vscode
 .json
+.code-workspace
 
 # vim temporary files
 *.swp
