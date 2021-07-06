@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/04 15:19:41 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/06 19:54:22 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,15 @@ void	expand_variables(char **value)
 		return ;
 	var.before = ft_substr(*value, 0, i);
 	var.value = ft_substr(*value, i, get_size(var.pointer, &i));
+	if (var.value[ft_strlen(var.value) - 1] == SINGLE_QUOTE)
+	{
+		var.temp = ft_substr(*value, i, (ft_strlen(*value) - i));
+		var.after = ft_strjoin("\'", var.temp);
+		free(var.temp);
+	}
+	else
+		var.after = ft_substr(*value, i, (ft_strlen(*value) - i));
 	expand(&var.value);
-	var.after = ft_substr(*value, i, (ft_strlen(*value) - i));
 	var.temp = ft_strjoin(var.before, var.value);
 	new_str = ft_strjoin(var.temp, var.after);
 	free(*value);

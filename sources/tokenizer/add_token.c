@@ -6,34 +6,34 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/05 08:54:55 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/06 19:32:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	is_builtin(char *value)
+static bool	is_builtin(char *value)
 {
 	if (!(ft_strcmp(value, "echo\0")) || !(ft_strcmp(value, "cd\0")))
-		return (1);
+		return TRUE;
 	if (!(ft_strcmp(value, "pwd")) || !(ft_strcmp(value, "export")))
-		return (1);
+		return TRUE;
 	if (!(ft_strcmp(value, "unset")) || !(ft_strcmp(value, "env")))
-		return (1);
+		return TRUE;
 	if (!(ft_strcmp(value, "exit")))
-		return (1);
-	return (0);
+		return TRUE;
+	return FALSE;
 }
 
-static int	is_operator(char *value)
+static bool	is_operator(char *value)
 {
 	if (!(ft_strcmp(value, "|")) || !(ft_strcmp(value, "=")))
-		return (1);
+		return TRUE;
 	if (!(ft_strcmp(value, ">")) || !(ft_strcmp(value, "<")))
-		return (1);
+		return TRUE;
 	if (!(ft_strcmp(value, ">>")) || !(ft_strcmp(value, "<<")))
-		return (1);
-	return (0);
+		return TRUE;
+	return FALSE;
 }
 
 static void	define_type(char *value, int *type)

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/04 15:19:36 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/06 19:15:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TOKENIZER_H
 
 # include "libft.h"
+# include <stdbool.h>
 
 # define T_BUILTIN		42
 # define T_OPERATOR		43
@@ -44,9 +45,9 @@ void	add_token(char *line, int start, int end, t_token **token_lst);
 /*
 ** quotes.c
 */
-int		is_single_quote(char c);
+bool	is_single_quote(char c);
+bool	is_between_quotes(char *line, int i, int *match_index, char c);
 void	remove_quotes(char **value, char quote);
-int		is_between_quotes(char *line, int i, int *match_index, char c);
 /*
 ** token linked list (token_lst.c)
 */
