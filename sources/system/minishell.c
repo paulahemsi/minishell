@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/02 17:50:16 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/06 21:22:41 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 static void	read_input(char **input)
 {
-	get_next_line(0, input);
+	char	*prompt;
+
+	prompt = create_prompt();
+	*input = readline(prompt);
+	free(prompt);
 }
 
 static void	execute(char *input)
@@ -36,7 +40,6 @@ static void	repl(void)
 	while (true)
 	{
 		token_lst = NULL;
-		display_prompt();
 		//lidar com signals
 		read_input(&input);
 		tokenizer(input, &token_lst);

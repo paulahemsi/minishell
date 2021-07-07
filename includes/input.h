@@ -6,12 +6,12 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:31:27 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/06/30 19:35:30 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/06 21:24:06 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROMPT_H
-# define PROMPT_H
+#ifndef INPUT_H
+# define INPUT_H
 
 # define BLACK "\033[0;30m"
 # define BOLD_BLACK "\033[1;30m"
@@ -32,7 +32,9 @@
 # define RESET_COLOR "\033[0m"
 
 # include "libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 
-void	display_prompt(void);
+char	*create_prompt(void);
 
 #endif

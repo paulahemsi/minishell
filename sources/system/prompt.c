@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:40:47 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/06/30 19:35:43 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/06 21:19:30 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,21 @@ static int	get_prompt_len(char *name, char *pwd, char *end)
 	return (len);
 }
 
-static void	print_prompt(char *name, char *pwd, char *end)
+static char	*concatenate_prompt(char *name, char *pwd, char *end)
 {
-	ft_putstr_fd(BOLD_RED, 1);
-	ft_putstr_fd(name, 1);
-	ft_putstr_fd(BOLD_PURPLE, 1);
-	ft_putstr_fd(pwd, 1);
-	ft_putstr_fd(BOLD_RED, 1);
-	ft_putstr_fd(end, 1);
-	ft_putstr_fd(RESET_COLOR, 1);
+	char	*prompt;
+
+	prompt = ft_strjoin(BOLD_RED, name);
+	prompt = ft_strjoin(prompt, BOLD_PURPLE);
+	prompt = ft_strjoin(prompt, pwd);
+	prompt = ft_strjoin(prompt, BOLD_RED);
+	prompt = ft_strjoin(prompt, end);
+	prompt = ft_strjoin(prompt, RESET_COLOR);
+	free_prompt_strings(name, pwd, end);
+	return (prompt);
 }
 
-void	display_prompt(void)
+char	*create_prompt(void)
 {
 	char	*name;
 	char	*pwd;
@@ -58,7 +61,6 @@ void	display_prompt(void)
 	pwd = get_pwd();
 	name = ft_strdup("😈🔥 MINIHELL 🔥😈:");
 	end = ft_strdup("$ ");
-	print_prompt(name, pwd, end);
 	prompt_len = get_prompt_len(name, pwd, end);
-	free_prompt_strings(name, pwd, end);
+	return (concatenate_prompt(name, pwd, end));
 }

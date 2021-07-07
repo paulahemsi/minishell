@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 17:05:36 by lcouto            #+#    #+#              #
-#    Updated: 2021/06/27 19:49:09 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/07/06 20:51:17 by lfrasson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,11 @@ CFLAGS	= -Wall -Wextra -Werror -g $(HEADERS)
 
 TCAPS = -ltermcap
 
+READLINE = -lreadline -lncurses
+
 LIBFT = libraries/libft
 
-FLAGS = -L $(LIBFT) -lft
+FLAGS = -L $(LIBFT) -lft $(READLINE)
 
 ifeq ($(SANITIZE_A),true)
 	CFLAGS += -fsanitize=address -fno-omit-frame-pointer
