@@ -39,14 +39,25 @@ static int	get_prompt_len(char *name, char *pwd, char *end)
 
 static char	*concatenate_prompt(char *name, char *pwd, char *end)
 {
+	char	*temp;
 	char	*prompt;
 
 	prompt = ft_strjoin(BOLD_RED, name);
-	prompt = ft_strjoin(prompt, BOLD_PURPLE);
-	prompt = ft_strjoin(prompt, pwd);
-	prompt = ft_strjoin(prompt, BOLD_RED);
-	prompt = ft_strjoin(prompt, end);
-	prompt = ft_strjoin(prompt, RESET_COLOR);
+	temp = prompt;
+	prompt = ft_strjoin(temp, BOLD_PURPLE);
+	free(temp);
+	temp = prompt;
+	prompt = ft_strjoin(temp, pwd);
+	free(temp);
+	temp = prompt;
+	prompt = ft_strjoin(temp, BOLD_RED);
+	free(temp);
+	temp = prompt;
+	prompt = ft_strjoin(temp, end);
+	free(temp);
+	temp = prompt;
+	prompt = ft_strjoin(temp, RESET_COLOR);
+	free(temp);
 	free_prompt_strings(name, pwd, end);
 	return (prompt);
 }
