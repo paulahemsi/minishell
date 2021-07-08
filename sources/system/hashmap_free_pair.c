@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   hashmap_free_pair.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/08 00:37:40 by user42           ###   ########.fr       */
+/*   Created: 2021/07/07 02:02:33 by user42            #+#    #+#             */
+/*   Updated: 2021/07/07 02:03:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "hashmap.h"
 
-# include "libft.h"
-# include "input.h"
-# include "tokenizer.h"
-# include "parser.h"
-# include "error.h"
-# include "hashmap.h"
-# include <stdbool.h>
-# include <stdlib.h>
-# include <errno.h>
-
-#endif
+void	hashmap_free_pair(t_pair *pair)
+{
+	free(pair->key);
+	free(pair->value);
+	free(pair);
+}

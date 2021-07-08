@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   hashmap_create_pair.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/08 00:37:40 by user42           ###   ########.fr       */
+/*   Created: 2021/07/06 21:17:27 by user42            #+#    #+#             */
+/*   Updated: 2021/07/08 00:26:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "hashmap.h"
 
-# include "libft.h"
-# include "input.h"
-# include "tokenizer.h"
-# include "parser.h"
-# include "error.h"
-# include "hashmap.h"
-# include <stdbool.h>
-# include <stdlib.h>
-# include <errno.h>
+t_pair	*hashmap_create_pair(char *key, char *value)
+{
+	t_pair	*new_pair;
 
-#endif
+	new_pair = (t_pair *)ft_calloc(sizeof(t_pair), 1);
+	new_pair->key = ft_strdup(key);
+	new_pair->value = ft_strdup(value);
+	return (new_pair);
+}

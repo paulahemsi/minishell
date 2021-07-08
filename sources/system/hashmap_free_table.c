@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   hashmap_free_table.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/08 00:37:40 by user42           ###   ########.fr       */
+/*   Created: 2021/07/07 02:04:20 by user42            #+#    #+#             */
+/*   Updated: 2021/07/08 00:13:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "hashmap.h"
 
-# include "libft.h"
-# include "input.h"
-# include "tokenizer.h"
-# include "parser.h"
-# include "error.h"
-# include "hashmap.h"
-# include <stdbool.h>
-# include <stdlib.h>
-# include <errno.h>
+void	hashmap_free_table(t_hashmap *table)
+{
+	unsigned int	i;
 
-#endif
+	i = 0;
+	while (i < table->size)
+	{
+		if (table->pairs[i] != NULL)
+			free(table->pairs[i]);
+		i++;
+	}
+	free(table->pairs);
+	free(table);
+}

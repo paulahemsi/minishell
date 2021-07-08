@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   hashmap_search.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/08 00:37:40 by user42           ###   ########.fr       */
+/*   Created: 2021/07/08 00:00:31 by user42            #+#    #+#             */
+/*   Updated: 2021/07/08 00:07:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "hashmap.h"
 
-# include "libft.h"
-# include "input.h"
-# include "tokenizer.h"
-# include "parser.h"
-# include "error.h"
-# include "hashmap.h"
-# include <stdbool.h>
-# include <stdlib.h>
-# include <errno.h>
+char	*hashmap_search(t_hashmap *table, char *key)
+{
+	unsigned long int index;
 
-#endif
+	index = hash(key, table->size);
+	if (table->pairs[index] != NULL)
+	{
+		if (strncmp(table->pairs[index]->key, key, ft_strlen(key) + 1) == 0)
+			return (table->pairs[index]->value);
+	}
+	return (NULL);
+}

@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/08 00:37:40 by user42           ###   ########.fr       */
+/*   Created: 2021/07/07 19:59:44 by user42            #+#    #+#             */
+/*   Updated: 2021/07/07 20:15:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "hashmap.h"
 
-# include "libft.h"
-# include "input.h"
-# include "tokenizer.h"
-# include "parser.h"
-# include "error.h"
-# include "hashmap.h"
-# include <stdbool.h>
-# include <stdlib.h>
-# include <errno.h>
+/*
+** This function is an implementation of the djb2 hashing algorithm.
+** Further info: https://theartincode.stanis.me/008-djb2/
+*/
 
-#endif
+unsigned long int	hash(char *key, unsigned int length)
+{
+	unsigned long int	hash;
+	unsigned int		i;
+
+	hash = 5381;
+	i = 0;
+	while (key && key[i])
+	{
+		hash = ((hash << 5) + hash) + key[i];
+		i++;
+	}
+	return(hash % length);
+}
