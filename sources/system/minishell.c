@@ -6,11 +6,17 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/06 21:22:41 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/08 20:45:42 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	save_history(char *input)
+{
+	if (input && *input)
+		add_history(input);
+}
 
 static void	read_input(char **input)
 {
@@ -36,12 +42,17 @@ static void	repl(void)
 {
 	char	*input;
 	t_token	*token_lst;
-
+	//char	*prompt;
+	
+	//prompt = create_prompt();
+	//while ((input = readline(">> ")) != NULL)
+	//while ((input = readline(prompt)) != NULL)
 	while (true)
 	{
 		token_lst = NULL;
 		//lidar com signals
 		read_input(&input);
+		save_history(input);
 		tokenizer(input, &token_lst);
 		//parser
 		//executar
@@ -50,6 +61,7 @@ static void	repl(void)
 		//free nas coisa tudo
 		free(input);
 	}
+	//free(prompt);
 }
 
 int	main(void)
@@ -58,6 +70,7 @@ int	main(void)
 	//inicializar structs
 	//inicializar ambiente
 	//termcaps
+	using_history();
 	repl();
 	return (0);
 }
