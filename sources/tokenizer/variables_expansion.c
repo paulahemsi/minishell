@@ -43,7 +43,7 @@ void	free_var_struct(t_var *var)
 	ft_free_and_null((void **)&var->temp);
 }
 
-void	expand(char **value)
+static void	expand(char **value)
 {
 	char	*temp;
 

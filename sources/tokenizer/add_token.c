@@ -68,9 +68,10 @@ static void	check_quotes(char **value)
 			aux.temp = ft_strjoin(aux.before, aux.value);
 			token = ft_strjoin(aux.temp, aux.after);
 			free_var_struct(&aux);
-			i = end_quote;
+			i = end_quote - 1;
 		}
-		i++;
+		if (token[i])
+			i++;
 	}
 	free(*value);
 	*value = token;

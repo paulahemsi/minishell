@@ -39,7 +39,6 @@ typedef struct s_var
 	char	*temp;
 }	t_var;
 
-t_token	*split_tokens(char *line);
 void	tokenizer(char *line, t_token **token_lst);
 void	add_token(char *line, int start, int end, t_token **token_lst);
 /*
@@ -57,7 +56,6 @@ void	token_add_back(t_token **lst, t_token *new_token);
 /*
 ** variables_expansion.c
 */
-void	expand(char **value);
 void	expand_variables(char **value);
 void	free_var_struct(t_var *var);
 
