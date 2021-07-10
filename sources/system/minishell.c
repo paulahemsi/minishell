@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/08 21:24:10 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/10 18:31:40 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,7 @@ static void	repl(void)
 {
 	char	*input;
 	t_token	*token_lst;
-	//char	*prompt;
 	
-	//prompt = create_prompt();
-	//while ((input = readline(">> ")) != NULL)
-	//while ((input = readline(prompt)) != NULL)
 	while (true)
 	{
 		token_lst = NULL;
@@ -61,7 +57,6 @@ static void	repl(void)
 		//free nas coisa tudo
 		free(input);
 	}
-	//free(prompt);
 }
 
 int	main(void)
@@ -70,7 +65,6 @@ int	main(void)
 	//inicializar structs
 	//inicializar ambiente
 	//termcaps
-	using_history();
 	repl();
 	return (0);
 }
