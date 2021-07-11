@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   hashmap_handle_collision.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 19:59:44 by user42            #+#    #+#             */
-/*   Updated: 2021/07/07 20:15:06 by user42           ###   ########.fr       */
+/*   Created: 2021/07/10 22:54:11 by user42            #+#    #+#             */
+/*   Updated: 2021/07/11 04:02:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hashmap.h"
 
-/*
-** This function is an implementation of the djb2 hashing algorithm.
-** Further info: https://theartincode.stanis.me/008-djb2/
-*/
-
-unsigned long int	hash(char *key, unsigned int length)
+void	hashmap_handle_collision(t_hashmap *table,
+		unsigned long int index, t_pair *new_pair)
 {
-	unsigned long int	hash;
-	unsigned int		i;
+	t_pair	*current;
 
-	hash = 5381;
-	i = 0;
-	while (key && key[i])
-	{
-		hash = ((hash << 5) + hash) + key[i];
-		i++;
-	}
-	return(hash % length);
+	current = table->pairs[index];
+	while (current->next != NULL)
+		current = current->next;
+	current->next = new_pair;
+	current->next->next = NULL;
+	table->count += 1;
 }

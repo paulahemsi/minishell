@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap_create_table.c                             :+:      :+:    :+:   */
+/*   hashmap_free_table.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 00:48:28 by user42            #+#    #+#             */
-/*   Updated: 2021/07/08 00:12:46 by user42           ###   ########.fr       */
+/*   Created: 2021/07/07 02:04:20 by user42            #+#    #+#             */
+/*   Updated: 2021/07/11 02:48:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hashmap.h"
 
-t_hashmap *hashmap_create_table(unsigned int size)
+void	hashmap_free_table(t_hashmap *table)
 {
-	t_hashmap	*new_table;
 	unsigned int	i;
+	t_pair			*current;
+	t_pair			*temp;
 
 	i = 0;
-	new_table = (t_hashmap *)ft_calloc(sizeof(t_hashmap), 1);
-	new_table->size = size;
-	new_table->count = 0;
-	new_table->pairs = (t_pair **)ft_calloc(sizeof(t_hashmap), size);
-	while(i < size)
+	while (i < table->size)
 	{
-		new_table->pairs[i] = NULL;
+		current = table->pairs[i];
+		while (current != NULL)
+		{
+			temp = current->next;
+			hashmap_free_pair(current);
+			current = temp;
+		}
 		i++;
 	}
-	return (new_table);
+	free(table->pairs);
+	free(table);
 }

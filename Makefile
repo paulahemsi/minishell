@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 17:05:36 by lcouto            #+#    #+#              #
-#    Updated: 2021/07/06 20:51:17 by lfrasson         ###   ########.fr        #
+#    Updated: 2021/07/11 04:16:30 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DIR_SRCS = sources
 
 DIR_OBJS = objects
 
-DIRS = tokenizer parser builtins exec system
+DIRS = tokenizer parser builtins exec system hashmap
 
 SRC = $(wildcard $(DIR_SRCS)/*.c)
 
@@ -64,6 +64,7 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 		@mkdir -p objects/builtins
 		@mkdir -p objects/exec
 		@mkdir -p objects/system
+		@mkdir -p objects/hashmap
 		@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
 

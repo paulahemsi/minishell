@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap_search.c                                   :+:      :+:    :+:   */
+/*   hashmap_create_table.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/08 00:00:31 by user42            #+#    #+#             */
-/*   Updated: 2021/07/08 00:07:01 by user42           ###   ########.fr       */
+/*   Created: 2021/07/07 00:48:28 by user42            #+#    #+#             */
+/*   Updated: 2021/07/11 02:46:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hashmap.h"
 
-char	*hashmap_search(t_hashmap *table, char *key)
+t_hashmap	*hashmap_create_table(unsigned int size)
 {
-	unsigned long int index;
+	t_hashmap		*new_table;
+	unsigned int	i;
 
-	index = hash(key, table->size);
-	if (table->pairs[index] != NULL)
+	i = 0;
+	new_table = (t_hashmap *)ft_calloc(sizeof(t_hashmap), 1);
+	new_table->size = size;
+	new_table->count = 0;
+	new_table->pairs = (t_pair **)ft_calloc(sizeof(t_hashmap), size);
+	while (i < size)
 	{
-		if (strncmp(table->pairs[index]->key, key, ft_strlen(key) + 1) == 0)
-			return (table->pairs[index]->value);
+		new_table->pairs[i] = NULL;
+		i++;
 	}
-	return (NULL);
+	return (new_table);
 }
