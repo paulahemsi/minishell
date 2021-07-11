@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hashmap_handle_collision.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 22:54:11 by user42            #+#    #+#             */
-/*   Updated: 2021/07/11 04:02:16 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hashmap.h"
+#include "minishell.h"
 
 void	hashmap_handle_collision(t_hashmap *table,
 		unsigned long int index, t_pair *new_pair)

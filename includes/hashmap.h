@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hashmap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:32:10 by user42            #+#    #+#             */
-/*   Updated: 2021/07/11 04:20:19 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/11 18:18:00 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char				*hashmap_search(t_hashmap *table, char *key);
 void				hashmap_handle_collision(t_hashmap *table,
 						unsigned long int index, t_pair *new_pair);
 void				hashmap_delete(t_hashmap *table, char *key);
+void				hashmap_print_table(t_hashmap *table);
 unsigned long int	hash(char *key, unsigned int size);
 
 #endif

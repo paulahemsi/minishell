@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hashmap_insert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 19:56:48 by user42            #+#    #+#             */
-/*   Updated: 2021/07/11 04:07:51 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hashmap.h"
+#include "minishell.h"
 
 void	hashmap_insert(char *key, char *value, t_hashmap *table)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hashmap_search.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 00:00:31 by user42            #+#    #+#             */
-/*   Updated: 2021/07/11 02:46:44 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hashmap.h"
+#include "minishell.h"
 
 char	*hashmap_search(t_hashmap *table, char *key)
 {
@@ -21,7 +21,7 @@ char	*hashmap_search(t_hashmap *table, char *key)
 	current = table->pairs[index];
 	while (current != NULL)
 	{
-		if (strncmp(current->key, key, ft_strlen(key) + 1) == 0)
+		if (ft_strncmp(current->key, key, ft_strlen(key) + 1) == 0)
 			return (current->value);
 		current = current->next;
 	}

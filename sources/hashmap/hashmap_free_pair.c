@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hashmap_free_pair.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 02:02:33 by user42            #+#    #+#             */
-/*   Updated: 2021/07/11 02:46:36 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hashmap.h"
+#include "minishell.h"
 
 void	hashmap_free_pair(t_pair *pair)
 {

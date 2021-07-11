@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hashmap_create_pair.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:17:27 by user42            #+#    #+#             */
-/*   Updated: 2021/07/11 04:05:15 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hashmap.h"
+#include "minishell.h"
 
 t_pair	*hashmap_create_pair(char *key, char *value)
 {

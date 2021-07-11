@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hashmap_delete.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 23:57:34 by user42            #+#    #+#             */
-/*   Updated: 2021/07/11 04:07:15 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hashmap.h"
+#include "minishell.h"
 
 static void	find_and_delete_node_then_relink_list(t_hashmap *table,
 			t_pair *current, char *key)

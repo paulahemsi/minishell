@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap_create_table.c                             :+:      :+:    :+:   */
+/*   hashmap_print_table.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 00:48:28 by user42            #+#    #+#             */
-/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
+/*   Created: 2021/07/11 18:10:20 by lcouto            #+#    #+#             */
+/*   Updated: 2021/07/11 18:38:09 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_hashmap	*hashmap_create_table(unsigned int size)
+void	hashmap_print_table(t_hashmap *table)
 {
-	t_hashmap		*new_table;
 	unsigned int	i;
+	t_pair			*current;
+	t_pair			*temp;
 
 	i = 0;
-	new_table = (t_hashmap *)ft_calloc(sizeof(t_hashmap), 1);
-	new_table->size = size;
-	new_table->count = 0;
-	new_table->pairs = (t_pair **)ft_calloc(sizeof(t_hashmap), size);
-	while (i < size)
+	while (i < table->size)
 	{
-		new_table->pairs[i] = NULL;
+		current = table->pairs[i];
+		while (current != NULL)
+		{
+			temp = current->next;
+			ft_putendl_fd("----------------------------", 1);
+			ft_putstr("| ");
+			ft_putstr(current->key);
+			ft_putstr(" | = | ");
+			ft_putstr(current->value);
+			ft_putendl_fd(" |", 1);
+			current = temp;
+		}
 		i++;
 	}
-	return (new_table);
+	ft_putendl_fd("----------------------------", 1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/06 21:22:41 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/11 18:39:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ static void	repl(void)
 int	main(void)
 {
 	//pegar variáveis de ambiente
+	// - SEQUÊNCIA DE TESTE - START
+	t_hashmap *env_map;
+
+	env_map = env_to_hashmap(__environ);
+	hashmap_print_table(env_map);
+	hashmap_free_table(env_map);
+	// - SEQUÊNCIA DE TESTE - STOP
 	//inicializar structs
 	//inicializar ambiente
 	//termcaps
