@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:44:33 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/11 18:27:28 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/11 20:08:16 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**hashmap_to_env(t_hashmap *table)
 		while (current != NULL)
 		{
 			temp = current->next;
-			env[j] = pair_to_env_entry(current);
+			env[j - 1] = pair_to_env_entry(current);
 			current = temp;
 			j--;
 		}

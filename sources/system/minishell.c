@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/11 18:39:25 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/11 20:10:17 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,14 @@ int	main(void)
 {
 	//pegar variáveis de ambiente
 	// - SEQUÊNCIA DE TESTE - START
-	t_hashmap *env_map;
+	t_hashmap	*env_map;
+	char		**env_array;
 
+	print_2d_array_fd(__environ, 1);
 	env_map = env_to_hashmap(__environ);
 	hashmap_print_table(env_map);
+	env_array = hashmap_to_env(env_map);
+	print_2d_array_fd(env_array, 1);
 	hashmap_free_table(env_map);
 	// - SEQUÊNCIA DE TESTE - STOP
 	//inicializar structs
