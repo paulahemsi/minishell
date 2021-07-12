@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   hashmap_create_pair.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/11 19:58:37 by lcouto           ###   ########.fr       */
+/*   Created: 2021/07/06 21:17:27 by user42            #+#    #+#             */
+/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include "libft.h"
-# include "input.h"
-# include "tokenizer.h"
-# include "parser.h"
-# include "error.h"
-# include "hashmap.h"
-# include "builtin.h"
-# include <stdbool.h>
-# include <stdlib.h>
-# include <errno.h>
+t_pair	*hashmap_create_pair(char *key, char *value)
+{
+	t_pair	*new_pair;
 
-/*
-** 2D ARRAY UTILS: 
-*/
-
-void	print_2d_array_fd(char **array, int fd);
-void	free_2d_array(char **ptr);
-
-#endif
+	new_pair = (t_pair *)ft_calloc(sizeof(t_pair), 1);
+	new_pair->key = ft_strdup(key);
+	new_pair->value = ft_strdup(value);
+	return (new_pair);
+}

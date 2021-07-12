@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   hashmap_search.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/11 19:58:37 by lcouto           ###   ########.fr       */
+/*   Created: 2021/07/08 00:00:31 by user42            #+#    #+#             */
+/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include "libft.h"
-# include "input.h"
-# include "tokenizer.h"
-# include "parser.h"
-# include "error.h"
-# include "hashmap.h"
-# include "builtin.h"
-# include <stdbool.h>
-# include <stdlib.h>
-# include <errno.h>
+char	*hashmap_search(t_hashmap *table, char *key)
+{
+	unsigned long int	index;
+	t_pair				*current;
 
-/*
-** 2D ARRAY UTILS: 
-*/
-
-void	print_2d_array_fd(char **array, int fd);
-void	free_2d_array(char **ptr);
-
-#endif
+	index = hash(key, table->size);
+	current = table->pairs[index];
+	while (current != NULL)
+	{
+		if (ft_strncmp(current->key, key, ft_strlen(key) + 1) == 0)
+			return (current->value);
+		current = current->next;
+	}
+	return (NULL);
+}

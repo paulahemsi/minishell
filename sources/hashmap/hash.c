@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/11 19:58:37 by lcouto           ###   ########.fr       */
+/*   Created: 2021/07/07 19:59:44 by user42            #+#    #+#             */
+/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-
-# include "libft.h"
-# include "input.h"
-# include "tokenizer.h"
-# include "parser.h"
-# include "error.h"
-# include "hashmap.h"
-# include "builtin.h"
-# include <stdbool.h>
-# include <stdlib.h>
-# include <errno.h>
+#include "minishell.h"
 
 /*
-** 2D ARRAY UTILS: 
+** This function is an implementation of the djb2 hashing algorithm.
+** Further info: https://theartincode.stanis.me/008-djb2/
 */
 
-void	print_2d_array_fd(char **array, int fd);
-void	free_2d_array(char **ptr);
+unsigned long int	hash(char *key, unsigned int size)
+{
+	unsigned long int	hash;
+	unsigned int		i;
 
-#endif
+	hash = 5381;
+	i = 0;
+	while (key && key[i])
+	{
+		hash = ((hash << 5) + hash) + key[i];
+		i++;
+	}
+	return (hash % size);
+}

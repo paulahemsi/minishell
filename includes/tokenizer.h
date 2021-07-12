@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/10 10:54:36 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/11 20:10:59 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,4 @@ void	free_var_struct(t_var *var);
 void	define_type(char *value, int *type);
 
 
-# endif
+#endif
