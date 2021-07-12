@@ -38,11 +38,46 @@ static void	print_token_lst(t_token *token_lst)
 	}
 }
 
+static int	find_end(char *line, int i, int *end)
+{
+	while (!(ft_isblank(line[i])) && (line[i]))
+	{
+		if (is_between_quotes(line, i, &i, line[i]))
+		{
+			i++;
+			continue ;
+		}
+		i++;
+	}
+	*end = i;
+	return (i);
+}
+
+static t_token	*split_tokens(char *line)
+{
+	int		i;
+	int		token_end;
+	t_token	*token_lst;
+
+	i = 0;
+	token_end = i;
+	token_lst = NULL;
+	while (line[i])
+	{
+		while (ft_isblank(line[i]))
+			i++;
+		if (!line[i])
+			break ;
+		add_token(line, i, find_end(line, i, &token_end), &token_lst);
+		i = token_end;
+		if (line[i])
+			i++;
+	}
+	return (token_lst);
+}
+
 void	tokenizer(char *line, t_token **token_lst)
 {
-
 	*token_lst = split_tokens(line);
 	print_token_lst(*token_lst);//*DEBUGGING LINE
-	// return token_lst;
-	//parser(token_lst);
 }

@@ -12,6 +12,12 @@
 
 #include "minishell.h"
 
+static void	save_history(char *input)
+{
+	if (input && *input)
+		add_history(input);
+}
+
 static void	read_input(char **input)
 {
 	char	*prompt;
@@ -36,12 +42,13 @@ static void	repl(void)
 {
 	char	*input;
 	t_token	*token_lst;
-
+	
 	while (true)
 	{
 		token_lst = NULL;
 		//lidar com signals
 		read_input(&input);
+		save_history(input);
 		tokenizer(input, &token_lst);
 		//parser
 		//executar

@@ -6,44 +6,28 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/06 19:32:18 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/10 10:53:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	is_builtin(char *value)
+static void	handle_quotes(char **token_ptr, int i, int end_quote)
 {
-	if (!(ft_strcmp(value, "echo\0")) || !(ft_strcmp(value, "cd\0")))
-		return TRUE;
-	if (!(ft_strcmp(value, "pwd")) || !(ft_strcmp(value, "export")))
-		return TRUE;
-	if (!(ft_strcmp(value, "unset")) || !(ft_strcmp(value, "env")))
-		return TRUE;
-	if (!(ft_strcmp(value, "exit")))
-		return TRUE;
-	return FALSE;
-}
+	char	*token;
+	t_var	aux;
 
-static bool	is_operator(char *value)
-{
-	if (!(ft_strcmp(value, "|")) || !(ft_strcmp(value, "=")))
-		return TRUE;
-	if (!(ft_strcmp(value, ">")) || !(ft_strcmp(value, "<")))
-		return TRUE;
-	if (!(ft_strcmp(value, ">>")) || !(ft_strcmp(value, "<<")))
-		return TRUE;
-	return FALSE;
-}
-
-static void	define_type(char *value, int *type)
-{
-	if (is_builtin(value))
-		*type = T_BUILTIN;
-	else if (is_operator(value))
-		*type = T_OPERATOR;
-	else
-		*type = T_LITERAL;
+	token = *token_ptr;
+	aux.before = ft_substr(token, 0, i);
+	aux.value = ft_substr(token, i, (end_quote + 1 - i));
+	aux.after = ft_substr(token, end_quote + 1, ft_strlen(&token[end_quote]));
+	if (token[end_quote] == DOUBLE_QUOTE)
+		expand_variables(&aux.value);
+	remove_quotes(&aux.value, token[end_quote]);
+	aux.temp = ft_strjoin(aux.before, aux.value);
+	token = ft_strjoin(aux.temp, aux.after);
+	*token_ptr = token;
+	free_var_struct(&aux);
 }
 
 static void	check_quotes(char **value)
@@ -51,7 +35,6 @@ static void	check_quotes(char **value)
 	int		i;
 	int		end_quote;
 	char	*token;
-	t_var	aux;
 
 	i = 0;
 	token = *value;
@@ -59,18 +42,11 @@ static void	check_quotes(char **value)
 	{
 		if (is_between_quotes(token, i, &end_quote, token[i]))
 		{
-			aux.before = ft_substr(token, 0, i);
-			aux.value = ft_substr(token, i, (end_quote + 1 - i));
-			aux.after = ft_substr(token, (end_quote + 1), ft_strlen(&token[end_quote]));
-			if (token[end_quote] == DOUBLE_QUOTE)
-				expand_variables(&aux.value);
-			remove_quotes(&aux.value, token[end_quote]);
-			aux.temp = ft_strjoin(aux.before, aux.value);
-			token = ft_strjoin(aux.temp, aux.after);
-			free_var_struct(&aux);
-			i = end_quote;
+			handle_quotes(&token, i, end_quote);
+			i = end_quote - 1;
 		}
-		i++;
+		if (token[i])
+			i++;
 	}
 	free(*value);
 	*value = token;
