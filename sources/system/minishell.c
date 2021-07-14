@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/15 01:55:06 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/14 17:16:56 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ static void	repl(void)
 	}
 }
 
+void	define_signals();
+
+extern char **environ;
+
 int	main(int argc, char **argv)
 {
 	if (argc > 1 && argv)
@@ -69,6 +73,7 @@ int	main(int argc, char **argv)
 	g_minishell.local_vars = hashmap_create_table(50);
 	g_minishell.input_fd = STDIN_FILENO;
 	g_minishell.output_fd = STDOUT_FILENO;
+	define_signals();
 	repl();
 	return (0);
 }
