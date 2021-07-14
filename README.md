@@ -32,6 +32,10 @@ Enjoy!
 
 ## study_resources
 
+### unix
+* [Unix Processes in C](https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY)
+* [Termination Signals](https://www.gnu.org/software/libc/manual/html_node/Termination-Signals.html)
+
 ### hashtable
 * [Hash Table in C/C++ – A Complete Implementation](https://www.journaldev.com/35238/hash-table-in-c-plus-plus)
 
