@@ -6,7 +6,7 @@
 /*   By: lfrasson <lfrasson@student.42sp.org.b      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 17:07:19 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/14 17:16:54 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/14 19:03:32 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 void	handle_interrupt_signal()
 {
-	write(1, "aqui\n", 5);
+	char	*prompt;
+
+	prompt = create_prompt();
+	ft_printf("\n%s", prompt);
+	free(prompt);
 }
 
 void	handle_quit_signal()
 {
-	write(1, "aqui2\n", 6);
+	return ;
 }
 
 void	define_signals()
