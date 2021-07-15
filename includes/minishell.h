@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/11 19:58:37 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/15 01:44:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <errno.h>
+
+typedef struct	s_minishell
+{
+	t_hashmap	*env;
+	t_hashmap	*local_vars;
+	int			input_fd;
+	int			output_fd;
+}				t_minishell;
+
+/*
+** GLOBAL VARIABLE FOR SESSION INFORMATION:
+*/
+
+t_minishell	g_minishell;
 
 /*
 ** 2D ARRAY UTILS: 
