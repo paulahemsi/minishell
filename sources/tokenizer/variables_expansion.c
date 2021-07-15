@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/15 08:53:37 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/15 12:57:29 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ static void	expand(char **variable)
 	temp++;
 	key = ft_strtrim(temp, "\"");
 	value = ft_strdup(hashmap_search(g_minishell.env, key));
+	if (!value)
+		value = ft_strdup(hashmap_search(g_minishell.local_vars, key));
+	if (!value)
+		value = ft_strdup("");
 	free(*variable);
 	free(key);
 	*variable = value;
