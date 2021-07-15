@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   print_environment.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 17:40:26 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/15 01:54:27 by user42           ###   ########.fr       */
+/*   Created: 2021/07/15 01:48:59 by user42            #+#    #+#             */
+/*   Updated: 2021/07/15 01:54:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "minishell.h"
 
-# include "minishell.h"
+void	print_environment(t_hashmap *env)
+{
+	char	**env_array;
 
-/*
-** ENV:
-*/
-
-t_hashmap	*env_to_hashmap(char **env);
-char		**hashmap_to_env(t_hashmap *table);
-void		print_environment(t_hashmap *env);
-
-#endif
+	env_array = hashmap_to_env(env);
+	print_2d_array_fd(env_array, 1);
+	free_2d_array(env_array);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 21:17:17 by lcouto            #+#    #+#             */
-/*   Updated: 2021/06/30 19:31:03 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/15 01:35:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 */
 
 # define NOT_FOUND "command not found."
+
+# define TOO_MANY_ARGS "this program doesn't expect any arguments."
 
 /*
 ** ERROR HANDLING FUNCTIONS:

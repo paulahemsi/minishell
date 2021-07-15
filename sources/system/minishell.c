@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/11 20:10:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/15 01:55:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void	execute(char *input)
 		error_message(input, NOT_FOUND);
 		return ;
 	}
+	if (ft_strcmp("env", input) == 0)
+		print_environment(g_minishell.env);
 }
 
 static void	repl(void)
@@ -59,23 +61,14 @@ static void	repl(void)
 	}
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	//pegar variáveis de ambiente
-	// - SEQUÊNCIA DE TESTE - START
-	t_hashmap	*env_map;
-	char		**env_array;
-
-	print_2d_array_fd(__environ, 1);
-	env_map = env_to_hashmap(__environ);
-	hashmap_print_table(env_map);
-	env_array = hashmap_to_env(env_map);
-	print_2d_array_fd(env_array, 1);
-	hashmap_free_table(env_map);
-	// - SEQUÊNCIA DE TESTE - STOP
-	//inicializar structs
-	//inicializar ambiente
-	//termcaps
+	if (argc > 1 && argv)
+		error_message("👿", TOO_MANY_ARGS);
+	g_minishell.env = env_to_hashmap(__environ);
+	g_minishell.local_vars = hashmap_create_table(50);
+	g_minishell.input_fd = STDIN_FILENO;
+	g_minishell.output_fd = STDOUT_FILENO;
 	repl();
 	return (0);
 }

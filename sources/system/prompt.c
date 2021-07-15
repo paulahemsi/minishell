@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:40:47 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/08 21:30:49 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/15 01:23:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,21 @@ static char	*concatenate_prompt(char *name, char *pwd, char *end)
 	char	*temp;
 	char	*prompt;
 
-	prompt = ft_strjoin(BOLD_RED, name);
+	prompt = ft_strjoin("\001\033[1;31m\002", name);
 	temp = prompt;
-	prompt = ft_strjoin(temp, BOLD_PURPLE);
+	prompt = ft_strjoin(temp, "\001\033[1;35m\002");
 	free(temp);
 	temp = prompt;
 	prompt = ft_strjoin(temp, pwd);
 	free(temp);
 	temp = prompt;
-	prompt = ft_strjoin(temp, BOLD_RED);
+	prompt = ft_strjoin(temp, "\001\033[1;31m\002");
 	free(temp);
 	temp = prompt;
 	prompt = ft_strjoin(temp, end);
 	free(temp);
 	temp = prompt;
-	prompt = ft_strjoin(temp, RESET_COLOR);
+	prompt = ft_strjoin(temp, "\001\033[0m\002");
 	free(temp);
 	free_prompt_strings(name, pwd, end);
 	return (prompt);
