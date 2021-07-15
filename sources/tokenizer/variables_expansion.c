@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/06 19:54:22 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/15 08:53:37 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,19 @@ void	free_var_struct(t_var *var)
 	ft_free_and_null((void **)&var->temp);
 }
 
-static void	expand(char **value)
+static void	expand(char **variable)
 {
+	char	*value;
+	char	*key;
 	char	*temp;
 
-	temp = ft_strdup("Variable_value");//TODO buscar variável na hash table
-	free(*value);
-	*value = temp;
+	temp = *variable;
+	temp++;
+	key = ft_strtrim(temp, "\"");
+	value = ft_strdup(hashmap_search(g_minishell.env, key));
+	free(*variable);
+	free(key);
+	*variable = value;
 }
 
 static void	handle_quote(t_var *var, char **value, int i)
