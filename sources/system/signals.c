@@ -14,20 +14,25 @@
 
 void	handle_interrupt_signal()
 {
-	char	*prompt;
-
-	prompt = create_prompt();
-	ft_printf("\n%s", prompt);
-	free(prompt);
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 void	handle_quit_signal()
 {
+	ft_printf("^\\Quit\n");
 	return ;
+}
+
+void	signals_when_execv()
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, handle_quit_signal);
 }
 
 void	define_signals()
 {
 	signal(SIGINT, handle_interrupt_signal);
-	signal(SIGQUIT, handle_quit_signal);
+	signal(SIGQUIT, SIG_IGN);
 }

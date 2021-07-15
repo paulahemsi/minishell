@@ -40,6 +40,8 @@ static void	execute(char *input)
 		print_environment(g_minishell.env);
 }
 
+void	define_signals();
+
 static void	repl(void)
 {
 	char	*input;
@@ -48,7 +50,7 @@ static void	repl(void)
 	while (true)
 	{
 		token_lst = NULL;
-		//lidar com signals
+		define_signals();
 		read_input(&input);
 		save_history(input);
 		tokenizer(input, &token_lst);
