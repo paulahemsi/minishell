@@ -12,26 +12,28 @@
 
 #include "minishell.h"
 
-void	handle_interrupt_signal()
+static void	handle_interrupt_signal(int signal)
 {
+	(void)signal;
 	write(1, "\n", 1);
+	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 }
 
-void	handle_quit_signal()
+static void	handle_quit_signal(int signal)
 {
-	ft_printf("^\\Quit\n");
-	return ;
+	(void)signal;
+	ft_printf("Quit\n");
 }
 
-void	signals_when_execv()
+void	signals_when_execv(void)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, handle_quit_signal);
 }
 
-void	define_signals()
+void	define_signals(void)
 {
 	signal(SIGINT, handle_interrupt_signal);
 	signal(SIGQUIT, SIG_IGN);
