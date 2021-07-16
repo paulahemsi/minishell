@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## 2021-07-16
 ### Changed
-- Removed `readline.h` escape characters from our color definitions and added them only to the prompt.
+- Altered `print_environment()` to receive a file descriptor as a parameter.
 
 ## 2021-07-15
 ### Added
