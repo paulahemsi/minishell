@@ -48,7 +48,7 @@ static void	repl(void)
 	while (true)
 	{
 		token_lst = NULL;
-		define_input_signals_handler();
+		define_input_signals();
 		read_input(&input);
 		save_history(input);
 		tokenizer(input, &token_lst);
