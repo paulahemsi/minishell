@@ -40,17 +40,15 @@ static void	execute(char *input)
 		print_environment(g_minishell.env);
 }
 
-void	define_signals();
-
 static void	repl(void)
 {
 	char	*input;
 	t_token	*token_lst;
-	
+
 	while (true)
 	{
 		token_lst = NULL;
-		define_signals();
+		define_input_signals_handler();
 		read_input(&input);
 		save_history(input);
 		tokenizer(input, &token_lst);
@@ -63,10 +61,6 @@ static void	repl(void)
 	}
 }
 
-void	define_signals();
-
-extern char **environ;
-
 int	main(int argc, char **argv)
 {
 	if (argc > 1 && argv)
@@ -75,7 +69,6 @@ int	main(int argc, char **argv)
 	g_minishell.local_vars = hashmap_create_table(50);
 	g_minishell.input_fd = STDIN_FILENO;
 	g_minishell.output_fd = STDOUT_FILENO;
-	define_signals();
 	repl();
 	return (0);
 }

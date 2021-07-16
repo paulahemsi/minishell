@@ -36,5 +36,7 @@
 # define RESET_COLOR "\033[0m"
 
 char	*create_prompt(void);
+void	define_input_signals_handler(void);
+void	define_exec_signals_handler(void);
 
 #endif

@@ -27,13 +27,13 @@ static void	handle_quit_signal(int signal)
 	ft_printf("Quit\n");
 }
 
-void	signals_when_execv(void)
+void	define_exec_signals_handler(void)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, handle_quit_signal);
 }
 
-void	define_signals(void)
+void	define_input_signals_handler(void)
 {
 	signal(SIGINT, handle_interrupt_signal);
 	signal(SIGQUIT, SIG_IGN);
