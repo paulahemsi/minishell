@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void	handle_interrupt_signal(int signal)
+static void	redisplay_prompt(int signal)
 {
 	(void)signal;
 	write(1, "\n", 1);
@@ -21,20 +21,21 @@ static void	handle_interrupt_signal(int signal)
 	rl_redisplay();
 }
 
-static void	handle_quit_signal(int signal)
+static void	quit_process(int signal)
 {
 	(void)signal;
 	ft_printf("Quit\n");
+	//TODO: exit process
 }
 
 void	define_exec_signals(void)
 {
 	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, handle_quit_signal);
+	signal(SIGQUIT, quit_process);
 }
 
 void	define_input_signals(void)
 {
-	signal(SIGINT, handle_interrupt_signal);
+	signal(SIGINT, redisplay_prompt);
 	signal(SIGQUIT, SIG_IGN);
 }
