@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 - Added handler to signal interrupt and signal quit in input cases.
 
+### Changed
+- Altered `print_environment()` to receive a file descriptor as a parameter.
+
 ## - 2021-07-15
 ### Added
 - Added changelog and its first entry.
@@ -17,4 +20,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 - Removed `readline.h` escape characters from our color definitions and added them only to the prompt.
-

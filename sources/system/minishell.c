@@ -37,7 +37,7 @@ static void	execute(char *input)
 		return ;
 	}
 	if (ft_strcmp("env", input) == 0)
-		print_environment(g_minishell.env);
+		print_environment(g_minishell.env, STDOUT_FILENO);
 }
 
 static void	repl(void)
