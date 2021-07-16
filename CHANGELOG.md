@@ -3,11 +3,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
-## 2021-07-16
+## - 2021-07-16
+### Added
+- Added handler to signal interrupt and signal quit in input cases.
+
 ### Changed
 - Altered `print_environment()` to receive a file descriptor as a parameter.
 
-## 2021-07-15
+## - 2021-07-15
 ### Added
 - Added changelog and its first entry.
 - Defined a global `struct` to contain all the information on a given `minishell` session.
@@ -17,4 +20,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 - Removed `readline.h` escape characters from our color definitions and added them only to the prompt.
-

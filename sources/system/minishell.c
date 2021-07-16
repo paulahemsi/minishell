@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/16 00:35:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/14 17:31:40 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ static void	repl(void)
 {
 	char	*input;
 	t_token	*token_lst;
-	
+
 	while (true)
 	{
 		token_lst = NULL;
-		//lidar com signals
+		define_input_signals();
 		read_input(&input);
 		save_history(input);
 		tokenizer(input, &token_lst);
