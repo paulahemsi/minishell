@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Initialized environment from `__environ` global variable.
 - Initialized the `g_minishell` session struct on `main`.
 - Created temporary "hook" to allow use of the `env` command, and made it run a function to print the environment.
+- Implemented variable expansions
 
 ### Changed
 - Removed `readline.h` escape characters from our color definitions and added them only to the prompt.
