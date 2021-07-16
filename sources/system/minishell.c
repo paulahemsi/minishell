@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/15 01:55:06 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/16 00:35:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	execute(char *input)
 		return ;
 	}
 	if (ft_strcmp("env", input) == 0)
-		print_environment(g_minishell.env);
+		print_environment(g_minishell.env, STDOUT_FILENO);
 }
 
 static void	repl(void)
