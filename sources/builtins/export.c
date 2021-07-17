@@ -6,36 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 20:23:19 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/17 14:38:45 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/17 19:49:52 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	get_2d_array_len(char **array)
-{
-	int i;
-
-	i = 0;
-	while (array[i + 1])
-		i++ ;
-	return (i);
-}
-
-static void	join_2d_array(char *string_to_join, char **array)
-{
-	int		i;
-	char	*temp;
-
-	i = 0;
-	while (array[i])
-	{
-		temp = ft_strjoin(string_to_join, array[i]);
-		free(array[i]);
-		array[i] = temp;
-		i++;
-	}
-}
 
 static int	print_ordered_env(int fd)
 {
@@ -49,18 +24,35 @@ static int	print_ordered_env(int fd)
 	return (0);
 }
 
-static int	export_variable(char **cmd, int index)
+static void	define_variable(char **cmd, int index)
+{
+	char	**key_value;
+
+	key_value = ft_split(cmd[index], '=');
+	hashmap_insert(key_value[0], key_value[1], g_minishell.env);
+	free_2d_array(key_value);
+}
+
+static void	update_variable(char **cmd, int index)
 {
 	char	*value;
 
-	if (!cmd[index])
-		return (0);
 	value = hashmap_search(g_minishell.local_vars, cmd[index]);
 	if (!value)
 		value = ft_strdup("");
 	hashmap_insert(cmd[index], value, g_minishell.env);
 	hashmap_delete(g_minishell.local_vars, cmd[index]);
 	free(value);
+}
+
+static int	export_variable(char **cmd, int index)
+{
+	if (!cmd[index])
+		return (0);
+	if (ft_strchr(cmd[index], '='))
+		define_variable(cmd, index);
+	else
+		update_variable(cmd, index);
 	return (export_variable(cmd, index + 1));
 }
 
