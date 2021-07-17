@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## - 2021-07-16
 ### Added
+- Added export function
+
+## - 2021-07-16
+### Added
 - Added handler to signal interrupt and signal quit in input cases.
 
 ### Changed
