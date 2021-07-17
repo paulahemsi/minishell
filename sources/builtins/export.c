@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 17:40:26 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/17 10:21:31 by phemsi-a         ###   ########.fr       */
+/*   Created: 2021/07/16 20:23:19 by phemsi-a          #+#    #+#             */
+/*   Updated: 2021/07/17 10:44:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "minishell.h"
 
-# include "minishell.h"
+static int	get_2d_array_len(char **array)
+{
+	int i;
 
-/*
-** ENV:
-*/
+	i = 0;
+	while (array[i + 1])
+		i++ ;
+	return (i);
+}
 
-t_hashmap	*env_to_hashmap(char **env);
-char		**hashmap_to_env(t_hashmap *table);
-void		print_environment(t_hashmap *env, int fd);
-int			export(void);
-void		quick_sort_2d_array(char **array, int left, int right);
+int	export(void)
+{
+	char	**ordered_env;
+	int		i;
 
-#endif
+	i = -1;
+	ordered_env = hashmap_to_env(g_minishell.env);
+	quick_sort_2d_array(ordered_env, 0, get_2d_array_len(ordered_env));
+	print_2d_array_fd(ordered_env , 1);
+	free_2d_array(ordered_env);
+	return (0);
+}

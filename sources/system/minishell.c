@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/14 17:31:40 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/17 10:10:10 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	execute(char *input)
 	}
 	if (ft_strcmp("env", input) == 0)
 		print_environment(g_minishell.env, STDOUT_FILENO);
+	if (ft_strcmp("export", input) == 0)
+		export();
 }
 
 static void	repl(void)
