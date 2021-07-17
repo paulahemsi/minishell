@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/17 14:05:36 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/17 19:56:07 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ static void	execute(char *input)
 	char	**cmd;
 
 	if (ft_strncmp("exit", input, 5) == 0)
+	{
+		hashmap_free_table(g_minishell.env);
+		hashmap_free_table(g_minishell.local_vars);
 		exit(0);
+	}
 	if (ft_strcmp("bad-command", input) == 0)
 	{
 		error_message(input, NOT_FOUND);
