@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/15 01:44:29 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/17 19:38:56 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <sys/stat.h>
 
 typedef struct	s_minishell
 {
@@ -44,5 +45,11 @@ t_minishell	g_minishell;
 
 void	print_2d_array_fd(char **array, int fd);
 void	free_2d_array(char **ptr);
+
+/*
+** EXEC:
+*/
+
+char	*get_absolute_path(char *cmd);
 
 #endif
