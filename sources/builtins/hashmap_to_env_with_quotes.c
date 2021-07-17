@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 13:31:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/17 13:37:37 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/17 14:34:19 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@ static char	*pair_to_env_entry_with_quotes(t_pair *pair)
 	char	*aux;
 	char	*value_with_quotes;
 
-	temp = ft_strjoin(pair->key, "=");
-	aux = ft_strjoin("\"", pair->value);
-	value_with_quotes = ft_strjoin(aux, "\"");
-	entry = ft_strjoin(temp, value_with_quotes);
-	free(temp);
-	free(aux);
-	free(value_with_quotes);
+	if (pair->value[0])
+	{
+		temp = ft_strjoin(pair->key, "=");
+		aux = ft_strjoin("\"", pair->value);
+		value_with_quotes = ft_strjoin(aux, "\"");
+		entry = ft_strjoin(temp, value_with_quotes);
+		free(temp);
+		free(aux);
+		free(value_with_quotes);
+	}
+	else
+		entry = ft_strdup(pair->key);
 	return (entry);
 }
 

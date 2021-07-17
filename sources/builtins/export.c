@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 20:23:19 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/17 13:36:10 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/17 14:31:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,34 +49,25 @@ static int	print_ordered_env(int fd)
 	return (0);
 }
 
-// static int	export_variable(char **cmd, int index)
-// {
-// 	char	*value;
+static int	export_variable(char **cmd, int index)
+{
+	char	*value;
 
-// 	if (!cmd[index])
-// 		return (0);
-// 	value = hashmap_search(g_minishell.local_vars, cmd[index]);
-// 	if (value)
-// 	{
-// 		if (hashmap_search(g_minishell.env, cmd[index]));
-// 		{
-// 			hashmap
-// 		}
-// 		else
-// 			hashmap_insert(cmd[index], value, g_minishell.env);
-// 		hashmap_delete(g_minishell.local_vars, cmd[index]);
-// 	}
-// 	else
-// 	{
-// 		value = hashmap_search(g_minishell.env, cmd[index]);
-// 	}
-// 	return (export_variable(cmd, index + 1));
-// }
+	if (!cmd[index])
+		return (0);
+	value = hashmap_search(g_minishell.local_vars, cmd[index]);
+	if (!value)
+		value = ft_strdup("\0");
+	hashmap_insert(cmd[index], value, g_minishell.env);
+	hashmap_delete(g_minishell.local_vars, cmd[index]);
+	free(value);
+	return (export_variable(cmd, index + 1));
+}
 
 int	export(char **cmd, int fd)
 {
 	if (cmd[1])
-		return (ft_printf("lalala"));//return (export_variable(cmd, 1));
+		return (export_variable(cmd, 1));
 	else
 		return (print_ordered_env(fd));
 }
