@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
+## - 2021-07-17
+### Added
+- Added `export` function
+- Added `hashmap_to_env_whith_quotes` function to insert quotes in each env variable value when is needed
+- Created temporary "hook" to allow use of the `export` command
+
 ## - 2021-07-16
 ### Added
 - Added handler to signal interrupt and signal quit in input cases.

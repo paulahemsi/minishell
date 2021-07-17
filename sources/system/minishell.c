@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/14 17:31:40 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/17 14:05:36 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	read_input(char **input)
 
 static void	execute(char *input)
 {
+	char	**cmd;
+
 	if (ft_strncmp("exit", input, 5) == 0)
 		exit(0);
 	if (ft_strcmp("bad-command", input) == 0)
@@ -38,6 +40,12 @@ static void	execute(char *input)
 	}
 	if (ft_strcmp("env", input) == 0)
 		print_environment(g_minishell.env, STDOUT_FILENO);
+	if (ft_strncmp("export", input, 6) == 0)
+	{
+		cmd = ft_split(input, ' ');
+		export(cmd, STDOUT_FILENO);
+		free_2d_array(cmd);
+	}
 }
 
 static void	repl(void)
