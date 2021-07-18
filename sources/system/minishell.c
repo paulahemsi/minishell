@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/18 04:17:09 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/18 18:15:34 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,8 @@ static void	repl(void)
 		read_input(&input);
 		save_history(input);
 		tokenizer(input, &token_lst);
-		//parser
-		//executar
 		token_list_clear(&token_lst);
 		execute(input);
-		//free nas coisa tudo
 		free(input);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/18 04:20:29 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/18 18:23:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <sys/stat.h>
 # include <stdarg.h>
 
-typedef struct	s_minishell
+typedef struct s_minishell
 {
 	t_hashmap	*env;
 	t_hashmap	*local_vars;

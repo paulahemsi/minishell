@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 17:25:29 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/18 04:19:51 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/18 18:22:42 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_absolute_path(char *cmd)
 	{
 		cmd_path = variadic_strjoin(3, all_paths[i], "/", cmd);
 		if (stat(cmd_path, &buffer) == 0)
-			break;
+			break ;
 		free(cmd_path);
 		cmd_path = NULL;
 		i++;

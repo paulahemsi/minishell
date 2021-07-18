@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrasson <lfrasson@student.42sp.org.b      +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 17:07:19 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/14 19:03:32 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/18 18:16:22 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ static void	redisplay_prompt(int signal)
 	rl_redisplay();
 }
 
+//TODO: exit process
+
 static void	quit_process(int signal)
 {
 	(void)signal;
 	ft_printf("Quit\n");
-	//TODO: exit process
 }
 
 void	define_exec_signals(void)
