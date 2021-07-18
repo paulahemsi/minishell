@@ -2,8 +2,14 @@ name: Norminette v3
 
 on:
   push:
+    paths:
+      - '**.c'
+      - '**.h'
     branches: [ main ]
   pull_request:
+    paths:
+      - '**.c'
+      - '**.h'
     branches: [ main ]
 
 jobs:
