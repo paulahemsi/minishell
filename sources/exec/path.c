@@ -6,23 +6,18 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 17:25:29 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/17 20:05:36 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/18 04:19:51 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-** TODO: Refactor this function so it's not absolutely disgusting. 
-*/
 
 char	*get_absolute_path(char *cmd)
 {
 	struct stat	buffer;
 	char		**all_paths;
 	char		*path_variable;
-	char		*cmdpath;
-	char		*temp;
+	char		*cmd_path;
 	int			i;
 
 	i = 0;
@@ -30,16 +25,14 @@ char	*get_absolute_path(char *cmd)
 	all_paths = ft_split(path_variable, ':');
 	while (all_paths && all_paths[i])
 	{
-		temp = ft_strjoin("/", cmd);
-		cmdpath = ft_strjoin(all_paths[i], temp);
-		if (stat(cmdpath, &buffer) == 0)
+		cmd_path = variadic_strjoin(3, all_paths[i], "/", cmd);
+		if (stat(cmd_path, &buffer) == 0)
 			break;
-		free(cmdpath);
-		free(temp);
-		cmdpath = NULL;
+		free(cmd_path);
+		cmd_path = NULL;
 		i++;
 	}
 	free_2d_array(all_paths);
 	free(path_variable);
-	return (cmdpath);
+	return (cmd_path);
 }

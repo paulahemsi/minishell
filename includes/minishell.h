@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/17 19:38:56 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/18 04:20:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <sys/stat.h>
+# include <stdarg.h>
 
 typedef struct	s_minishell
 {
@@ -40,11 +41,12 @@ typedef struct	s_minishell
 t_minishell	g_minishell;
 
 /*
-** 2D ARRAY UTILS: 
+** UTILS: 
 */
 
 void	print_2d_array_fd(char **array, int fd);
 void	free_2d_array(char **ptr);
+char	*variadic_strjoin(unsigned int arg_quantity, ...);
 
 /*
 ** EXEC:
