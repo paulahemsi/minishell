@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2d_array_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 19:42:27 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/17 19:45:31 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/18 18:21:30 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	get_2d_array_len(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (array[i + 1])

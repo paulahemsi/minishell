@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort_2d_array.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 10:20:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/17 10:41:44 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/18 18:19:37 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	partition(char **array, int left, int right)
 			i++;
 			temp = array[i];
 			array[i] = array[j];
-			array[j] = temp; 
+			array[j] = temp;
 		}
 		j++;
 	}

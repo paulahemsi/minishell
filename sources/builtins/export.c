@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 20:23:19 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/17 19:49:52 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/18 18:20:52 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	print_ordered_env(int fd)
 	ordered_env = hashmap_to_env_with_quotes(g_minishell.env);
 	quick_sort_2d_array(ordered_env, 0, get_2d_array_len(ordered_env));
 	join_2d_array("declare -x ", ordered_env);
-	print_2d_array_fd(ordered_env , fd);
+	print_2d_array_fd(ordered_env, fd);
 	free_2d_array(ordered_env);
 	return (0);
 }
