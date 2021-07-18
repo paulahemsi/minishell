@@ -42,21 +42,21 @@ static char	*concatenate_prompt(char *name, char *pwd, char *end)
 	char	*temp;
 	char	*prompt;
 
-	prompt = ft_strjoin("\001\033[1;31m\002", name);
+	prompt = ft_strjoin(ESC_BOLD_RED, name);
 	temp = prompt;
-	prompt = ft_strjoin(temp, "\001\033[1;35m\002");
+	prompt = ft_strjoin(temp, ESC_BOLD_PURPLE);
 	free(temp);
 	temp = prompt;
 	prompt = ft_strjoin(temp, pwd);
 	free(temp);
 	temp = prompt;
-	prompt = ft_strjoin(temp, "\001\033[1;31m\002");
+	prompt = ft_strjoin(temp, ESC_BOLD_RED);
 	free(temp);
 	temp = prompt;
 	prompt = ft_strjoin(temp, end);
 	free(temp);
 	temp = prompt;
-	prompt = ft_strjoin(temp, "\001\033[0m\002");
+	prompt = ft_strjoin(temp, ESC_RESET_COLOR);
 	free(temp);
 	free_prompt_strings(name, pwd, end);
 	return (prompt);
