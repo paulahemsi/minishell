@@ -39,25 +39,17 @@ static int	get_prompt_len(char *name, char *pwd, char *end)
 
 static char	*concatenate_prompt(char *name, char *pwd, char *end)
 {
-	char	*temp;
 	char	*prompt;
 
-	prompt = ft_strjoin("\001\033[1;31m\002", name);
-	temp = prompt;
-	prompt = ft_strjoin(temp, "\001\033[1;35m\002");
-	free(temp);
-	temp = prompt;
-	prompt = ft_strjoin(temp, pwd);
-	free(temp);
-	temp = prompt;
-	prompt = ft_strjoin(temp, "\001\033[1;31m\002");
-	free(temp);
-	temp = prompt;
-	prompt = ft_strjoin(temp, end);
-	free(temp);
-	temp = prompt;
-	prompt = ft_strjoin(temp, "\001\033[0m\002");
-	free(temp);
+	prompt = variadic_strjoin(
+			7,
+			ESC_BOLD_RED,
+			name,
+			ESC_BOLD_PURPLE,
+			pwd,
+			ESC_BOLD_RED,
+			end,
+			ESC_RESET_COLOR);
 	free_prompt_strings(name, pwd, end);
 	return (prompt);
 }
