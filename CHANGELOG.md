@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added `get_absolute_path()` function, that retrieves the correct path for a specified binary based on the PATH environment variable, or returns NULL if it can't find it.
 - Added the `variadic_strjoin()` function, which permits concatenation of an variable number of strings.
 - Added Macros with escaped colors for readline library.
+- Added `unset()` builtin function.
+
+### Changed
 - Refactor `create_prompt()` function using `variadic_strjoin()`.
 
 ## - 2021-07-17
