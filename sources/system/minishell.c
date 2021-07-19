@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/18 18:15:34 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/18 20:52:12 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ static void	execute(char *input)
 	}
 	if (ft_strcmp("env", input) == 0)
 		print_environment(g_minishell.env, STDOUT_FILENO);
+	if (ft_strncmp("unset ", input, 6) == 0)
+	{
+		cmd = ft_split(input, ' ');
+		unset(cmd[1]);
+		free_2d_array(cmd);
+	}
 	if (ft_strncmp("export", input, 6) == 0)
 	{
 		cmd = ft_split(input, ' ');

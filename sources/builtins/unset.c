@@ -1,0 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/18 20:32:29 by lcouto            #+#    #+#             */
+/*   Updated: 2021/07/18 20:38:40 by lcouto           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+void	unset(char *key)
+{
+	if (hashmap_search(g_minishell.env, key))
+		hashmap_delete(g_minishell.env, key);
+}
