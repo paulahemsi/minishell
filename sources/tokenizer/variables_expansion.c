@@ -6,42 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/15 12:57:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/18 22:01:25 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char	*search_var(char *value, int *i)
-{
-	while (value[*i] != '\0')
-	{
-		if (value[*i] == '$')
-			return (&value[*i]);
-		*i += 1;
-	}
-	return (NULL);
-}
-
-static int	get_size(char *var, int *index)
-{
-	int i;
-
-	i = 0;
-	while ((var[i + 1] != ' ') && (var[i + 1] != '\0') && (var[i + 1] != '$'))
-		i++;
-	i++;
-	*index += i;
-	return (i);
-}
-
-void	free_var_struct(t_var *var)
-{
-	ft_free_and_null((void **)&var->before);
-	ft_free_and_null((void **)&var->value);
-	ft_free_and_null((void **)&var->after);
-	ft_free_and_null((void **)&var->temp);
-}
 
 static void	expand(char **variable)
 {
@@ -91,15 +60,16 @@ void	expand_variables(char **value)
 {
 	t_var	var;
 	char	*new_str;
-	int		i = 0;
+	int		i;
 
+	i = 0;
 	if (!(*value))
 		return ;
 	var.pointer = search_var(*value, &i);
 	if (!(var.pointer))
 		return ;
 	var.before = ft_substr(*value, 0, i);
-	var.value = ft_substr(*value, i, get_size(var.pointer, &i));
+	var.value = ft_substr(*value, i, get_var_size(var.pointer, &i));
 	if (ft_strchr(var.value, SINGLE_QUOTE))
 		handle_quote(&var, value, i);
 	else

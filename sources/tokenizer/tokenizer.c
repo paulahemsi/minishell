@@ -6,13 +6,15 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/01 19:17:32 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/18 21:32:13 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//*DEBUGGING FUNC
+/*
+**DEBUGGING FUNC
+*/
 static char	*get_type(int type_id)
 {
 	if (type_id == 42)
@@ -24,7 +26,9 @@ static char	*get_type(int type_id)
 	return (NULL);
 }
 
-//*DEBUGGING FUNC
+/*
+**DEBUGGING FUNC
+*/
 static void	print_token_lst(t_token *token_lst)
 {
 	char	*type;
@@ -53,31 +57,28 @@ static int	find_end(char *line, int i, int *end)
 	return (i);
 }
 
-static t_token	*split_tokens(char *line)
+static int	split_token(char *line, int *i, int *token_end, t_token **token_lst)
 {
-	int		i;
-	int		token_end;
-	t_token	*token_lst;
-
-	i = 0;
-	token_end = i;
-	token_lst = NULL;
-	while (line[i])
-	{
-		while (ft_isblank(line[i]))
-			i++;
-		if (!line[i])
-			break ;
-		add_token(line, i, find_end(line, i, &token_end), &token_lst);
-		i = token_end;
-		if (line[i])
-			i++;
-	}
-	return (token_lst);
+	while (ft_isblank(line[*i]))
+		*i += 1;
+	if (!line[*i])
+		return (0);
+	add_token(line, *i, find_end(line, *i, token_end), token_lst);
+	*i = *token_end;
+	if (line[*i])
+		*i += 1;
+	return (1);
 }
 
 void	tokenizer(char *line, t_token **token_lst)
 {
-	*token_lst = split_tokens(line);
-	print_token_lst(*token_lst);//*DEBUGGING LINE
+	int		i;
+	int		token_end;
+
+	i = 0;
+	token_end = i;
+	while (line[i])
+		if (!split_token(line, &i, &token_end, token_lst))
+			break ;
+	print_token_lst(*token_lst);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/18 18:24:38 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/18 22:02:31 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ void	token_add_back(t_token **lst, t_token *new_token);
 ** variables_expansion.c
 */
 void	expand_variables(char **value);
+void	free_var_struct(t_var *var);
+/*
+** var utils
+*/
+char	*search_var(char *value, int *i);
+int		get_var_size(char *var, int *index);
 void	free_var_struct(t_var *var);
 /*
 ** define_type.c
