@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/18 20:52:12 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/20 18:12:13 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static void	execute(char *input)
 		export(cmd, STDOUT_FILENO);
 		free_2d_array(cmd);
 	}
+	if (ft_strncmp("pwd", input, 3) == 0)
+		pwd();
 }
 
 static void	repl(void)
