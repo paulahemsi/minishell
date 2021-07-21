@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:51:16 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/21 20:15:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/21 20:30:19 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,11 @@ static int	get_commands_length(t_token *current, t_token *pipe)
 	return (i);
 }
 
-static char	**fill_command_array(t_token *current, t_token *end,
-	char **cmd, int length)
+static char	**fill_command_array(t_token *current, t_token *end, char **cmd)
 {
 	int	i;
 
 	i = 0;
-	cmd = (char **)malloc((length + 1) * sizeof(char *));
-	cmd[length] = NULL;
 	while (current != end)
 	{
 		if (is_command_or_argument(current->type))
@@ -58,6 +55,8 @@ char	**create_command_array(t_token *head, t_token *pipe, char **cmd)
 	int	cmd_length;
 
 	cmd_length = get_commands_length(head, pipe);
-	cmd = fill_command_array(head, pipe, cmd, cmd_length);
+	cmd = (char **)malloc((cmd_length + 1) * sizeof(char *));
+	cmd[cmd_length] = NULL;
+	cmd = fill_command_array(head, pipe, cmd);
 	return (cmd);
 }
