@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:51:16 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/21 15:37:43 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/21 20:15:30 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,4 @@ char	**create_command_array(t_token *head, t_token *pipe, char **cmd)
 	cmd_length = get_commands_length(head, pipe);
 	cmd = fill_command_array(head, pipe, cmd, cmd_length);
 	return (cmd);
-	// if (is_builtin(cmd[0]))
-	// 	return (TRUE);
-	// return (FALSE);
 }
