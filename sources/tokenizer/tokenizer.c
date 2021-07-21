@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/22 19:42:28 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/22 22:13:10 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,22 @@ void	tokenizer(char *line, t_token **token_lst)
 	while (line[i])
 		if (!split_token(line, &i, &token_end, token_lst))
 			break ;
+	/*
+	**DEBUGGING FUNCS
+	*/
 	print_token_lst(*token_lst);
+	t_token	*last_token;
+	char **cmd = NULL;
+	last_token = *token_lst;
+	while (last_token->next != NULL)
+		last_token = last_token->next;
+	cmd = create_command_array(*token_lst, last_token, cmd);
+	ft_printf("\n------CMD_ARRAY-------\n");
+	i = 0;
+	while (cmd[i] != NULL)
+	{
+		ft_printf("|%s| ", cmd[i]);
+		i++;
+	}
+	free_2d_array(cmd);
 }
