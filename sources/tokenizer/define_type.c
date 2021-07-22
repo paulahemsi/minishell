@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 10:53:17 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/21 23:29:16 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/22 19:36:42 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,19 @@ static int	define_operator(char *value)
 	return (FALSE);
 }
 
-void	define_type(char *value, int *type)
+void	define_type(t_token *previous, char *value, int *type)
 {
-	if (is_builtin(value))
+	int	previous_type;
+
+	previous_type = 0;
+	if (previous)
+		previous_type = previous->type;
+	if (is_builtin(value) && (previous_type != T_REDIRECT))
 		*type = T_BUILTIN;
 	else if (is_operator(value))
 		*type = define_operator(value);
+	else if (previous_type == T_REDIRECT)
+		*type = T_FILE;
 	else
 		*type = T_LITERAL;
 }

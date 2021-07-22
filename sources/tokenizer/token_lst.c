@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 19:56:24 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/22 17:37:58 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/22 17:43:15 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_token	*token_new(char *value, int type)
 	return (new_token);
 }
 
-static t_token	*token_last(t_token *lst)
+t_token	*token_last(t_token *lst)
 {
 	t_token	*aux;
 

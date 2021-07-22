@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/22 17:34:00 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/22 17:44:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	remove_quotes(char **value, char quote);
 void	token_list_clear(t_token **lst);
 t_token	*token_new(char *value, int type);
 void	token_add_back(t_token **lst, t_token *new_token);
+t_token	*token_last(t_token *lst);
 /*
 ** variables_expansion.c
 */
@@ -71,7 +72,7 @@ void	free_var_struct(t_var *var);
 /*
 ** define_type.c
 */
-void	define_type(char *value, int *type);
+void	define_type(t_token *previous, char *value, int *type);
 bool	is_redirect(char *value);
 bool	is_builtin(char *value);
 /*

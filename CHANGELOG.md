@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 - tokens linked list became tokens **double** linked list
+- new tokend types: `T_PIPE` `T_REDIRECT` `T_HERE_DOC` `T_FILE`
 
 ## - 2021-07-18
 ### Added

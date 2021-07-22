@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 23:39:22 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/21 23:39:38 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/22 19:37:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static char	*get_type(int type_id)
 		return (ft_strdup("T_REDIRECT"));
 	if (type_id == 46)
 		return (ft_strdup("T_HERE_DOC"));
+	if (type_id == 47)
+		return (ft_strdup("T_FILE"));
 	return (NULL);
 }
 
