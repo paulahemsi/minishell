@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/22 00:16:55 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/22 17:34:00 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_token
 	int				type;
 	char			*value;
 	struct s_token	*next;
+	struct s_token	*previous;
 }	t_token;
 
 typedef struct s_var

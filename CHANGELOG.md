@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
+## - 2021-07-22
+
+### Changed
+- tokens linked list became tokens **double** linked list
+
 ## - 2021-07-18
 ### Added
 - Added `get_absolute_path()` function, that retrieves the correct path for a specified binary based on the PATH environment variable, or returns NULL if it can't find it.
