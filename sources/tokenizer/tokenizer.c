@@ -6,45 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/21 23:35:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/22 00:09:28 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-**DEBUGGING FUNC
-*/
-static char	*get_type(int type_id)
-{
-	if (type_id == 42)
-		return (ft_strdup("T_BUILTIN"));
-	if (type_id == 43)
-		return (ft_strdup("T_LITERAL"));
-	if (type_id == 44)
-		return (ft_strdup("T_PIPE"));
-	if (type_id == 45)
-		return (ft_strdup("T_REDIRECT"));
-	if (type_id == 46)
-		return (ft_strdup("T_HERE_DOC"));
-	return (NULL);
-}
-
-/*
-**DEBUGGING FUNC
-*/
-static void	print_token_lst(t_token *token_lst)
-{
-	char	*type;
-
-	while (token_lst != NULL)
-	{
-		type = get_type(token_lst->type);
-		ft_printf("type: %s value: %s\n", type, token_lst->value);
-		token_lst = token_lst->next;
-		ft_free_and_null((void **)&type);
-	}
-}
 
 static int	find_end(char *line, int i, int *end)
 {
@@ -74,6 +40,44 @@ static int	split_token(char *line, int *i, int *token_end, t_token **token_lst)
 	return (1);
 }
 
+// static bool	is_redirect_char(char c)
+// {
+// 	if ((c == '>') || (c == '<'))
+// 		return (TRUE);
+// 	return (FALSE);
+// }
+
+// static void check_and_add_spaces(char **line)
+// {
+// 	int		i;
+// 	t_var	aux;
+// 	char	*line_to_check;
+
+// 	i = 0;
+// 	line_to_check = *line;
+// 	ft_memset(&aux, 0, sizeof(aux));
+// 	while (line_to_check[i])
+// 	{
+// 		if (is_redirect_char(line_to_check[i]))
+// 		{
+// 			i++;
+// 			if (is_redirect_char(line_to_check[i]))
+// 				i++;
+// 			if (line_to_check[i] != ' ')
+// 			{
+// 				aux.before = ft_substr(line_to_check, 0, i - 1);
+// 				aux.value = ft_strdup(" ");
+// 				aux.after = ft_strdup(&line_to_check[i]);
+// 				free(line_to_check);
+// 				line_to_check = variadic_strjoin(3, aux.before, aux.value, aux.after);
+// 				free_var_struct(&aux);
+// 			}
+// 		}
+// 		i++;
+// 	}
+// 	line = &line_to_check;
+// }
+
 void	tokenizer(char *line, t_token **token_lst)
 {
 	int		i;
@@ -81,6 +85,7 @@ void	tokenizer(char *line, t_token **token_lst)
 
 	i = 0;
 	token_end = i;
+	//?check_and_add_spaces(&line);
 	while (line[i])
 		if (!split_token(line, &i, &token_end, token_lst))
 			break ;

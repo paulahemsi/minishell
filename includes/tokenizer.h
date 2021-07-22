@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/21 23:29:38 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/22 00:16:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define T_PIPE			44
 # define T_REDIRECT		45
 # define T_HERE_DOC		46
+# define T_FILE			47
 
 # define SINGLE_QUOTE	'\''
 # define DOUBLE_QUOTE	'\"'
@@ -72,5 +73,9 @@ void	free_var_struct(t_var *var);
 void	define_type(char *value, int *type);
 bool	is_redirect(char *value);
 bool	is_builtin(char *value);
+/*
+** debugging_temp.c
+*/
+void	print_token_lst(t_token *token_lst);
 
 #endif
