@@ -6,7 +6,7 @@
 /*   By: lfrasson <lfrasson@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/21 23:21:28 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/21 23:51:37 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,25 @@ void	execute_cmd(char **cmd)
 	waitpid(pid, NULL, 0);
 }
 
+void	add_path_to_cmd_name(char **cmd)
+{
+	char	*cmd_name;
+	
+	cmd_name = get_absolute_path(cmd[0]);
+	free(cmd[0]);
+	cmd[0] = cmd_name;
+}
+
 void	command_parser(t_token *token_lst, t_token *pipe)
 {
 	char	**cmd;
-	char	*cmd_name;
 
 	//create_pipe();
 	//make_redirects();
 	cmd = NULL;
 	cmd = create_command_array(token_lst, pipe, cmd);
-	ft_printf("%s\n", cmd[0]);
 	
-	//concatena path
-	cmd_name = get_absolute_path(cmd[0]);
-	ft_printf("%s\n", cmd_name);
-	free(cmd[0]);
-	cmd[0] = cmd_name;
+	add_path_to_cmd_name(cmd);
 	execute_cmd(cmd);
 	free_2d_array(cmd);	
 }
