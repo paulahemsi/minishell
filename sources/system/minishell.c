@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/21 22:35:15 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/22 22:19:56 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void	execute(char *input)
 	}
 }
 
+void	pipe_checker(t_token *token_lst);
 static void	repl(void)
 {
 	char	*input;
@@ -78,6 +79,7 @@ static void	repl(void)
 		read_input(&input);
 		save_history(input);
 		tokenizer(input, &token_lst);
+		pipe_checker(token_lst);
 		token_list_clear(&token_lst);
 		execute(input);
 		free(input);
