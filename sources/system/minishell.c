@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/20 18:12:13 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/21 22:35:15 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ static void	read_input(char **input)
 	*input = readline(prompt);
 	free(prompt);
 }
+
+/*
+** TODO: Arrumar essa função que tá nojenta.
+*/
 
 static void	execute(char *input)
 {
@@ -54,6 +58,12 @@ static void	execute(char *input)
 	}
 	if (ft_strncmp("pwd", input, 3) == 0)
 		pwd();
+	if (ft_strncmp("cd", input, 2) == 0)
+	{
+		cmd = ft_split(input, ' ');
+		cd(cmd[1]);
+		free_2d_array(cmd);
+	}
 }
 
 static void	repl(void)
@@ -80,8 +90,8 @@ int	main(int argc, char **argv)
 		error_message("👿", TOO_MANY_ARGS);
 	g_minishell.env = env_to_hashmap(__environ);
 	g_minishell.local_vars = hashmap_create_table(50);
-	g_minishell.input_fd = STDIN_FILENO;
-	g_minishell.output_fd = STDOUT_FILENO;
+	g_minishell.fd[IN] = STDIN_FILENO;
+	g_minishell.fd[OUT] = STDOUT_FILENO;
 	repl();
 	return (0);
 }
