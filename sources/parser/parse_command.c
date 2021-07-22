@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:51:16 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/21 20:30:19 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/21 22:18:25 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	**fill_command_array(t_token *current, t_token *end, char **cmd)
 	{
 		if (is_command_or_argument(current->type))
 		{
-			cmd[i] = current->value;
+			cmd[i] = ft_strdup(current->value);
 			i++;
 		}
 		current = current->next;
