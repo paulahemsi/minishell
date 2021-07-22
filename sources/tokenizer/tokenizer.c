@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/18 21:32:13 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/21 23:35:50 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ static char	*get_type(int type_id)
 	if (type_id == 42)
 		return (ft_strdup("T_BUILTIN"));
 	if (type_id == 43)
-		return (ft_strdup("T_OPERATOR"));
-	if (type_id == 44)
 		return (ft_strdup("T_LITERAL"));
+	if (type_id == 44)
+		return (ft_strdup("T_PIPE"));
+	if (type_id == 45)
+		return (ft_strdup("T_REDIRECT"));
+	if (type_id == 46)
+		return (ft_strdup("T_HERE_DOC"));
 	return (NULL);
 }
 
