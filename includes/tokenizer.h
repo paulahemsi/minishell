@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/18 22:02:31 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/21 23:29:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include <stdbool.h>
 
 # define T_BUILTIN		42
-# define T_OPERATOR		43
-# define T_LITERAL		44
+# define T_LITERAL		43
+# define T_PIPE			44
+# define T_REDIRECT		45
+# define T_HERE_DOC		46
 
 # define SINGLE_QUOTE	'\''
 # define DOUBLE_QUOTE	'\"'
@@ -68,5 +70,7 @@ void	free_var_struct(t_var *var);
 ** define_type.c
 */
 void	define_type(char *value, int *type);
+bool	is_redirect(char *value);
+bool	is_builtin(char *value);
 
 #endif

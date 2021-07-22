@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 10:53:17 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/18 21:30:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/21 23:29:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	is_builtin(char *value)
+bool	is_builtin(char *value)
 {
 	if (!(ft_strcmp(value, "echo\0")) || !(ft_strcmp(value, "cd\0")))
 		return (TRUE);
@@ -25,9 +25,18 @@ static bool	is_builtin(char *value)
 	return (FALSE);
 }
 
+bool	is_redirect(char *value)
+{
+	if (!ft_strcmp(value, ">") || !ft_strcmp(value, "<"))
+		return (TRUE);
+	if (!ft_strcmp(value, ">>"))
+		return (TRUE);
+	return (FALSE);
+}
+
 static bool	is_operator(char *value)
 {
-	if (!(ft_strcmp(value, "|")) || !(ft_strcmp(value, "=")))
+	if (!(ft_strcmp(value, "|")))
 		return (TRUE);
 	if (!(ft_strcmp(value, ">")) || !(ft_strcmp(value, "<")))
 		return (TRUE);
@@ -36,12 +45,23 @@ static bool	is_operator(char *value)
 	return (FALSE);
 }
 
+static int	define_operator(char *value)
+{
+	if (!(ft_strcmp(value, "|")))
+		return (T_PIPE);
+	if (is_redirect(value))
+		return (T_REDIRECT);
+	if (!(ft_strcmp(value, "<<")))
+		return (T_HERE_DOC);
+	return (FALSE);
+}
+
 void	define_type(char *value, int *type)
 {
 	if (is_builtin(value))
 		*type = T_BUILTIN;
 	else if (is_operator(value))
-		*type = T_OPERATOR;
+		*type = define_operator(value);
 	else
 		*type = T_LITERAL;
 }
