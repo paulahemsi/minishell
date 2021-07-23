@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/22 22:39:21 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/23 11:38:16 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,6 @@ static void	execute(char *input)
 	}
 }
 
-/*
- * Provisorio ate a Laura fazer essa funcao
- */
-void	pipe_checker(t_token *token_lst);
-
 static void	repl(void)
 {
 	char	*input;
@@ -83,7 +78,7 @@ static void	repl(void)
 		read_input(&input);
 		save_history(input);
 		tokenizer(input, &token_lst);
-		pipe_checker(token_lst);
+		parse_and_execute(token_lst);
 		token_list_clear(&token_lst);
 		execute(input);
 		free(input);

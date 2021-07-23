@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/22 22:32:21 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/23 11:34:42 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <errno.h>
 # include <sys/stat.h>
 # include <stdarg.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 typedef struct s_minishell
 {
@@ -53,5 +55,6 @@ char	*variadic_strjoin(unsigned int arg_quantity, ...);
 */
 
 char	*get_absolute_path(char *cmd);
+void	execute_cmd(char **cmd);
 
 #endif
