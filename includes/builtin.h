@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:40:26 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/20 18:10:50 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/21 21:22:56 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void		print_environment(t_hashmap *env, int fd);
 int			export(char **cmd, int fd);
 void		unset(char *key);
 void		pwd(void);
+void		cd(char *path);
 
 /**
 ** 2D ARRAY UTILS

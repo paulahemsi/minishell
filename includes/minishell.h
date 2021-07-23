@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/18 18:23:36 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/20 20:41:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ typedef struct s_minishell
 {
 	t_hashmap	*env;
 	t_hashmap	*local_vars;
-	int			input_fd;
-	int			output_fd;
+	int			fd[2];
 }				t_minishell;
 
 /*
@@ -39,6 +38,7 @@ typedef struct s_minishell
 */
 
 t_minishell	g_minishell;
+
 
 /*
 ** UTILS: 
