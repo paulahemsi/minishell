@@ -6,7 +6,7 @@
 /*   By: lfrasson <lfrasson@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/22 20:44:07 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/22 21:42:13 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void restore_std_fds()
 {
 	dup2(save_fd[IN], STDIN_FILENO);
 	close(save_fd[IN]);
-	dup2(save_fd[OUT], STDIN_FILENO);
+	dup2(save_fd[OUT], STDOUT_FILENO);
 	close(save_fd[OUT]);
 }
 
@@ -56,18 +56,16 @@ void create_pipe(t_token *pipe_token)
 {
 	int new_pipe[2];
 
+	dup2(old_pipe[IN], STDIN_FILENO);
+	if (old_pipe[IN] != 0)
+		close(old_pipe[IN]);
 	if (!pipe_token)
 		return ;
-	dup2(STDIN_FILENO, old_pipe[IN]);
-	close(old_pipe[IN]);
-	if (*pipe_token->value == '|')
-	{
-		pipe(new_pipe);
-		dup2(STDOUT_FILENO, new_pipe[OUT]);
-		close(new_pipe[OUT]);
-		old_pipe[IN] = dup(new_pipe[IN]);
-		close(new_pipe[IN]);
-	}
+	pipe(new_pipe);
+	dup2(new_pipe[OUT], STDOUT_FILENO);
+	close(new_pipe[OUT]);
+	old_pipe[IN] = dup(new_pipe[IN]);
+	close(new_pipe[IN]);
 }
 
 void	command_parser(t_token *token_lst, t_token *pipe)
@@ -88,9 +86,35 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 
 void	pipe_checker(t_token *token_lst)
 {
+	t_token *head;
+	t_token *end;
+
 	old_pipe[IN] = 0;
 	if (token_lst->next)
-		command_parser(token_lst, token_lst->next->next);
+	{
+		end = token_lst->next->next;
+		command_parser(token_lst, end);
+		if (end)
+		{
+			head = end->next;
+			if (head)
+			{
+				end = head->next->next;
+				command_parser(head, end);
+				if (end)
+				{
+					head = end->next;
+					if (head)
+					{
+						end = head->next->next;
+						command_parser(head, end);
+					}
+				}
+			}
+		}
+	}
 	else
 		command_parser(token_lst, NULL);
+	if (old_pipe[IN] != 0)
+		close(old_pipe[IN]);
 }
