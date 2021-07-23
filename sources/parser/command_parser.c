@@ -6,7 +6,7 @@
 /*   By: lfrasson <lfrasson@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/22 22:45:22 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/23 10:56:00 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,40 +78,30 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 	restore_std_fds();
 }
 
-/*
- * Funcao provisoria mas que precisa ter as linhas marcadas
- */
-void	pipe_checker(t_token *token_lst)
+void	pipe_checker(t_token *head)
 {
-	t_token	*head;
-	t_token	*end;
+	t_token	*current;
 
-	g_minishell.old_pipe_in = 0; //precisa ter
-	if (token_lst->next)
+	current = head;
+	while (current)
 	{
-		end = token_lst->next->next;
-		command_parser(token_lst, end);
-		if (end)
+		if (current->type == T_PIPE)
 		{
-			head = end->next;
-			if (head)
-			{
-				end = head->next->next;
-				command_parser(head, end);
-				if (end)
-				{
-					head = end->next;
-					if (head)
-					{
-						end = head->next->next;
-						command_parser(head, end);
-					}
-				}
-			}
+			command_parser(head, current);
+			head = current->next;
+			pipe_checker(head);
+			break ;
 		}
+		current = current->next;
 	}
-	else
-		command_parser(token_lst, NULL);
-	if (g_minishell.old_pipe_in != 0) //precisa ter
-		close(g_minishell.old_pipe_in); // precisa ter
+	if (!current)
+		command_parser(head, current);
+}
+
+void	parse_and_execute(t_token *token_lst)
+{
+	g_minishell.old_pipe_in = 0;
+	pipe_checker(token_lst);
+	if (g_minishell.old_pipe_in != 0)
+		close(g_minishell.old_pipe_in);
 }
