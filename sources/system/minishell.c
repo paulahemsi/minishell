@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/22 22:19:56 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/22 22:39:21 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ static void	execute(char *input)
 	}
 }
 
+/*
+ * Provisorio ate a Laura fazer essa funcao
+ */
 void	pipe_checker(t_token *token_lst);
+
 static void	repl(void)
 {
 	char	*input;
@@ -92,8 +96,6 @@ int	main(int argc, char **argv)
 		error_message("👿", TOO_MANY_ARGS);
 	g_minishell.env = env_to_hashmap(__environ);
 	g_minishell.local_vars = hashmap_create_table(50);
-	g_minishell.fd[IN] = STDIN_FILENO;
-	g_minishell.fd[OUT] = STDOUT_FILENO;
 	repl();
 	return (0);
 }
