@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
+## - 2021-07-22
+### Changed
+- tokens linked list became tokens **double** linked list
+- new tokend types: `T_PIPE` `T_REDIRECT` `T_HERE_DOC` `T_FILE`
+
 ## - 2021-07-21
 ### Added
 - Added `cd` builtin function.

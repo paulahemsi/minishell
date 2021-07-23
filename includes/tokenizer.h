@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/18 22:02:31 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/22 17:44:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 # include <stdbool.h>
 
 # define T_BUILTIN		42
-# define T_OPERATOR		43
-# define T_LITERAL		44
+# define T_LITERAL		43
+# define T_PIPE			44
+# define T_REDIRECT		45
+# define T_HERE_DOC		46
+# define T_FILE			47
 
 # define SINGLE_QUOTE	'\''
 # define DOUBLE_QUOTE	'\"'
@@ -28,6 +31,7 @@ typedef struct s_token
 	int				type;
 	char			*value;
 	struct s_token	*next;
+	struct s_token	*previous;
 }	t_token;
 
 typedef struct s_var
@@ -53,6 +57,7 @@ void	remove_quotes(char **value, char quote);
 void	token_list_clear(t_token **lst);
 t_token	*token_new(char *value, int type);
 void	token_add_back(t_token **lst, t_token *new_token);
+t_token	*token_last(t_token *lst);
 /*
 ** variables_expansion.c
 */
@@ -67,6 +72,12 @@ void	free_var_struct(t_var *var);
 /*
 ** define_type.c
 */
-void	define_type(char *value, int *type);
+void	define_type(t_token *previous, char *value, int *type);
+bool	is_redirect(char *value);
+bool	is_builtin(char *value);
+/*
+** debugging_temp.c
+*/
+void	print_token_lst(t_token *token_lst);
 
 #endif
