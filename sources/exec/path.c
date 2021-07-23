@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 17:25:29 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/18 18:22:42 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/22 22:27:15 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ char	*get_absolute_path(char *cmd)
 		i++;
 	}
 	free_2d_array(all_paths);
-	free(path_variable);
 	return (cmd_path);
 }

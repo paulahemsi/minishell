@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:09:54 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/11 20:10:53 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/21 15:37:23 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,7 @@
 
 # define IN		0
 # define OUT	1
-# define READ	0
-# define WRITE	1
 
-# define TRUE	1
-# define FALSE	0
-
-typedef struct s_cmd
-{
-	char			**cmd;
-	int				is_builtin;
-	int				pipe;
-	int				redirect;
-	int				fd[2];
-	struct s_cmd	*next;
-}	t_cmd;
-
-void	parser(t_token *token_lst);
-t_cmd	*cmd_new(void);
-void	cmd_add_back(t_cmd **lst, t_cmd *new_cmd);
+char	**create_command_array(t_token *head, t_token *pipe, char **cmd);
 
 #endif
