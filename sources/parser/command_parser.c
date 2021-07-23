@@ -6,25 +6,13 @@
 /*   By: lfrasson <lfrasson@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/23 10:56:00 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/23 11:35:10 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <sys/types.h>
-#include <sys/wait.h>
 
-void	execute_cmd(char **cmd)
-{
-	int	pid;
-
-	pid = fork();
-	if (pid == 0)
-		execve(cmd[0], cmd, hashmap_to_env(g_minishell.env));
-	waitpid(pid, NULL, 0);
-}
-
-void	add_path_to_cmd_name(char **cmd)
+static void	add_path_to_cmd_name(char **cmd)
 {
 	char	*cmd_name;
 
@@ -33,13 +21,13 @@ void	add_path_to_cmd_name(char **cmd)
 	cmd[0] = cmd_name;
 }
 
-void	save_std_fds(void)
+static void	save_std_fds(void)
 {
 	g_minishell.save_fd[IN] = dup(STDIN_FILENO);
 	g_minishell.save_fd[OUT] = dup(STDIN_FILENO);
 }
 
-void	restore_std_fds(void)
+static void	restore_std_fds(void)
 {
 	dup2(g_minishell.save_fd[IN], STDIN_FILENO);
 	close(g_minishell.save_fd[IN]);
@@ -47,7 +35,7 @@ void	restore_std_fds(void)
 	close(g_minishell.save_fd[OUT]);
 }
 
-void	create_pipe(t_token *pipe_token)
+static void	create_pipe(t_token *pipe_token)
 {
 	int	new_pipe[2];
 
@@ -72,36 +60,9 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 	//TODO: make_redirects();
 	cmd = NULL;
 	cmd = create_command_array(token_lst, pipe, cmd);
+	//TODO: executar buitin
 	add_path_to_cmd_name(cmd);
 	execute_cmd(cmd);
 	free_2d_array(cmd);
 	restore_std_fds();
-}
-
-void	pipe_checker(t_token *head)
-{
-	t_token	*current;
-
-	current = head;
-	while (current)
-	{
-		if (current->type == T_PIPE)
-		{
-			command_parser(head, current);
-			head = current->next;
-			pipe_checker(head);
-			break ;
-		}
-		current = current->next;
-	}
-	if (!current)
-		command_parser(head, current);
-}
-
-void	parse_and_execute(t_token *token_lst)
-{
-	g_minishell.old_pipe_in = 0;
-	pipe_checker(token_lst);
-	if (g_minishell.old_pipe_in != 0)
-		close(g_minishell.old_pipe_in);
 }

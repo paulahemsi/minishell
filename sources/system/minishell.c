@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/23 10:27:51 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/23 11:38:16 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,6 @@ static void	execute(char *input)
 		free_2d_array(cmd);
 	}
 }
-
-/*
- * Colocor no header
- */
-void	parse_and_execute(t_token *token_lst);
 
 static void	repl(void)
 {
