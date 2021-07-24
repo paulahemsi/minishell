@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:40:26 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/21 21:22:56 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/24 17:15:07 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_hashmap	*env_to_hashmap(char **env);
 char		**hashmap_to_env(t_hashmap *table);
 char		**hashmap_to_env_with_quotes(t_hashmap *table);
 void		print_environment(t_hashmap *env, int fd);
-int			export(char **cmd, int fd);
+int			export(char **cmd);
 void		unset(char *key);
 void		pwd(void);
 void		cd(char *path);
