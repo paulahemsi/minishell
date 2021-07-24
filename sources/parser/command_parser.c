@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/24 18:09:04 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/24 18:38:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	create_pipe(t_token *pipe_token)
 static void	execute_builtin(char **cmd)
 {
 	if (!(ft_strcmp(cmd[0], "echo\0")))
-		ft_printf("EXECUTAR ECHO \n");//TODO echo
+		ft_printf("EXECUTAR ECHO \n");
 	else if (!(ft_strcmp(cmd[0], "cd\0")))
 		cd(cmd[1]);
 	else if (!(ft_strcmp(cmd[0], "pwd")))
@@ -60,13 +60,13 @@ static void	execute_builtin(char **cmd)
 		exit_minishell();
 }
 
+//TODO: make_redirects();
 void	command_parser(t_token *token_lst, t_token *pipe)
 {
 	char	**cmd;
 
 	save_std_fds();
 	create_pipe(pipe);
-	//TODO: make_redirects();
 	cmd = NULL;
 	cmd = create_command_array(token_lst, pipe, cmd);
 	if (is_builtin(cmd[0]))
