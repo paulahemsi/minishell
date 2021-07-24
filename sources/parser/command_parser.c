@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/24 17:17:24 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/24 17:47:31 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,11 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 	cmd = create_command_array(token_lst, pipe, cmd);
 	if (is_builtin(cmd[0]))
 		execute_builtin(cmd);
-	add_path_to_cmd_name(cmd);
-	execute_cmd(cmd);
+	else
+	{
+		add_path_to_cmd_name(cmd);
+		execute_cmd(cmd);
+	}
 	free_2d_array(cmd);
 	restore_std_fds();
 }
