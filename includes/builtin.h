@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:40:26 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/24 18:00:05 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/24 19:13:22 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char		**hashmap_to_env_with_quotes(t_hashmap *table);
 */
 void		print_environment(t_hashmap *env, int fd);
 int			export(char **cmd);
-void		unset(char *key);
+void		unset(char **cmd);
 void		pwd(void);
 void		cd(char *path);
 void		exit_minishell(void);

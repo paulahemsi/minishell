@@ -3,17 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 20:32:29 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/18 22:16:24 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/24 19:12:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	unset(char *key)
+void	unset(char **cmd)
 {
-	if (hashmap_search(g_minishell.env, key))
-		hashmap_delete(g_minishell.env, key);
+	int i;
+
+	i = 1;
+	while (cmd[i])
+	{
+		if (hashmap_search(g_minishell.env, cmd[i]))
+			hashmap_delete(g_minishell.env, cmd[i]);
+		i++;
+	}
 }

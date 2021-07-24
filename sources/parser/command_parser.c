@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/24 18:38:43 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/24 19:11:23 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	execute_builtin(char **cmd)
 	else if (!(ft_strcmp(cmd[0], "export")))
 		export(cmd);
 	else if (!(ft_strcmp(cmd[0], "unset")))
-		unset(cmd[1]);
+		unset(cmd);
 	else if (!(ft_strcmp(cmd[0], "env")))
 		print_environment(g_minishell.env, STDOUT_FILENO);
 	else if (!(ft_strcmp(cmd[0], "exit")))
