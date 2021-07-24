@@ -6,20 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/24 17:47:31 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/24 18:09:04 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	add_path_to_cmd_name(char **cmd)
-{
-	char	*cmd_name;
-
-	cmd_name = get_absolute_path(cmd[0]);
-	free(cmd[0]);
-	cmd[0] = cmd_name;
-}
 
 static void	save_std_fds(void)
 {
@@ -54,7 +45,7 @@ static void	create_pipe(t_token *pipe_token)
 static void	execute_builtin(char **cmd)
 {
 	if (!(ft_strcmp(cmd[0], "echo\0")))
-		ft_printf("EXECUTAR ECHO \n");
+		ft_printf("EXECUTAR ECHO \n");//TODO echo
 	else if (!(ft_strcmp(cmd[0], "cd\0")))
 		cd(cmd[1]);
 	else if (!(ft_strcmp(cmd[0], "pwd")))
@@ -66,11 +57,7 @@ static void	execute_builtin(char **cmd)
 	else if (!(ft_strcmp(cmd[0], "env")))
 		print_environment(g_minishell.env, STDOUT_FILENO);
 	else if (!(ft_strcmp(cmd[0], "exit")))
-	{
-		hashmap_free_table(g_minishell.env);
-		hashmap_free_table(g_minishell.local_vars);
-		exit(0);
-	}
+		exit_minishell();
 }
 
 void	command_parser(t_token *token_lst, t_token *pipe)
@@ -85,10 +72,7 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 	if (is_builtin(cmd[0]))
 		execute_builtin(cmd);
 	else
-	{
-		add_path_to_cmd_name(cmd);
 		execute_cmd(cmd);
-	}
 	free_2d_array(cmd);
 	restore_std_fds();
 }
