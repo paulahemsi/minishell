@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/23 11:38:16 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/24 12:22:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ static void	read_input(char **input)
 static void	execute(char *input)
 {
 	char	**cmd;
-
+	
+	if (!input)
+		return ;
 	if (ft_strncmp("exit", input, 5) == 0)
 		exit(0);
 	if (ft_strcmp("bad-command", input) == 0)
