@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/24 18:27:18 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/24 19:35:09 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,6 @@ static void	read_input(char **input)
 	free(prompt);
 }
 
-/*
-** TODO: Arrumar essa função que tá nojenta.
-*/
-
-static void	execute(char *input)
-{
-	if (!input)
-		return ;
-	if (ft_strcmp("bad-command", input) == 0)
-		error_message(input, NOT_FOUND);
-}
-
 static void	repl(void)
 {
 	char	*input;
@@ -53,7 +41,6 @@ static void	repl(void)
 		tokenizer(input, &token_lst);
 		parse_and_execute(token_lst);
 		token_list_clear(&token_lst);
-		execute(input);
 		free(input);
 	}
 }

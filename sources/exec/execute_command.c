@@ -6,19 +6,25 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 11:30:15 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/24 17:56:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/24 19:39:30 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	add_path_to_cmd_name(char **cmd)
+static int	add_path_to_cmd_name(char **cmd)
 {
 	char	*cmd_name;
 
 	cmd_name = get_absolute_path(cmd[0]);
+	if (!cmd_name)
+	{
+		error_message(cmd[0], NOT_FOUND);
+		return (0);
+	}
 	free(cmd[0]);
 	cmd[0] = cmd_name;
+	return (1);
 }
 
 void	execute_cmd(char **cmd)
@@ -26,7 +32,8 @@ void	execute_cmd(char **cmd)
 	int		pid;
 	char	**env_variables;
 
-	add_path_to_cmd_name(cmd);
+	if (!add_path_to_cmd_name(cmd))
+		return ;
 	pid = fork();
 	if (pid == 0)
 	{
