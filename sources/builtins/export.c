@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 20:23:19 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/18 18:20:52 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/24 17:14:45 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	print_ordered_env(int fd)
+static int	print_ordered_env(void)
 {
 	char	**ordered_env;
 
 	ordered_env = hashmap_to_env_with_quotes(g_minishell.env);
 	quick_sort_2d_array(ordered_env, 0, get_2d_array_len(ordered_env));
 	join_2d_array("declare -x ", ordered_env);
-	print_2d_array_fd(ordered_env, fd);
+	print_2d_array_fd(ordered_env, STDOUT_FILENO);
 	free_2d_array(ordered_env);
 	return (0);
 }
@@ -56,10 +56,10 @@ static int	export_variable(char **cmd, int index)
 	return (export_variable(cmd, index + 1));
 }
 
-int	export(char **cmd, int fd)
+int	export(char **cmd)
 {
 	if (cmd[1])
 		return (export_variable(cmd, 1));
 	else
-		return (print_ordered_env(fd));
+		return (print_ordered_env());
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrasson <lfrasson@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 11:19:31 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/23 11:37:29 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/24 12:20:49 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void	close_last_input_fd(void)
 
 void	parse_and_execute(t_token *token_lst)
 {
+	if (!token_lst)
+		return ;
 	set_first_input_fd();
 	pipe_checker(token_lst);
 	close_last_input_fd();
