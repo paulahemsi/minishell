@@ -6,11 +6,17 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 17:07:19 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/18 18:16:22 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/25 19:54:45 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	interrupt_process(int signal)
+{
+	(void)signal;
+	write(1, "\n", 1);
+}
 
 static void	redisplay_prompt(int signal)
 {
@@ -21,8 +27,6 @@ static void	redisplay_prompt(int signal)
 	rl_redisplay();
 }
 
-//TODO: exit process
-
 static void	quit_process(int signal)
 {
 	(void)signal;
@@ -31,7 +35,7 @@ static void	quit_process(int signal)
 
 void	define_exec_signals(void)
 {
-	signal(SIGINT, SIG_DFL);
+	signal(SIGINT, interrupt_process);
 	signal(SIGQUIT, quit_process);
 }
 
