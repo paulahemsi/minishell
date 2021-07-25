@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/25 03:07:42 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/25 13:35:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 	cmd = create_command_array(token_lst, pipe, cmd);
 	if (is_builtin(cmd[0]))
 		execute_builtin(cmd);
+	else if (ft_strchr(cmd[0], '='))
+		set_local_variable(cmd);
 	else
 		execute_cmd(cmd);
 	free_2d_array(cmd);
