@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
+## - 2021-07-25
+### Added
+- Added `echo` builtin function.
+
+### Changed
+- Refactored error message function to use `variadic_strjoin()` instead of several print function calls.
+
 ## - 2021-07-23
 ### Added
 - Added pipe checker.

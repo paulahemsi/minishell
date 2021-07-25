@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:40:26 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/24 19:13:22 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/25 03:06:45 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int			export(char **cmd);
 void		unset(char **cmd);
 void		pwd(void);
 void		cd(char *path);
+void		echo(char **cmd);
 void		exit_minishell(void);
 
 /**
