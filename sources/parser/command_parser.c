@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/24 19:11:23 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/25 03:07:42 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	create_pipe(t_token *pipe_token)
 static void	execute_builtin(char **cmd)
 {
 	if (!(ft_strcmp(cmd[0], "echo\0")))
-		ft_printf("EXECUTAR ECHO \n");
+		echo(cmd);
 	else if (!(ft_strcmp(cmd[0], "cd\0")))
 		cd(cmd[1]);
 	else if (!(ft_strcmp(cmd[0], "pwd")))

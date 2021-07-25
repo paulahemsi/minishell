@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 21:22:12 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/25 03:14:18 by lcouto           ###   ########.fr       */
+/*   Created: 2021/07/25 02:59:47 by lcouto            #+#    #+#             */
+/*   Updated: 2021/07/25 03:12:16 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	error_message(char *input, char *error_message)
+void	echo(char **cmd)
 {
-	char	*error_output;
+	bool	n_flag;
+	int		i;
 
-	error_output = variadic_strjoin(
-			7,
-			BOLD_YELLOW,
-			"minishell: ",
-			YELLOW, input,
-			": ",
-			error_message,
-			RESET_COLOR);
-	ft_putendl_fd(error_output, 2);
-	free(error_output);
+	i = 1;
+	if (cmd[1] && strcmp(cmd[1], "-n") == 0)
+	{
+		n_flag = true;
+		i = 2;
+	}
+	while (cmd && cmd[i])
+	{
+		ft_printf("%s ", cmd[i]);
+		i++;
+	}
+	if (n_flag == false)
+		ft_printf("\n");
 }
