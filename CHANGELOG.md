@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 - Refactored error message function to use `variadic_strjoin()` instead of several print function calls.
+- Correct all signals behaviors.
 
 ## - 2021-07-23
 ### Added

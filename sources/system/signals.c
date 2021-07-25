@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 17:07:19 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/25 19:54:45 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/25 20:15:32 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	redisplay_prompt(int signal)
 static void	quit_process(int signal)
 {
 	(void)signal;
-	ft_printf("Quit\n");
+	ft_printf("Quit (core dumped)\n");
 }
 
 void	define_exec_signals(void)
