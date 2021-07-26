@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 11:30:15 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/24 19:39:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/25 19:54:58 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	execute_cmd(char **cmd)
 	if (!add_path_to_cmd_name(cmd))
 		return ;
 	pid = fork();
+	define_exec_signals();
 	if (pid == 0)
 	{
 		env_variables = hashmap_to_env(g_minishell.env);
