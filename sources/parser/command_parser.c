@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/25 13:35:55 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/26 13:59:30 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ static void	execute_builtin(char **cmd)
 		exit_minishell();
 }
 
-//TODO: make_redirects();
 void	command_parser(t_token *token_lst, t_token *pipe)
 {
 	char	**cmd;
 
 	save_std_fds();
 	create_pipe(pipe);
+	check_redirects(token_lst, pipe);
 	cmd = NULL;
 	cmd = create_command_array(token_lst, pipe, cmd);
 	if (is_builtin(cmd[0]))
