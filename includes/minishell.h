@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/23 11:34:42 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/26 13:59:21 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <stdarg.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 
 typedef struct s_minishell
 {
