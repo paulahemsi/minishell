@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables_expansion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/26 21:39:06 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/26 22:36:45 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,17 @@ static void	handle_quote(t_var *var, char **value, int i)
 	ft_free_and_null((void **)&splited_string);
 }
 
+static bool	is_exit_status_variable(char **value)
+{
+	if (ft_strcmp(*value, "$?") == 0)
+	{
+		free(*value);
+		*value = ft_itoa(g_minishell.error_status);
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 void	expand_variables(char **value)
 {
 	t_var	var;
@@ -63,14 +74,8 @@ void	expand_variables(char **value)
 	int		i;
 
 	i = 0;
-	if (!(*value))
+	if (!(*value) || is_exit_status_variable(value))
 		return ;
-	if (ft_strcmp(*value, "$?") == 0)
-	{
-		free(*value);
-		*value = ft_itoa(g_minishell.error_status);
-		return ;
-	}
 	var.pointer = search_var(*value, &i);
 	if (!(var.pointer))
 		return ;

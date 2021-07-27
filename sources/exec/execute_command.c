@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 11:30:15 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/26 20:47:43 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/26 22:37:28 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void	execute_cmd(char **cmd)
 	}
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-			g_minishell.error_status = WEXITSTATUS(status);
+		g_minishell.error_status = WEXITSTATUS(status);
 }
