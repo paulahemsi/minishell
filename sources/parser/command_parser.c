@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/26 21:10:05 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/27 01:16:02 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,21 @@ static void	execute_builtin(char **cmd)
 void	command_parser(t_token *token_lst, t_token *pipe)
 {
 	char	**cmd;
+	int		i;
 
+	i = 0;
 	save_std_fds();
 	create_pipe(pipe);
 	check_redirects(token_lst, pipe);
 	cmd = NULL;
 	cmd = create_command_array(token_lst, pipe, cmd);
 	g_minishell.error_status = 0;
-	if (is_builtin(cmd[0]))
-		execute_builtin(cmd);
-	else if (ft_strchr(cmd[0], '='))
-		set_local_variable(cmd);
+	if (ft_strchr(cmd[i], '='))
+		set_local_variable(cmd, &i);
+	if (is_builtin(cmd[i]))
+		execute_builtin(&cmd[i]);
 	else
-		execute_cmd(cmd);
+		execute_cmd(&cmd[i]);
 	free_2d_array(cmd);
 	restore_std_fds();
 }

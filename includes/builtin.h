@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:40:26 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/25 13:36:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/27 01:14:47 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		pwd(void);
 void		cd(char *path);
 void		echo(char **cmd);
 void		exit_minishell(void);
-int			set_local_variable(char **cmd);
+int			set_local_variable(char **cmd, int *i);
 
 /**
 ** 2D ARRAY UTILS

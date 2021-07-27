@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 11:30:15 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/26 22:37:28 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/27 01:21:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	add_path_to_cmd_name(char **cmd)
 {
 	char	*cmd_name;
 
+	if (!cmd[0])
+		return (0);
 	cmd_name = get_absolute_path(cmd[0]);
 	if (!cmd_name)
 	{
@@ -34,7 +36,7 @@ void	execute_cmd(char **cmd)
 	int		status;
 	char	**env_variables;
 
-	if (!add_path_to_cmd_name(cmd))
+	if ((!cmd[0]) || (!add_path_to_cmd_name(cmd)))
 		return ;
 	pid = fork();
 	define_exec_signals();
