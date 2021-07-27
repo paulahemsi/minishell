@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/25 20:11:10 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/27 14:17:37 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	tokenizer(char *line, t_token **token_lst)
 		ft_printf("exit\n");
 		exit_minishell();
 	}
+	line = check_and_insert_spaces(&line);
 	while (line[i])
 		if (!split_token(line, &i, &token_end, token_lst))
 			break ;
