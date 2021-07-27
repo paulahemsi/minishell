@@ -6,11 +6,24 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 22:00:35 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/18 22:03:32 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/26 23:10:49 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	**split_in_two(const char *string, char c)
+{
+	char	**splited_strings;
+	char	*c_ptr;
+
+	splited_strings = (char **)malloc(3 * sizeof(char *));
+	c_ptr = ft_strchr(string, c);
+	splited_strings[0] = ft_substr(string, 0, (c_ptr - string));
+	splited_strings[1] = ft_substr((c_ptr + 1), 0, ft_strlen(c_ptr));
+	splited_strings[2] = NULL;
+	return (splited_strings);
+}
 
 char	*search_var(char *value, int *i)
 {

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/22 17:44:21 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/26 22:48:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	free_var_struct(t_var *var);
 char	*search_var(char *value, int *i);
 int		get_var_size(char *var, int *index);
 void	free_var_struct(t_var *var);
+char	**split_in_two(const char *string, char c);
 /*
 ** define_type.c
 */

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 10:53:17 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/25 13:37:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/27 01:18:53 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 bool	is_builtin(char *value)
 {
+	if (!value)
+		return (FALSE);
 	if (!(ft_strcmp(value, "echo\0")) || !(ft_strcmp(value, "cd\0")))
 		return (TRUE);
 	if (!(ft_strcmp(value, "pwd")) || !(ft_strcmp(value, "export")))

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 20:23:19 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/25 12:30:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/26 23:08:00 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	define_variable(char **cmd, int index)
 {
 	char	**variable;
 
-	variable = ft_split(cmd[index], '=');
+	variable = split_in_two(cmd[index], '=');
 	if (hashmap_search(g_minishell.env, variable[KEY]))
 		hashmap_delete(g_minishell.env, variable[KEY]);
 	hashmap_insert(variable[KEY], variable[VALUE], g_minishell.env);
