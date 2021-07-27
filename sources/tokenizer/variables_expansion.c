@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/26 21:18:50 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/26 21:39:06 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	expand_variables(char **value)
 	i = 0;
 	if (!(*value))
 		return ;
-	if (ft_strcmp(*value, "?") == 0)
+	if (ft_strcmp(*value, "$?") == 0)
 	{
 		free(*value);
 		*value = ft_itoa(g_minishell.error_status);
