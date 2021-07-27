@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 11:30:15 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/25 19:54:58 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/26 22:37:28 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	add_path_to_cmd_name(char **cmd)
 	if (!cmd_name)
 	{
 		error_message(cmd[0], NOT_FOUND);
+		g_minishell.error_status = 127;
 		return (0);
 	}
 	free(cmd[0]);
@@ -30,6 +31,7 @@ static int	add_path_to_cmd_name(char **cmd)
 void	execute_cmd(char **cmd)
 {
 	int		pid;
+	int		status;
 	char	**env_variables;
 
 	if (!add_path_to_cmd_name(cmd))
@@ -42,5 +44,7 @@ void	execute_cmd(char **cmd)
 		execve(cmd[0], cmd, env_variables);
 		free_2d_array(env_variables);
 	}
-	waitpid(pid, NULL, 0);
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		g_minishell.error_status = WEXITSTATUS(status);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_parser.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrasson <lfrasson@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 10:40:48 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/26 14:16:14 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/26 21:07:49 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static void	redirect_output(char *file, int flags)
 
 	fd_file = open(file, flags, 0777);
 	if (fd_file == -1)
+	{
 		error_message("redirect", strerror(errno));
+		g_minishell.error_status = 1;
+	}
 	else
 	{
 		dup2(fd_file, OUT);
@@ -32,7 +35,10 @@ static void	redirect_input(char *file, int flags)
 
 	fd_file = open(file, flags);
 	if (fd_file == -1)
+	{
 		error_message("redirect", strerror(errno));
+		g_minishell.error_status = 1;
+	}
 	else
 	{
 		dup2(fd_file, IN);

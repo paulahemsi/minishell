@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/26 13:59:30 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/26 21:10:05 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 	check_redirects(token_lst, pipe);
 	cmd = NULL;
 	cmd = create_command_array(token_lst, pipe, cmd);
+	g_minishell.error_status = 0;
 	if (is_builtin(cmd[0]))
 		execute_builtin(cmd);
 	else if (ft_strchr(cmd[0], '='))

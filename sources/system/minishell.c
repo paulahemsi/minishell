@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/24 19:35:09 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/26 21:08:06 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char **argv)
 		error_message("👿", TOO_MANY_ARGS);
 	g_minishell.env = env_to_hashmap(__environ);
 	g_minishell.local_vars = hashmap_create_table(50);
+	g_minishell.error_status = 0;
 	repl();
 	return (0);
 }
