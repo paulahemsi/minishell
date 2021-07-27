@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 - Added file redirection feature.
 - Added error status tracking.
+### Changed
+- Variables values now accept's equal sign
+- Set variable followed by command is accepted
 
 ## - 2021-07-25
 ### Added
