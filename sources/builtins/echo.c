@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 02:59:47 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/27 01:46:09 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/27 01:53:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	echo(char **cmd)
 	int		i;
 
 	i = 1;
-	n_flag = 0;
+	n_flag = false;
 	if (cmd[1] && ft_strcmp(cmd[1], "-n") == 0)
 	{
 		n_flag = true;
