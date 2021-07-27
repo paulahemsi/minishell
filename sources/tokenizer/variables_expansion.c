@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables_expansion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/18 22:01:25 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/26 21:18:50 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ void	expand_variables(char **value)
 	i = 0;
 	if (!(*value))
 		return ;
+	if (ft_strcmp(*value, "?") == 0)
+	{
+		free(*value);
+		*value = ft_itoa(g_minishell.error_status);
+		return ;
+	}
 	var.pointer = search_var(*value, &i);
 	if (!(var.pointer))
 		return ;

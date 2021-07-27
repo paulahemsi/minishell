@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 20:33:57 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/21 23:04:31 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/26 21:03:21 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static void	change_directory(char *path)
 	);
 	if (chdir(path) != 0 && ft_strchr(path, '>') == NULL)
 	{
-		error_message("cd", NO_FILE_OR_DIR);
+		error_message("cd", strerror(errno));
+		g_minishell.error_status = 1;
 		return ;
 	}
 	buffer = NULL;
@@ -46,6 +47,7 @@ void	cd(char	*path)
 		if (!hashmap_search(g_minishell.env, "OLDPWD"))
 		{
 			error_message("cd", NO_OLDPWD);
+			g_minishell.error_status = 1;
 			return ;
 		}
 		ft_printf("%s\n", hashmap_search(g_minishell.env, "OLDPWD"));

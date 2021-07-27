@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/26 13:59:21 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/26 19:39:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_minishell
 	t_hashmap	*local_vars;
 	int			save_fd[2];
 	int			old_pipe_in;
+	int			error_status;
 }				t_minishell;
 
 /*

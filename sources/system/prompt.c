@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:40:47 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/15 01:23:20 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/26 19:43:31 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ char	*create_prompt(void)
 	char	prompt_len;
 
 	pwd = get_pwd();
-	name = ft_strdup("😈🔥 MINIHELL 🔥😈:");
+	if (g_minishell.error_status == 0)
+		name = ft_strdup("😈🔥 MINIHELL 🔥😈:");
+	else
+		name = ft_strdup("👿🔥 MINIHELL 🔥👿:");
 	end = ft_strdup("$ ");
 	prompt_len = get_prompt_len(name, pwd, end);
 	return (concatenate_prompt(name, pwd, end));
