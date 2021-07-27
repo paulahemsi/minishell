@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 10:40:01 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/27 01:29:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/27 01:36:23 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_hashmap	*define_hashtable(char **variable)
 		table = g_minishell.local_vars;
 	else
 		table = NULL;
-	return (table) ;
+	return (table);
 }
 
 static void	define_variable(char **cmd, int index)
