@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 10:40:48 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/26 21:07:49 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/27 17:46:11 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void	redirect_input(char *file, int flags)
 	}
 }
 
+void	here_doc_input(char *eof);
+
 static void	make_redirect(char *redirect, char *file)
 {
 	if (!ft_strcmp(redirect, ">"))
@@ -54,6 +56,8 @@ static void	make_redirect(char *redirect, char *file)
 		redirect_input(file, O_RDONLY | O_CREAT);
 	else if (!ft_strcmp(redirect, ">>"))
 		redirect_output(file, O_WRONLY | O_CREAT | O_APPEND);
+	else if (!ft_strcmp(redirect, "<<"))
+		here_doc_input(file);
 }
 
 void	check_redirects(t_token *current, t_token *end)
