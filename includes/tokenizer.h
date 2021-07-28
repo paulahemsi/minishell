@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/27 22:24:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/28 10:58:01 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef struct s_var
 	char	*temp;
 }	t_var;
 
-void	tokenizer(char *line, t_token **token_lst);
+void	tokenizer(char **line, t_token **token_lst);
 void	add_token(char *line, int start, int end, t_token **token_lst);
-char	*check_and_insert_spaces(char **line);
+void	check_and_insert_spaces(char **line);
 /*
 ** quotes.c
 */
