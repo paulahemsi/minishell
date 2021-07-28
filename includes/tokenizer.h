@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/26 22:48:21 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/27 22:24:30 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_var
 
 void	tokenizer(char *line, t_token **token_lst);
 void	add_token(char *line, int start, int end, t_token **token_lst);
+char	*check_and_insert_spaces(char **line);
 /*
 ** quotes.c
 */
@@ -70,6 +71,7 @@ char	*search_var(char *value, int *i);
 int		get_var_size(char *var, int *index);
 void	free_var_struct(t_var *var);
 char	**split_in_two(const char *string, char c);
+char	**split_in_two_by_pointer(const char *string, char *c_ptr);
 /*
 ** define_type.c
 */
