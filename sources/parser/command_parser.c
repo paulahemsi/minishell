@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/27 01:16:02 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/28 18:04:31 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 	cmd = NULL;
 	cmd = create_command_array(token_lst, pipe, cmd);
 	g_minishell.error_status = 0;
-	if (ft_strchr(cmd[i], '='))
-		set_local_variable(cmd, &i);
+	if (cmd[i])
+	{
+		if (ft_strchr(cmd[i], '='))
+			set_local_variable(cmd, &i);
+	}
 	if (is_builtin(cmd[i]))
 		execute_builtin(&cmd[i]);
 	else
