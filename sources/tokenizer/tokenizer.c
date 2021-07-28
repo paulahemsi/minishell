@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/28 12:38:49 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/28 15:12:19 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,19 @@ static void	check_eof(char *line)
 		return ;
 	ft_printf("exit\n");
 	exit_minishell();
+}
+
+static void	check_and_insert_spaces(char **line)
+{
+	char	*current;
+
+	current = *line;
+	while (current && *current)
+	{
+		if (no_blanks_around_operator(current))
+			current = insert_spaces(line, current);
+		current++;
+	}
 }
 
 void	tokenizer(char **line, t_token **token_lst)
