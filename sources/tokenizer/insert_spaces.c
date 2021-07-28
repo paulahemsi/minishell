@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 14:11:19 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/28 08:56:19 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/28 12:08:08 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	is_between_blanks(char *line, int i)
 	return (FALSE);
 }
 
-static bool	is_smashed_operator(char *line, int i)
+static bool	no_blanks_around_operator(char *line, int i)
 {
 	if ((line[i] == '|') && !(is_between_blanks(line, i)))
 		return (TRUE);
@@ -39,7 +39,7 @@ static bool	no_issues_in_string(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (is_smashed_operator(line, i))
+		if (no_blanks_around_operator(line, i))
 			return (FALSE);
 		i++;
 	}
@@ -81,7 +81,7 @@ char	*check_and_insert_spaces(char **line)
 	new_line = *line;
 	while (new_line[i])
 	{
-		if (is_smashed_operator(new_line, i))
+		if (no_blanks_around_operator(new_line, i))
 		{
 			temp = insert_spaces(new_line, &i);
 			new_line = ft_strdup(temp);
