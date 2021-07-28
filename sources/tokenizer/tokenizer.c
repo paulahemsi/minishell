@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/28 15:12:19 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/28 17:39:11 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,14 @@ static void	check_eof(char *line)
 static void	check_and_insert_spaces(char **line)
 {
 	char	*current;
+	char	*line_init;
 
 	current = *line;
+	line_init = *line;
 	while (current && *current)
 	{
-		if (no_blanks_around_operator(current))
-			current = insert_spaces(line, current);
+		if (no_blanks_around_operator(current, line_init))
+			current = insert_spaces(line, current, line_init);
 		current++;
 	}
 }
