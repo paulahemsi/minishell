@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 14:11:19 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/28 17:40:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/28 18:57:07 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,33 @@ bool	no_blanks_around_operator(char *line, char *line_init)
 	if (*line == '<' && !(is_between_blanks(line, line_init)))
 		if (*(line + 1) != '<')
 			return (TRUE);
+	if (*line == '>' && *(line + 1) == '>')
+		if (!ft_isblank(*(line - 1)) || !ft_isblank(*(line + 2)))
+			return (TRUE);
+	if (*line == '<' && *(line + 1) == '<')
+		if (!ft_isblank(*(line - 1)) || !ft_isblank(*(line + 2)))
+			return (TRUE);
 	return (FALSE);
 }
+
+// bool	no_blanks_around_operator(char *line)
+// {
+// 	// if ((*line == '|') && !(is_between_blanks(line)))
+// 	// 	return (TRUE);
+// 	if (*line == '>' && *(line + 1) == '>')
+// 		if (!ft_isblank(*(line - 1)) || !ft_isblank(*(line + 2)))
+// 			return (TRUE);
+// 	// if ((*line == '>') && !(is_between_blanks(line)))
+// 	// 	if (*(line + 1) != '>')
+// 	// 		return (TRUE);
+// 	if (*line == '<' && *(line + 1) == '<')
+// 		if (!ft_isblank(*(line - 1)) || !ft_isblank(*(line + 2)))
+// 			return (TRUE);
+// 	// if ((*line == '<') && !(is_between_blanks(line)))
+// 	// 	if (*(line + 1) != '<')
+// 	// 		return (TRUE);
+// 	return (FALSE);
+// }
 
 static int	get_operator_size(char *operator_pointer)
 {
