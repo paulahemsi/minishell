@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/28 08:44:58 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/28 10:49:45 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	repl(void)
 		define_input_signals();
 		read_input(&input);
 		save_history(input);
-		tokenizer(input, &token_lst);
+		tokenizer(&input, &token_lst);
 		parse_and_execute(token_lst);
 		token_list_clear(&token_lst);
 		if (input)

@@ -6,88 +6,75 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 14:11:19 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/28 12:08:08 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/28 15:12:18 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	is_between_blanks(char *line, int i)
+static bool	is_between_blanks(char *line)
 {
-	if ((ft_isblank(line[i - 1])) && (ft_isblank(line[i + 1])))
+	if ((ft_isblank(*(line - 1))) && (ft_isblank(*(line + 1))))
 		return (TRUE);
 	return (FALSE);
 }
 
-static bool	no_blanks_around_operator(char *line, int i)
+bool	no_blanks_around_operator(char *line)
 {
-	if ((line[i] == '|') && !(is_between_blanks(line, i)))
+	if ((*line == '|') && !(is_between_blanks(line)))
 		return (TRUE);
-	if ((line[i] == '>') && !(is_between_blanks(line, i)))
-		if (line[i + 1] != '>')
+	if (*line == '>' && *(line + 1) == '>')
+		if (!ft_isblank(*(line - 1)) || !ft_isblank(*(line + 2)))
 			return (TRUE);
-	if ((line[i] == '<') && !(is_between_blanks(line, i)))
-		if (line[i + 1] != '<')
+	if ((*line == '>') && !(is_between_blanks(line)))
+		if (*(line + 1) != '>')
+			return (TRUE);
+	if (*line == '<' && *(line + 1) == '<')
+		if (!ft_isblank(*(line - 1)) || !ft_isblank(*(line + 2)))
+			return (TRUE);
+	if ((*line == '<') && !(is_between_blanks(line)))
+		if (*(line + 1) != '<')
 			return (TRUE);
 	return (FALSE);
 }
 
-static bool	no_issues_in_string(char *line)
+static int	get_operator_size(char *operator_pointer)
 {
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (no_blanks_around_operator(line, i))
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	if (*operator_pointer == *(operator_pointer + 1))
+		return (2);
+	return (1);
 }
 
-static char	*insert_spaces(char *line, int *i)
+static char	*create_new_line(char *line, char *operator_pointer,
+		int operator_size, int off_set)
 {
+	char	*left;
 	char	*operator;
+	char	*rigth;
 	char	*new_line;
-	char	**splited;
-	char	*operator_pointer;
+
+	left = ft_substr(line, 0, off_set);
+	operator = ft_substr(operator_pointer, 0, operator_size);
+	rigth = ft_strdup(operator_pointer + operator_size);
+	new_line = variadic_strjoin(5, left, " ", operator, " ", rigth);
+	free(left);
+	free(operator);
+	free(rigth);
+	return (new_line);
+}
+
+char	*insert_spaces(char **line, char *operator_pointer)
+{
+	char	*new_line;
+	int		operator_size;
 	int		off_set;
 
-	off_set = 0;
-	if (line[*i] == line[*i + 1])
-		off_set = 1;
-	operator_pointer = &line[*i];
-	splited = split_in_two_by_pointer(line, operator_pointer + off_set);
-	operator = ft_substr(line, *i, 1);
-	new_line = variadic_strjoin(5, splited[0], " ", operator, " ", splited[1]);
-	free(operator);
-	free_2d_array(splited);
-	if (off_set)
-		*i += 1;
-	*i += 1;
-	return (new_line);
-}
-
-char	*check_and_insert_spaces(char **line)
-{
-	char	*new_line;
-	char	*temp;
-	int		i;
-
-	if (no_issues_in_string(*line))
-		return (*line);
-	i = 0;
-	new_line = *line;
-	while (new_line[i])
-	{
-		if (no_blanks_around_operator(new_line, i))
-		{
-			temp = insert_spaces(new_line, &i);
-			new_line = ft_strdup(temp);
-			free(temp);
-		}
-		i++;
-	}
-	return (new_line);
+	if (*(operator_pointer - 1) == '>' || *(operator_pointer - 1) == '<')
+		return (operator_pointer++);
+	operator_size = get_operator_size(operator_pointer);
+	off_set = operator_pointer - *line;
+	new_line = create_new_line(*line, operator_pointer, operator_size, off_set);
+	free(*line);
+	*line = new_line;
+	return (new_line + off_set + operator_size + 1);
 }

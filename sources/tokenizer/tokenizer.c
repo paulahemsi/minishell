@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/27 14:17:37 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/28 15:12:19 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,37 @@ static int	split_token(char *line, int *i, int *tkn_end, t_token **token_lst)
 	return (1);
 }
 
-void	tokenizer(char *line, t_token **token_lst)
+static void	check_eof(char *line)
+{
+	if (line)
+		return ;
+	ft_printf("exit\n");
+	exit_minishell();
+}
+
+static void	check_and_insert_spaces(char **line)
+{
+	char	*current;
+
+	current = *line;
+	while (current && *current)
+	{
+		if (no_blanks_around_operator(current))
+			current = insert_spaces(line, current);
+		current++;
+	}
+}
+
+void	tokenizer(char **line, t_token **token_lst)
 {
 	int		i;
 	int		token_end;
 
+	check_eof(*line);
+	check_and_insert_spaces(line);
 	i = 0;
 	token_end = i;
-	if (!line)
-	{
-		ft_printf("exit\n");
-		exit_minishell();
-	}
-	line = check_and_insert_spaces(&line);
-	while (line[i])
-		if (!split_token(line, &i, &token_end, token_lst))
+	while ((*line)[i])
+		if (!split_token(*line, &i, &token_end, token_lst))
 			break ;
 }
