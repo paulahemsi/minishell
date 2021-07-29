@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hashmap_insert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 19:56:48 by user42            #+#    #+#             */
-/*   Updated: 2021/07/11 17:07:25 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/29 00:28:52 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	hashmap_insert(char *key, char *value, t_hashmap *table)
 		{
 			free(current->value);
 			current->value = ft_strdup(value);
+			hashmap_free_pair(new_pair);
 		}
 		else
 			hashmap_handle_collision(table, index, new_pair);
