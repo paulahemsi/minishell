@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 17:07:19 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/26 20:56:32 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/29 10:43:15 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	interrupt_process(int signal)
 static void	redisplay_prompt(int signal)
 {
 	(void)signal;
+	g_minishell.error_status = 130;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
@@ -31,7 +32,7 @@ static void	redisplay_prompt(int signal)
 static void	quit_process(int signal)
 {
 	(void)signal;
-	g_minishell.error_status = 130;
+	g_minishell.error_status = 131;
 	ft_printf("Quit (core dumped)\n");
 }
 
