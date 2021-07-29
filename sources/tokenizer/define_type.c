@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 10:53:17 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/27 18:50:46 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/28 20:50:34 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	define_operator(char *value)
 	if (is_redirect(value))
 		return (T_REDIRECT);
 	if (!(ft_strcmp(value, "<<")))
-		return (T_HERE_DOC);
+		return (T_REDIRECT);
 	return (FALSE);
 }
 
