@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/29 22:03:32 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/30 20:29:54 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_minishell	g_minishell;
 
 void	print_2d_array_fd(char **array, int fd);
 void	free_2d_array(char **ptr);
-char	*variadic_strjoin(unsigned int arg_quantity, ...);
 
 /*
 ** EXEC:
