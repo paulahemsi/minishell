@@ -6,11 +6,22 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 17:25:29 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/22 22:27:15 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/30 10:50:57 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static char	*get_possible_path(char *envpath, char *cmd)
+{
+	char	*path;
+
+	if (ft_strncmp(envpath, cmd, ft_strlen(envpath)) == 0)
+		path = ft_strdup(cmd);
+	else
+		path = (variadic_strjoin(3, envpath, "/", cmd));
+	return (path);
+}
 
 char	*get_absolute_path(char *cmd)
 {
@@ -25,7 +36,7 @@ char	*get_absolute_path(char *cmd)
 	all_paths = ft_split(path_variable, ':');
 	while (all_paths && all_paths[i])
 	{
-		cmd_path = variadic_strjoin(3, all_paths[i], "/", cmd);
+		cmd_path = get_possible_path(all_paths[i], cmd);
 		if (stat(cmd_path, &buffer) == 0)
 			break ;
 		free(cmd_path);
