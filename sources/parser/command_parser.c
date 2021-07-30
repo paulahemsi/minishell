@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/28 18:04:31 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/29 22:02:40 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,45 +42,36 @@ static void	create_pipe(t_token *pipe_token)
 	close(new_pipe[IN]);
 }
 
-static void	execute_builtin(char **cmd)
+static bool	parse_syntax(t_token *token)
 {
-	if (!(ft_strcmp(cmd[0], "echo\0")))
-		echo(cmd);
-	else if (!(ft_strcmp(cmd[0], "cd\0")))
-		cd(cmd[1]);
-	else if (!(ft_strcmp(cmd[0], "pwd")))
-		pwd();
-	else if (!(ft_strcmp(cmd[0], "export")))
-		export(cmd);
-	else if (!(ft_strcmp(cmd[0], "unset")))
-		unset(cmd);
-	else if (!(ft_strcmp(cmd[0], "env")))
-		print_environment(g_minishell.env, STDOUT_FILENO);
-	else if (!(ft_strcmp(cmd[0], "exit")))
-		exit_minishell();
+	t_token	*next;
+
+	while (token)
+	{
+		next = token->next;
+		if (token->type == T_REDIRECT)
+			if (!next || next->type != T_FILE)
+				return (FALSE);
+		token = next;
+	}
+	return (TRUE);
 }
 
 void	command_parser(t_token *token_lst, t_token *pipe)
 {
 	char	**cmd;
-	int		i;
 
-	i = 0;
+	if (!parse_syntax(token_lst))
+	{
+		error_message("redirect", SYNTAX_ERROR);
+		g_minishell.error_status = 2;
+		return ;
+	}
 	save_std_fds();
 	create_pipe(pipe);
 	check_redirects(token_lst, pipe);
-	cmd = NULL;
-	cmd = create_command_array(token_lst, pipe, cmd);
-	g_minishell.error_status = 0;
-	if (cmd[i])
-	{
-		if (ft_strchr(cmd[i], '='))
-			set_local_variable(cmd, &i);
-	}
-	if (is_builtin(cmd[i]))
-		execute_builtin(&cmd[i]);
-	else
-		execute_cmd(&cmd[i]);
+	cmd = create_command_array(token_lst, pipe);
+	execute(cmd);
 	free_2d_array(cmd);
 	restore_std_fds();
 }

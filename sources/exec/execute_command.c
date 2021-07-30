@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 11:30:15 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/27 01:21:18 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/29 22:02:22 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,25 @@ static int	add_path_to_cmd_name(char **cmd)
 	return (1);
 }
 
-void	execute_cmd(char **cmd)
+static void	execute_builtin(char **cmd)
+{
+	if (!(ft_strcmp(cmd[0], "echo\0")))
+		echo(cmd);
+	else if (!(ft_strcmp(cmd[0], "cd\0")))
+		cd(cmd[1]);
+	else if (!(ft_strcmp(cmd[0], "pwd")))
+		pwd();
+	else if (!(ft_strcmp(cmd[0], "export")))
+		export(cmd);
+	else if (!(ft_strcmp(cmd[0], "unset")))
+		unset(cmd);
+	else if (!(ft_strcmp(cmd[0], "env")))
+		print_environment(g_minishell.env, STDOUT_FILENO);
+	else if (!(ft_strcmp(cmd[0], "exit")))
+		exit_minishell();
+}
+
+static void	execute_cmd(char **cmd)
 {
 	int		pid;
 	int		status;
@@ -49,4 +67,21 @@ void	execute_cmd(char **cmd)
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_minishell.error_status = WEXITSTATUS(status);
+}
+
+void	execute(char **cmd)
+{
+	int	i;
+
+	i = 0;
+	g_minishell.error_status = 0;
+	if (cmd[i])
+	{
+		if (ft_strchr(cmd[i], '='))
+			set_local_variable(cmd, &i);
+	}
+	if (is_builtin(cmd[i]))
+		execute_builtin(&cmd[i]);
+	else
+		execute_cmd(&cmd[i]);
 }
