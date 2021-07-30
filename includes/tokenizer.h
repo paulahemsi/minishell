@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/30 16:57:31 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/30 17:42:10 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_token	*token_last(t_token *lst);
 void	expand_variables(char **value);
 void	free_var_struct(t_var *var);
 void	expand(char **variable);
+void	handle_var_single_quote(t_var *var, char **value, int i);
 /*
 ** var utils
 */
