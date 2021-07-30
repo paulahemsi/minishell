@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/29 22:02:40 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/30 16:44:24 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	create_pipe(t_token *pipe_token)
 	close(new_pipe[IN]);
 }
 
-static bool	parse_syntax(t_token *token)
+static bool	check_filename_after_redirect(t_token *token)
 {
 	t_token	*next;
 
@@ -61,7 +61,7 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 {
 	char	**cmd;
 
-	if (!parse_syntax(token_lst))
+	if (!check_filename_after_redirect(token_lst))
 	{
 		error_message("redirect", SYNTAX_ERROR);
 		g_minishell.error_status = 2;

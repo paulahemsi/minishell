@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 10:40:48 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/27 17:46:11 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/30 16:44:29 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static void	redirect_input(char *file, int flags)
 		close(fd_file);
 	}
 }
-
-void	here_doc_input(char *eof);
 
 static void	make_redirect(char *redirect, char *file)
 {
