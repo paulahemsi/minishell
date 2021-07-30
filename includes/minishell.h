@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/26 19:39:29 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/29 22:03:32 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ char	*variadic_strjoin(unsigned int arg_quantity, ...);
 */
 
 char	*get_absolute_path(char *cmd);
-void	execute_cmd(char **cmd);
+void	execute(char **cmd);
 
 #endif

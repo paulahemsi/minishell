@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:51:16 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/22 01:26:42 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/29 21:58:55 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ static char	**fill_command_array(t_token *current, t_token *end, char **cmd)
 	return (cmd);
 }
 
-char	**create_command_array(t_token *head, t_token *pipe, char **cmd)
+char	**create_command_array(t_token *head, t_token *pipe)
 {
-	int	cmd_length;
+	char	**cmd;
+	int		cmd_length;
 
 	cmd_length = get_commands_length(head, pipe);
 	cmd = (char **)malloc((cmd_length + 1) * sizeof(char *));
