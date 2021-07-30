@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/26 22:36:45 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/30 15:12:59 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,18 @@ static void	expand(char **variable)
 	char	*value;
 	char	*key;
 	char	*temp;
+	bool	has_quote;
 
+	has_quote = FALSE;
 	temp = *variable;
 	temp++;
-	key = ft_strtrim(temp, "\"");
+	if (ft_strchr(temp, DOUBLE_QUOTE))
+	{
+		key = ft_strtrim(temp, "\"");
+		has_quote = TRUE;
+	}
+	else
+		key = ft_strdup(temp);
 	value = ft_strdup(hashmap_search(g_minishell.env, key));
 	if (!value)
 		value = ft_strdup(hashmap_search(g_minishell.local_vars, key));
@@ -28,6 +36,13 @@ static void	expand(char **variable)
 		value = ft_strdup("");
 	free(*variable);
 	free(key);
+	if (has_quote)
+	{
+		temp = ft_strjoin(value, "\"");
+		free(value);
+		value = ft_strdup(temp);
+		free(temp);
+	}
 	*variable = value;
 }
 

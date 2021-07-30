@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/30 00:40:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/30 15:04:05 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ static void	handle_quotes(char **token_ptr, int i, int end_quote)
 	aux.value = ft_substr(token, i, (end_quote + 1 - i));
 	aux.after = ft_substr(token, end_quote + 1, ft_strlen(&token[end_quote]));
 	if (token[end_quote] == DOUBLE_QUOTE)
+	{
+		expand_variables(&aux.before);
 		expand_variables(&aux.value);
+		expand_variables(&aux.after);
+	}
 	remove_quotes(&aux.value, token[end_quote]);
 	aux.temp = ft_strjoin(aux.before, aux.value);
 	token = ft_strjoin(aux.temp, aux.after);
