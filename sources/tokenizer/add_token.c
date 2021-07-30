@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/30 16:44:23 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/30 20:16:26 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	handle_quotes(char **token_ptr, int i, int end_quote)
 	if (token[end_quote] == DOUBLE_QUOTE)
 		check_and_expand_variable(&aux);
 	remove_quotes(&aux.value, token[end_quote]);
+	free(token);
 	token = variadic_strjoin(3, aux.before, aux.value, aux.after);
 	*token_ptr = token;
 	free_var_struct(&aux);
@@ -59,7 +60,6 @@ static void	check_quotes(char **value)
 		if (token[i])
 			i++;
 	}
-	free(*value);
 	*value = token;
 }
 
