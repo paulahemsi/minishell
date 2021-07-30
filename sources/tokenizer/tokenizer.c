@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/30 00:40:03 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/30 16:50:01 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,25 @@ static void	check_and_insert_spaces(char **line)
 	}
 }
 
+static bool	no_need_to_tokenization(char *line)
+{
+	check_eof(line);
+	if (line[0] == '\0')
+		return (TRUE);
+	if (is_single_dollar_sign(line))
+		return (TRUE);
+	return (FALSE);
+}
+
 void	tokenizer(char **line, t_token **token_lst)
 {
 	int		i;
 	int		token_end;
 
-	check_eof(*line);
-	if (is_single_dollar_sign(*line))
+	i = 0;
+	if (no_need_to_tokenization(*line))
 		return ;
 	check_and_insert_spaces(line);
-	i = 0;
 	token_end = i;
 	while ((*line)[i])
 		if (!split_token(*line, &i, &token_end, token_lst))

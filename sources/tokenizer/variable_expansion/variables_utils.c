@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 22:00:35 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/27 22:16:37 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/30 16:34:37 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,4 @@ void	free_var_struct(t_var *var)
 	ft_free_and_null((void **)&var->before);
 	ft_free_and_null((void **)&var->value);
 	ft_free_and_null((void **)&var->after);
-	ft_free_and_null((void **)&var->temp);
 }
