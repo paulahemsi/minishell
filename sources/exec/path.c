@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 17:25:29 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/31 19:28:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/31 19:54:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,14 @@ static char	*get_possible_path(char *envpath, char *cmd)
 	return (path);
 }
 
-char	*get_absolute_path(char *cmd)
+char	*get_absolute_path(char *cmd, char *path_variable)
 {
 	struct stat	buffer;
 	char		**all_paths;
-	char		*path_variable;
 	char		*cmd_path;
 	int			i;
 
 	i = 0;
-	path_variable = hashmap_search(g_minishell.env, "PATH");
-	if (!path_variable)
-	{
-		path_variable = hashmap_search(g_minishell.local_vars, "PATH");
-			if (!path_variable)
-				return (NULL);
-	}
 	all_paths = ft_split(path_variable, ':');
 	while (all_paths && all_paths[i])
 	{
