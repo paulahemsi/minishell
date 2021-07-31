@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/30 16:50:01 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/30 22:26:58 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static bool	is_single_dollar_sign(char *line)
 {
 	while (ft_isblank(*line))
 		line++;
+	if (!(*line))
+		return (FALSE);
 	if (*line == '$')
 		line++;
 	while (ft_isblank(*line))
