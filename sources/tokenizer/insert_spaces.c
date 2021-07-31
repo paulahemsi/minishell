@@ -6,64 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 14:11:19 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/31 11:27:35 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/31 11:56:54 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static bool	is_between_blanks(char *line, char *init)
-{
-	if (line == init)
-	{
-		if (ft_isblank(*(line + 1)))
-			return (TRUE);
-		else
-			return (FALSE);
-	}
-	if ((ft_isblank(*(line - 1))) && (ft_isblank(*(line + 1))))
-		return (TRUE);
-	return (FALSE);
-}
-
-bool	no_blanks_around_single(char *line, char *line_init)
-{
-	if (!(is_between_blanks(line, line_init)))
-		if (*(line + 1) != *line)
-			return (TRUE);
-	return (FALSE);
-}
-
-bool	no_blanks_around_double(char *line, char *line_less_one)
-{
-	if (*(line + 1) == *line)
-		if (!ft_isblank(*(line_less_one)) || !ft_isblank(*(line + 2)))
-			return (TRUE);
-	return (FALSE);
-}
-
-bool	is_redirect_char(char line)
-{
-	if (line == '>' || line == '<')
-		return (TRUE);
-	return (FALSE);
-}
-
-bool	no_blanks_around_operator(char *line, char *line_init)
-{
-	char	*line_less_one;
-
-	line_less_one = line - 1;
-	if (line == line_init)
-		line_less_one = line;
-	if ((*line == '|') && !(is_between_blanks(line, line_init)))
-		return (TRUE);
-	if (is_redirect_char(*line) && (no_blanks_around_single(line, line_init)))
-		return (TRUE);
-	if (is_redirect_char(*line) && (no_blanks_around_double(line, line_less_one)))
-		return (TRUE);
-	return (FALSE);
-}
 
 static int	get_operator_size(char *operator_pointer)
 {
