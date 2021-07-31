@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:40:47 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/26 19:43:31 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/31 15:29:35 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,6 @@ static void	free_prompt_strings(char *name, char *pwd, char *end)
 	free(end);
 }
 
-static int	get_prompt_len(char *name, char *pwd, char *end)
-{
-	int	len;
-
-	len = ft_strlen(pwd);
-	len += ft_strlen(name);
-	len += ft_strlen(end);
-	return (len);
-}
-
 static char	*concatenate_prompt(char *name, char *pwd, char *end)
 {
 	char	*prompt;
@@ -54,19 +44,26 @@ static char	*concatenate_prompt(char *name, char *pwd, char *end)
 	return (prompt);
 }
 
-char	*create_prompt(void)
+static char	*create_name(bool *emoji)
+{
+	if (!*emoji)
+	{
+		*emoji = true;
+		return (ft_strdup("xXXx MINIHELL xXXx:"));
+	}
+	if (g_minishell.error_status == 0)
+		return (ft_strdup("😈🔥 MINIHELL 🔥😈:"));
+	 return (ft_strdup("👿🔥 MINIHELL 🔥👿:"));
+}
+
+char	*create_prompt(bool *emoji)
 {
 	char	*name;
 	char	*pwd;
 	char	*end;
-	char	prompt_len;
 
 	pwd = get_pwd();
-	if (g_minishell.error_status == 0)
-		name = ft_strdup("😈🔥 MINIHELL 🔥😈:");
-	else
-		name = ft_strdup("👿🔥 MINIHELL 🔥👿:");
+	name = create_name(emoji);
 	end = ft_strdup("$ ");
-	prompt_len = get_prompt_len(name, pwd, end);
 	return (concatenate_prompt(name, pwd, end));
 }

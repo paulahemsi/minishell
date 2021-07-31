@@ -6,13 +6,14 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/30 20:29:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/31 15:25:58 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <stdbool.h>
 # include "libft.h"
 # include "input.h"
 # include "tokenizer.h"
@@ -20,7 +21,6 @@
 # include "error.h"
 # include "hashmap.h"
 # include "builtin.h"
-# include <stdbool.h>
 # include <stdlib.h>
 # include <errno.h>
 # include <sys/stat.h>

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/28 10:49:45 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/31 15:16:37 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,27 @@ static void	save_history(char *input)
 		add_history(input);
 }
 
-static void	read_input(char **input)
+static void	read_input(char **input, bool *emoji)
 {
 	char	*prompt;
 
-	prompt = create_prompt();
+	prompt = create_prompt(emoji);
 	*input = readline(prompt);
 	free(prompt);
 }
 
 static void	repl(void)
 {
+	bool	emoji;
 	char	*input;
 	t_token	*token_lst;
 
+	emoji = false;
 	while (true)
 	{
 		token_lst = NULL;
 		define_input_signals();
-		read_input(&input);
+		read_input(&input, &emoji);
 		save_history(input);
 		tokenizer(&input, &token_lst);
 		parse_and_execute(token_lst);

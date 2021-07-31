@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:31:27 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/15 01:35:25 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/31 15:31:08 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define ESC_BOLD_WHITE "\001\033[1;37m\002"
 # define ESC_RESET_COLOR "\001\033[0m\002"
 
-char	*create_prompt(void);
+char	*create_prompt(bool *emoji);
 void	define_input_signals(void);
 void	define_exec_signals(void);
 
