@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 11:30:15 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/30 10:50:59 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/31 18:03:14 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	execute_builtin(char **cmd)
 	else if (!(ft_strcmp(cmd[0], "env")))
 		print_environment(g_minishell.env, STDOUT_FILENO);
 	else if (!(ft_strcmp(cmd[0], "exit")))
-		exit_minishell();
+		exit_builtin(cmd);
 }
 
 static void	execute_cmd(char **cmd)
@@ -74,7 +74,6 @@ void	execute(char **cmd)
 	int	i;
 
 	i = 0;
-	g_minishell.error_status = 0;
 	if (cmd[i])
 	{
 		if (ft_strchr(cmd[i], '='))
