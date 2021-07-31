@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:40:47 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/31 15:29:35 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:31:45 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ static char	*create_name(bool *emoji)
 	if (!*emoji)
 	{
 		*emoji = true;
-		return (ft_strdup("xXXx MINIHELL xXXx:"));
+		return (ft_strdup(WELCOME_MESSAGE));
 	}
 	if (g_minishell.error_status == 0)
 		return (ft_strdup("😈🔥 MINIHELL 🔥😈:"));
-	 return (ft_strdup("👿🔥 MINIHELL 🔥👿:"));
+	return (ft_strdup("👿🔥 MINIHELL 🔥👿:"));
 }
 
 char	*create_prompt(bool *emoji)
