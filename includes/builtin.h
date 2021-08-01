@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:40:26 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/27 01:14:47 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:52:14 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		unset(char **cmd);
 void		pwd(void);
 void		cd(char *path);
 void		echo(char **cmd);
+void		exit_builtin(char **cmd);
 void		exit_minishell(void);
 int			set_local_variable(char **cmd, int *i);
 
