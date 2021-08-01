@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 18:25:26 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/30 17:46:22 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/31 18:38:37 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@ static bool	has_dollar_sign(char **value, int *i, t_var *var)
 	return (TRUE);
 }
 
+static bool	only_dollar_sign_between_quotes(char **value)
+{
+	if (!ft_strcmp(*value, "\"$\""))
+	{
+		free(*value);
+		*value = ft_strdup("$");
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 void	expand_variables(char **value)
 {
 	t_var	var;
@@ -51,7 +62,8 @@ void	expand_variables(char **value)
 	int		i;
 
 	i = 0;
-	if (!has_dollar_sign(value, &i, &var))
+	if (!has_dollar_sign(value, &i, &var)
+		|| only_dollar_sign_between_quotes(value))
 		return ;
 	deal_with_string_slices(&var, value, &i);
 	new_str = variadic_strjoin(3, var.before, var.value, var.after);
