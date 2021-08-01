@@ -55,7 +55,7 @@ void	free_2d_array(char **ptr);
 ** EXEC:
 */
 
-char	*get_absolute_path(char *cmd);
+char	*get_absolute_path(char *cmd, char *path_variable);
 void	execute(char **cmd);
 
 #endif

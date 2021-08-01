@@ -3,22 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 11:30:15 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/30 10:50:59 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/31 19:56:01 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static bool	define_path_variable(char **path_variable, char **cmd)
+{
+	*path_variable = hashmap_search(g_minishell.env, "PATH");
+	if (!*path_variable)
+	{
+		*path_variable = hashmap_search(g_minishell.local_vars, "PATH");
+		if (!*path_variable)
+		{
+			error_message(cmd[0], NO_FILE_OR_DIR);
+			g_minishell.error_status = 127;
+			return (FALSE);
+		}
+	}
+	return (TRUE);
+}
+
 static int	add_path_to_cmd_name(char **cmd)
 {
 	char	*cmd_name;
+	char	*path_variable;
 
-	if (!cmd[0])
+	if (!cmd[0] || (!define_path_variable(&path_variable, cmd)))
 		return (0);
-	cmd_name = get_absolute_path(cmd[0]);
+	cmd_name = get_absolute_path(cmd[0], path_variable);
 	if (!cmd_name)
 	{
 		error_message(cmd[0], NOT_FOUND);
@@ -45,7 +62,7 @@ static void	execute_builtin(char **cmd)
 	else if (!(ft_strcmp(cmd[0], "env")))
 		print_environment(g_minishell.env, STDOUT_FILENO);
 	else if (!(ft_strcmp(cmd[0], "exit")))
-		exit_minishell();
+		exit_builtin(cmd);
 }
 
 static void	execute_cmd(char **cmd)
@@ -74,7 +91,6 @@ void	execute(char **cmd)
 	int	i;
 
 	i = 0;
-	g_minishell.error_status = 0;
 	if (cmd[i])
 	{
 		if (ft_strchr(cmd[i], '='))
