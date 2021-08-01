@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:40:47 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/31 22:47:36 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/31 22:52:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	display_welcome_message(void)
 
 	path = (ft_strdup(hashmap_search(g_minishell.env, "PATH")));
 	local_paths = variadic_strjoin(7, path, ":",
-	hashmap_search(g_minishell.env,"PWD"),":",
-	hashmap_search(g_minishell.env, "PWD"), "/sources/system", ":.");
+			hashmap_search(g_minishell.env, "PWD"), ":",
+			hashmap_search(g_minishell.env, "PWD"), "/sources/system", ":.");
 	cmd = ft_split("welcome", ' ');
 	hashmap_insert("PATH", local_paths, g_minishell.env);
 	execute(cmd);
