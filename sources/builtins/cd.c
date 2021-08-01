@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 20:33:57 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/29 00:29:21 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/31 19:04:17 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 static void	change_dir_to_path(char *path)
 {
 	char	*pwd;
+	char	*error_msg;
 	char	buffer[2048];
 
 	pwd = getcwd(buffer, 2048);
 	hashmap_insert("OLDPWD", pwd, g_minishell.env);
 	if (chdir(path) != 0 && ft_strchr(path, '>') == NULL)
 	{
-		error_message("cd", strerror(errno));
+		error_msg = ft_strjoin("cd: ", path);
+		error_message(error_msg, strerror(errno));
+		free(error_msg);
 		g_minishell.error_status = 1;
 		return ;
 	}
