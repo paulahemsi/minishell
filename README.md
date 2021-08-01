@@ -36,9 +36,9 @@ command | description  |
 **cd** | change the shell working directory	(with a relative or absolute path)|
 **pwd** | print name of current/working directory	|
 **export** | set export attribute for shell variables | 
-**unset** | unset values and attributes of shell variables and functions |
-**env** | 			| 
-**exit** | 				| 
+**unset** | unset values of shell variables |
+**env** | print the environment	| 
+**exit** | cause the shell to exit with the exit status specified	| 
 
 ## step_by_step
 
