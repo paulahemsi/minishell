@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/31 18:03:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/08/01 15:44:53 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static void	check_quotes(char **value)
 		{
 			handle_quotes(&token, i, &end_quote);
 			i = end_quote - 1;
+			if (i < 0)
+				i = 0;
 		}
 		if (token[i])
 			i++;
