@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:40:47 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/31 17:31:45 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/07/31 22:47:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@ static char	*get_pwd(void)
 
 	buffer = NULL;
 	return (getcwd(buffer, 0));
-}
-
-static void	free_prompt_strings(char *name, char *pwd, char *end)
-{
-	free(name);
-	free(pwd);
-	free(end);
 }
 
 static char	*concatenate_prompt(char *name, char *pwd, char *end)
@@ -40,8 +33,28 @@ static char	*concatenate_prompt(char *name, char *pwd, char *end)
 			ESC_BOLD_RED,
 			end,
 			ESC_RESET_COLOR);
-	free_prompt_strings(name, pwd, end);
+	free(name);
+	free(pwd);
+	free(end);
 	return (prompt);
+}
+
+static void	display_welcome_message(void)
+{
+	char	*path;
+	char	*local_paths;
+	char	**cmd;
+
+	path = (ft_strdup(hashmap_search(g_minishell.env, "PATH")));
+	local_paths = variadic_strjoin(7, path, ":",
+	hashmap_search(g_minishell.env,"PWD"),":",
+	hashmap_search(g_minishell.env, "PWD"), "/sources/system", ":.");
+	cmd = ft_split("welcome", ' ');
+	hashmap_insert("PATH", local_paths, g_minishell.env);
+	execute(cmd);
+	free(path);
+	free(local_paths);
+	free_2d_array(cmd);
 }
 
 static char	*create_name(bool *emoji)
@@ -49,7 +62,8 @@ static char	*create_name(bool *emoji)
 	if (!*emoji)
 	{
 		*emoji = true;
-		return (ft_strdup(WELCOME_MESSAGE));
+		display_welcome_message();
+		return (ft_strdup("\n"));
 	}
 	if (g_minishell.error_status == 0)
 		return (ft_strdup("😈🔥 MINIHELL 🔥😈:"));
