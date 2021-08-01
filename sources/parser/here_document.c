@@ -6,7 +6,7 @@
 /*   By: lfrasson <lfrasson@student.42sp.org.b      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 17:13:18 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/28 21:47:45 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/01 11:57:15 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ static int	create_temporary_file(void)
 
 	fd = open(TMP_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	if (fd == -1)
-	{
-		error_message("redirect", strerror(errno));
-		g_minishell.error_status = 1;
-	}
+		error_message("redirect", strerror(errno), 1);
 	return (fd);
 }
 

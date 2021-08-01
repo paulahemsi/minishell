@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 10:40:48 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/30 16:44:29 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/01 12:02:42 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static void	redirect_output(char *file, int flags)
 
 	fd_file = open(file, flags, 0777);
 	if (fd_file == -1)
-	{
-		error_message("redirect", strerror(errno));
-		g_minishell.error_status = 1;
-	}
+		error_message("redirect", strerror(errno), 1);
 	else
 	{
 		dup2(fd_file, OUT);
@@ -35,10 +32,7 @@ static void	redirect_input(char *file, int flags)
 
 	fd_file = open(file, flags);
 	if (fd_file == -1)
-	{
-		error_message("redirect", strerror(errno));
-		g_minishell.error_status = 1;
-	}
+		error_message("redirect", strerror(errno), 1);
 	else
 	{
 		dup2(fd_file, IN);

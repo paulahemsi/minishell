@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/30 22:26:58 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/08/01 12:04:36 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static bool	is_single_dollar_sign(char *line)
 		line++;
 	if (*line)
 		return (FALSE);
-	error_message("$", NOT_FOUND);
-	g_minishell.error_status = 127;
+	error_message("$", NOT_FOUND, 127);
 	return (TRUE);
 }
 

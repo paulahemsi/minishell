@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 17:28:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/08/01 11:21:21 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/01 12:04:00 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	repl(void)
 int	main(int argc, char **argv)
 {
 	if (argc > 1 && argv)
-		error_message("👿", TOO_MANY_ARGS);
+		error_message("👿", TOO_MANY_ARGS, 666);
 	g_minishell.env = env_to_hashmap(__environ);
 	g_minishell.local_vars = hashmap_create_table(50);
 	g_minishell.error_status = 0;

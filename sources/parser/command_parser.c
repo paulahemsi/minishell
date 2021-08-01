@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/30 16:44:24 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/01 11:56:33 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 
 	if (!check_filename_after_redirect(token_lst))
 	{
-		error_message("redirect", SYNTAX_ERROR);
-		g_minishell.error_status = 2;
+		error_message("redirect", SYNTAX_ERROR, 2);
 		return ;
 	}
 	save_std_fds();
