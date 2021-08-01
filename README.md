@@ -3,6 +3,7 @@ As beautiful as a shell
 
 * [Introduction](#introduction)
 * [Usage](#usage)
+* [Builtins implemented](#builtins_implemented)
 * [Step by step](#step_by_step)
 * [Study resources](#study_resources)
 * [libft functions](#libft_functions)
@@ -26,6 +27,18 @@ With Minishell project, we’ll be able to travel through time and come back to 
 `./minishell`
 
 Enjoy! 
+
+## builtins_implemented
+
+command | description  |
+---|------|
+**echo** | echo the STRING(s) to standart output. **-n** flag: do not output the trailing newline |
+**cd** | change the shell working directory	(with a relative or absolute path)|
+**pwd** | print name of current/working directory	|
+**export** | set export attribute for shell variables | 
+**unset** | unset values and attributes of shell variables and functions |
+**env** | 			| 
+**exit** | 				| 
 
 ## step_by_step
 
