@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 20:23:19 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/26 23:08:00 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/08/01 11:39:38 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static int	export_variable(char **cmd, int index)
 
 int	export(char **cmd)
 {
+	g_minishell.error_status = 0;
 	if (cmd[1])
 		return (export_variable(cmd, 1));
 	else

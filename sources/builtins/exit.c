@@ -6,7 +6,7 @@
 /*   By: lfrasson <lfrasson@student.42sp.org.b      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 17:29:00 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/31 21:05:40 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/01 11:53:55 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static void	parse_first_arg(char *arg)
 	g_minishell.error_status = atoi(arg);
 	if (is_string_number(arg))
 		return ;
-	error_message("exit", NUM_ARG_REQUIRED);
-	g_minishell.error_status = 2;
+	error_message("exit", NUM_ARG_REQUIRED, 2);
 	exit_minishell();
 }
 
@@ -50,8 +49,7 @@ void	exit_builtin(char **argv)
 	parse_first_arg(*(argv + 1));
 	if (argc > 1)
 	{
-		error_message("exit", TOO_MANY_ARGS);
-		g_minishell.error_status = 1;
+		error_message("exit", TOO_MANY_ARGS, 1);
 		return ;
 	}
 	ft_printf("exit\n");

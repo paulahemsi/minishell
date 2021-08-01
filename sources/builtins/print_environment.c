@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 01:48:59 by user42            #+#    #+#             */
-/*   Updated: 2021/07/18 18:21:36 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/08/01 11:40:46 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	print_environment(t_hashmap *env, int fd)
 {
 	char	**env_array;
 
+	g_minishell.error_status = 0;
 	env_array = hashmap_to_env(env);
 	print_2d_array_fd(env_array, fd);
 	free_2d_array(env_array);
