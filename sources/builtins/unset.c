@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 20:32:29 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/25 13:44:14 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/08/01 11:40:10 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	unset(char **cmd)
 	int	i;
 
 	i = 1;
+	g_minishell.error_status = 0;
 	while (cmd[i])
 	{
 		if (hashmap_search(g_minishell.env, cmd[i]))

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 02:59:47 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/27 01:53:43 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/08/01 11:36:41 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void	echo(char **cmd)
 	}
 	if (n_flag == false)
 		ft_printf("\n");
+	g_minishell.error_status = 0;
 }

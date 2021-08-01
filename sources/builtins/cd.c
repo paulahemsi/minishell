@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 20:33:57 by lcouto            #+#    #+#             */
-/*   Updated: 2021/07/31 19:04:17 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/08/01 11:37:52 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	cd(char	*path)
 {
 	char	*current_path;
 
+	g_minishell.error_status = 0;
 	if ((!path) || ft_strcmp(path, "~") == 0)
 	{
 		change_dir_to_home();

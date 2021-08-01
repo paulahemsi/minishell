@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 18:43:47 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/07/26 21:05:27 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/08/01 11:39:00 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	pwd(void)
 {
 	char	*cwd;
 
+	g_minishell.error_status = 0;
 	cwd = get_current_working_directory();
 	if (cwd)
 		ft_printf("%s\n", cwd);
