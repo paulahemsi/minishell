@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/30 20:29:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/07/31 19:55:20 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	free_2d_array(char **ptr);
 ** EXEC:
 */
 
-char	*get_absolute_path(char *cmd);
+char	*get_absolute_path(char *cmd, char *path_variable);
 void	execute(char **cmd);
 
 #endif
