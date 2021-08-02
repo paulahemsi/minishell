@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 17:05:36 by lcouto            #+#    #+#              #
-#    Updated: 2021/07/30 19:24:29 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/08/02 19:16:51 by lfrasson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,4 +83,7 @@ fclean:	clean
 
 re:		fclean all
 
-PHONY:	all clean fclean re
+install:
+	sudo apt-get install libreadline-dev
+
+PHONY:	all clean fclean re install
