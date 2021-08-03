@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/07/30 17:42:10 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/08/02 20:44:05 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int		split_token(char *line, int *i, int *tkn_end, t_token **token_lst);
 void	add_token(char *line, int start, int end, t_token **token_lst);
 bool	no_blanks_around_operator(char *line, char *line_init);
 char	*insert_spaces(char **line, char *operator_pointer, char *line_init);
+bool	if_is_special_case(char *value);
+void	deal_with_special_case(char **value);
 /*
 ** quotes.c
 */

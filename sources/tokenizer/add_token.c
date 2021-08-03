@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:11:55 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/08/01 15:44:53 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/08/02 20:43:33 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ void	add_token(char *line, int start, int end, t_token **token_lst)
 	value = ft_substr(line, start, (end - start));
 	if (!value)
 		return ;
-	if (ft_strchr(value, SINGLE_QUOTE) || ft_strchr(value, DOUBLE_QUOTE))
+	if (if_is_special_case(value))
+		deal_with_special_case(&value);
+	else if (ft_strchr(value, SINGLE_QUOTE) || ft_strchr(value, DOUBLE_QUOTE))
 		check_quotes(&value);
 	else if (ft_strchr(value, '$'))
 		expand_variables(&value);
