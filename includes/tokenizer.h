@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:59:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/08/02 20:44:05 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/08/02 21:24:08 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,5 @@ char	**split_in_two_by_pointer(const char *string, char *c_ptr);
 void	define_type(t_token *previous, char *value, int *type);
 bool	is_redirect(char *value);
 bool	is_builtin(char *value);
-/*
-** debugging_temp.c
-*/
-void	print_token_lst(t_token *token_lst);
 
 #endif
