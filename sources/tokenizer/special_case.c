@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 20:43:12 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/08/02 21:16:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/08/03 09:48:07 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static void	deal_with_multiple_dollar_sign(char **new_value, char *value)
 	char	*total;
 
 	total = ft_itoa(ft_strlen(value) / 2);
-	*new_value = variadic_strjoin(5, ESC_GREEN,
+	*new_value = variadic_strjoin(5, GREEN,
 			"Parabéns! Você encontrou um easter egg! Insira aqui ",
 			total,
 			" x o PID :)",
-			ESC_RESET_COLOR);
+			RESET_COLOR);
 	free(total);
 }
 
@@ -66,9 +66,9 @@ void	deal_with_special_case(char **value)
 	else if (!ft_strncmp(*value, "$", 2))
 		new_value = ft_strdup("$");
 	else if (!ft_strncmp(*value, "$$", 3))
-		new_value = variadic_strjoin(3, ESC_GREEN,
+		new_value = variadic_strjoin(3, GREEN,
 				"Parabéns! Você encontrou um easter egg! Insira aqui o PID :)",
-				ESC_RESET_COLOR);
+				RESET_COLOR);
 	else if (is_only_dollar_sign(*value))
 		deal_with_multiple_dollar_sign(&new_value, *value);
 	free(*value);
