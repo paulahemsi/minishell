@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 15:12:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/08/04 16:41:43 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/04 16:55:36 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_minishell
 {
 	t_hashmap	*env;
 	t_hashmap	*local_vars;
-	int			save_fd[2];
 	int			error_status;
 }				t_minishell;
 

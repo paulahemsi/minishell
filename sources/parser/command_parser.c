@@ -6,24 +6,24 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/08/04 16:46:55 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/04 16:58:10 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	save_std_fds(void)
+static void	save_std_fds(int *save_fd)
 {
-	g_minishell.save_fd[IN] = dup(STDIN_FILENO);
-	g_minishell.save_fd[OUT] = dup(STDIN_FILENO);
+	save_fd[IN] = dup(STDIN_FILENO);
+	save_fd[OUT] = dup(STDIN_FILENO);
 }
 
-static void	restore_std_fds(void)
+static void	restore_std_fds(int *save_fd)
 {
-	dup2(g_minishell.save_fd[IN], STDIN_FILENO);
-	close(g_minishell.save_fd[IN]);
-	dup2(g_minishell.save_fd[OUT], STDOUT_FILENO);
-	close(g_minishell.save_fd[OUT]);
+	dup2(save_fd[IN], STDIN_FILENO);
+	close(save_fd[IN]);
+	dup2(save_fd[OUT], STDOUT_FILENO);
+	close(save_fd[OUT]);
 }
 
 static void	create_pipe(t_token *pipe_token, int *old_pipe_in)
@@ -59,6 +59,7 @@ static bool	check_filename_after_redirect(t_token *token)
 
 void	command_parser(t_token *token_lst, t_token *pipe, int *old_pipe_in)
 {
+	int		save_fd[2];
 	char	**cmd;
 
 	if (!check_filename_after_redirect(token_lst))
@@ -66,11 +67,11 @@ void	command_parser(t_token *token_lst, t_token *pipe, int *old_pipe_in)
 		error_message("redirect", SYNTAX_ERROR, 2);
 		return ;
 	}
-	save_std_fds();
+	save_std_fds(save_fd);
 	create_pipe(pipe, old_pipe_in);
 	check_redirects(token_lst, pipe);
 	cmd = create_command_array(token_lst, pipe);
 	execute(cmd);
 	free_2d_array(cmd);
-	restore_std_fds();
+	restore_std_fds(save_fd);
 }
