@@ -6,7 +6,7 @@
 /*   By: lfrasson <lfrasson@student.42sp.org.b      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 17:13:18 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/08/04 19:56:16 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/04 21:00:01 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ static	void	get_and_write_input(int tmp_fd, char *eof)
 	while (true)
 	{
 		input = readline("> ");
+		if (!input)
+		{
+			error_message("warning",
+				"here-document delimited by end-of-file", 0);
+			close(tmp_fd);
+			break ;
+		}
 		if (ft_strcmp(input, eof))
 			ft_putendl_fd(input, tmp_fd);
 		else
