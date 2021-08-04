@@ -6,7 +6,7 @@
 /*   By: lfrasson <lfrasson@student.42sp.org.b      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 17:13:18 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/08/01 11:57:15 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/04 19:56:16 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	make_tmp_file_input(void)
 	close(tmp_fd);
 }
 
-void	here_doc_input(char *eof)
+void	here_doc_input(char *eof, int *save_fd)
 {
 	int		tmp_fd;
 	int		save_fd_out;
@@ -62,7 +62,7 @@ void	here_doc_input(char *eof)
 	if (tmp_fd == -1)
 		return ;
 	save_fd_out = dup(OUT);
-	dup2(g_minishell.save_fd[OUT], STDOUT_FILENO);
+	dup2(save_fd[OUT], STDOUT_FILENO);
 	get_and_write_input(tmp_fd, eof);
 	make_tmp_file_input();
 	dup2(save_fd_out, STDOUT_FILENO);

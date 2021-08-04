@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/08/04 16:58:10 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/04 19:53:58 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	command_parser(t_token *token_lst, t_token *pipe, int *old_pipe_in)
 	}
 	save_std_fds(save_fd);
 	create_pipe(pipe, old_pipe_in);
-	check_redirects(token_lst, pipe);
+	check_redirects(token_lst, pipe, save_fd);
 	cmd = create_command_array(token_lst, pipe);
 	execute(cmd);
 	free_2d_array(cmd);
