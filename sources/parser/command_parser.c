@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/08/01 11:56:33 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/04 16:46:55 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ static void	restore_std_fds(void)
 	close(g_minishell.save_fd[OUT]);
 }
 
-static void	create_pipe(t_token *pipe_token)
+static void	create_pipe(t_token *pipe_token, int *old_pipe_in)
 {
 	int	new_pipe[2];
 
-	dup2(g_minishell.old_pipe_in, STDIN_FILENO);
-	if (g_minishell.old_pipe_in != 0)
-		close(g_minishell.old_pipe_in);
+	dup2(*old_pipe_in, STDIN_FILENO);
+	if (*old_pipe_in != 0)
+		close(*old_pipe_in);
 	if (!pipe_token)
 		return ;
 	pipe(new_pipe);
 	dup2(new_pipe[OUT], STDOUT_FILENO);
 	close(new_pipe[OUT]);
-	g_minishell.old_pipe_in = dup(new_pipe[IN]);
+	*old_pipe_in = dup(new_pipe[IN]);
 	close(new_pipe[IN]);
 }
 
@@ -57,7 +57,7 @@ static bool	check_filename_after_redirect(t_token *token)
 	return (TRUE);
 }
 
-void	command_parser(t_token *token_lst, t_token *pipe)
+void	command_parser(t_token *token_lst, t_token *pipe, int *old_pipe_in)
 {
 	char	**cmd;
 
@@ -67,7 +67,7 @@ void	command_parser(t_token *token_lst, t_token *pipe)
 		return ;
 	}
 	save_std_fds();
-	create_pipe(pipe);
+	create_pipe(pipe, old_pipe_in);
 	check_redirects(token_lst, pipe);
 	cmd = create_command_array(token_lst, pipe);
 	execute(cmd);
