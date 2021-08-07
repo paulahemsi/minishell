@@ -62,8 +62,7 @@ command | description  |
 
 ## mindmap
 
-![mindmap](https://user-images.githubusercontent.com/63563271/128603156-ab83f4f6-70f3-452e-96de-1c893c7dd89a.png)
-
+![minishell (1)](https://user-images.githubusercontent.com/63563271/128608682-c8af3dae-e5d6-4eeb-ae34-6610d822d5c2.png)
 
 ## study_resources
 
