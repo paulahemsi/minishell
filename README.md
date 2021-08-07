@@ -1,3 +1,4 @@
+
 # minishell
 As beautiful as a shell
 
@@ -27,6 +28,8 @@ With Minishell project, we’ll be able to travel through time and come back to 
 `./minishell`
 
 Enjoy! 
+
+![minihell_2x](https://user-images.githubusercontent.com/63563271/128601846-b290ea5f-e45a-4a6d-8446-3684576d5782.gif)
 
 ## builtins_implemented
 
