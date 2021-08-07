@@ -6,6 +6,7 @@ As beautiful as a shell
 * [Usage](#usage)
 * [Builtins implemented](#builtins_implemented)
 * [Step by step](#step_by_step)
+* [Mindmap](#mindmap)
 * [Study resources](#study_resources)
 * [libft functions](#libft_functions)
 
@@ -21,11 +22,13 @@ With Minishell project, we’ll be able to travel through time and come back to 
 
 ## usage
 
-`git clone --recurse-submodules https://github.com/paulahemsi/minishell.git`
+Clone the repo `git clone --recurse-submodules https://github.com/paulahemsi/minishell.git`
 
-`make`
+Install Readline library `make install`
 
-`./minishell`
+Compile Minishell `make`
+
+Run `./minishell`
 
 Enjoy! 
 
@@ -48,6 +51,19 @@ command | description  |
 * Prompt implementation
 * HashTable functions implementation
 * Tokenizer implementation
+* Variables expansion implementation
+* Builtins implementation
+* Parse and execute sistem design
+* Signals implementation
+* Parsing implementation
+* Execute implementation
+* Norme
+* Bugs hunting
+
+## mindmap
+
+![mindmap](https://user-images.githubusercontent.com/63563271/128603156-ab83f4f6-70f3-452e-96de-1c893c7dd89a.png)
+
 
 ## study_resources
 
