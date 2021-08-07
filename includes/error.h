@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 21:17:17 by lcouto            #+#    #+#             */
-/*   Updated: 2021/08/01 11:50:05 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/07 16:15:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define TOO_MANY_ARGS "too many arguments."
 
 # define NO_OLDPWD "OLDPWD environment variable has not been set."
+
+# define NO_HOME "HOME environment variable has not been set."
 
 # define NO_FILE_OR_DIR "no such file or directory."
 

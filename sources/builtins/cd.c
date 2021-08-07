@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 20:33:57 by lcouto            #+#    #+#             */
-/*   Updated: 2021/08/01 11:52:50 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/07 16:15:28 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ static void	change_dir_to_home(void)
 	char	*path;
 
 	path = ft_strdup(hashmap_search(g_minishell.env, "HOME"));
+	if (path == NULL)
+	{
+		error_message("cd", NO_HOME, 1);
+		free(path);
+		return ;
+	}
 	change_dir_to_path(path);
 	free(path);
 }
