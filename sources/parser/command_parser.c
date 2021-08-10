@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 18:02:40 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/08/04 19:53:58 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/08/10 19:25:17 by lfrasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	save_std_fds(int *save_fd)
 {
 	save_fd[IN] = dup(STDIN_FILENO);
-	save_fd[OUT] = dup(STDIN_FILENO);
+	save_fd[OUT] = dup(STDOUT_FILENO);
 }
 
 static void	restore_std_fds(int *save_fd)
