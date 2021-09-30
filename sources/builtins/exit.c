@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrasson <lfrasson@student.42sp.org.b      +#+  +:+       +#+        */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 17:29:00 by lfrasson          #+#    #+#             */
-/*   Updated: 2021/08/01 11:53:55 by lfrasson         ###   ########.fr       */
+/*   Updated: 2021/09/30 14:24:33 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	parse_first_arg(char *arg)
 {
 	if (!arg)
 		return ;
-	g_minishell.error_status = atoi(arg);
+	g_minishell.error_status = ft_atoi(arg);
 	if (is_string_number(arg))
 		return ;
 	error_message("exit", NUM_ARG_REQUIRED, 2);
